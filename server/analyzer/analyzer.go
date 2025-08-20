@@ -54,7 +54,17 @@ func Analyzer(input string) (string, error) {
 			return "Partición no creada.", fmt.Errorf(" fdisk: %w", err)
 		}
 		return fmt.Sprintf("Partición creada exitosamente:\n - Ruta: %s\n - Nombre: %s\n - Tamaño: %d %s\n - Tipo: %s\n - Ajuste: %s", fdisk.Path, fdisk.Name, fdisk.Size, fdisk.Unit, fdisk.Type, fdisk.Fit), nil
+	case "mount":
+		mount, err := commands.NewMount(arguments)
+		if err != nil {
+			return "Disco no montado.", fmt.Errorf(" mount: %w", err)
+		}
 
+		if err = mount.Execute(); err != nil {
+			return "Disco no montado.", fmt.Errorf(" mount: %w", err)
+		}
+
+		return "¡Disco montado exitosamente!", nil
 	default:
 		return "", fmt.Errorf(": comando no reconocido: %s", command)
 	}

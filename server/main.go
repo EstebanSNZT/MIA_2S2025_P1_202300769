@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	result, err := analyzer.Analyzer("fdisk -name=TamalExtPart -size=1 -unit=M -type=E -path=/home/esteban/Documentos/Projects/MIA_2S2025_P1_202300769/server/disks/Disk1.mia -fit=WF")
+	result, err := analyzer.Analyzer("mount -name=MiloPart -path=/home/esteban/Documentos/Projects/MIA_2S2025_P1_202300769/server/disks/Disk1.mia")
 	if err != nil {
 		fmt.Println("Error", err)
 	}

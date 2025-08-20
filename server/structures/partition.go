@@ -1,6 +1,8 @@
 package structures
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Partition struct {
 	Status      [1]byte  // Estado de la partición
@@ -24,6 +26,6 @@ func (p *Partition) SetData(typePart string, fit string, start int, size int, na
 }
 
 func (p *Partition) String() string {
-	return fmt.Sprintf("Name: %s\nType: %s\nFit: %s\nStart: %d\nSize: %d\nStatus: %d\nCorrelative: %d\nID: %s\n",
+	return fmt.Sprintf("- Name: %s\n- Type: %s\n- Fit: %s\n- Start: %d\n- Size: %d\n- Status: %d\n- Correlative: %d\n- ID: %s\n",
 		string(p.Name[:]), string(p.Type[:]), string(p.Fit[:]), p.Start, p.Size, p.Status[0], p.Correlative, string(p.ID[:]))
 }

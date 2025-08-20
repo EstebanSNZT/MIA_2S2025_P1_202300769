@@ -4,6 +4,7 @@ import (
 	"encoding/binary"
 	"fmt"
 	"math/rand"
+	"strings"
 	"time"
 )
 
@@ -49,7 +50,7 @@ func (m *MBR) AddPartition(typePart string, fit string, size int, name string) e
 }
 
 func (m *MBR) String() string {
-	stringBuilder := fmt.Sprintf("--------- MBR ---------\n - Size: %d bytes\n - Creation Date: %s\n - Disk Signature: %d\n - Disk Fit: %s\n",
+	stringBuilder := fmt.Sprintf("--------- MBR ---------\n- Size: %d bytes\n- Creation Date: %s\n- Disk Signature: %d\n- Disk Fit: %s\n",
 		m.Size, string(m.CreationDate[:]), m.DiskSignature, string(m.DiskFit[:]))
 
 	for i, partition := range m.Partitions {
@@ -66,6 +67,17 @@ func (m *MBR) String() string {
 func (m *MBR) GetExtendedPartition() *Partition {
 	for i := range m.Partitions {
 		if string(m.Partitions[i].Type[:]) == "E" {
+			return &m.Partitions[i]
+		}
+	}
+	return nil
+}
+
+func (m *MBR) GetPartitionByName(name string) *Partition {
+	trimmed := strings.TrimSpace(name)
+	for i := range m.Partitions {
+		partName := strings.Trim(string(m.Partitions[i].Name[:]), "\x00 ")
+		if partName == trimmed && m.Partitions[i].Size > 0 {
 			return &m.Partitions[i]
 		}
 	}
