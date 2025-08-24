@@ -2,13 +2,14 @@ package arguments
 
 import (
 	"fmt"
+	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
-func ParsePath(input string) (string, error) {
-	re := regexp.MustCompile(`path=(?:"([^"]+)"|([^ ]+))`)
+func ParsePath(input string, isDisk bool) (string, error) {
+	re := regexp.MustCompile(`-path=(?:"([^"]+)"|([^ ]+))`)
 	match := re.FindStringSubmatch(input)
 
 	if match == nil {
@@ -26,15 +27,17 @@ func ParsePath(input string) (string, error) {
 		return "", fmt.Errorf("la ruta '%s' debe ser absoluta (empezar con /)", path)
 	}
 
-	if !strings.HasSuffix(path, ".mia") {
-		return "", fmt.Errorf("el archivo '%s' debe tener extensión .mia", path)
+	if isDisk {
+		if ext := filepath.Ext(path); ext != ".mia" {
+			return "", fmt.Errorf("el archivo '%s' debe tener extensión .mia", path)
+		}
 	}
 
 	return path, nil
 }
 
 func ParseName(input string) (string, error) {
-	re := regexp.MustCompile(`name=([^ ]+)`)
+	re := regexp.MustCompile(`-name=([^ ]+)`)
 	match := re.FindStringSubmatch(input)
 
 	if match == nil {
@@ -45,7 +48,7 @@ func ParseName(input string) (string, error) {
 }
 
 func ParseSize(input string) (int, error) {
-	re := regexp.MustCompile(`size=([^ ]+)`)
+	re := regexp.MustCompile(`-size=([^ ]+)`)
 	match := re.FindStringSubmatch(input)
 
 	if match == nil {
@@ -65,7 +68,7 @@ func ParseSize(input string) (int, error) {
 }
 
 func ParseUnit(input string, isDisk bool) (string, error) {
-	re := regexp.MustCompile(`unit=([^ ]+)`)
+	re := regexp.MustCompile(`-unit=([^ ]+)`)
 	match := re.FindStringSubmatch(input)
 
 	if match == nil {
@@ -91,7 +94,7 @@ func ParseUnit(input string, isDisk bool) (string, error) {
 }
 
 func ParseFit(input string, isDisk bool) (string, error) {
-	re := regexp.MustCompile(`fit=([^ ]+)`)
+	re := regexp.MustCompile(`-fit=([^ ]+)`)
 	match := re.FindStringSubmatch(input)
 
 	if match == nil {
@@ -111,7 +114,7 @@ func ParseFit(input string, isDisk bool) (string, error) {
 }
 
 func ParseType(input string) (string, error) {
-	re := regexp.MustCompile(`type=([^ ]+)`)
+	re := regexp.MustCompile(`-type=([^ ]+)`)
 	match := re.FindStringSubmatch(input)
 
 	if match == nil {
@@ -125,4 +128,53 @@ func ParseType(input string) (string, error) {
 	}
 
 	return typeValue, nil
+}
+
+func ParseId(input string) (string, error) {
+	re := regexp.MustCompile(`-id=([^ ]+)`)
+	match := re.FindStringSubmatch(input)
+
+	if match == nil {
+		return "", fmt.Errorf("no se encontró un id válido")
+	}
+
+	return match[1], nil
+}
+
+func ParseFsType(input string) (string, error) {
+	re := regexp.MustCompile(`-type=([^ ]+)`)
+	match := re.FindStringSubmatch(input)
+
+	if match == nil {
+		return "full", nil
+	}
+
+	fsType := strings.ToLower(match[1])
+	if fsType != "full" {
+		return "", fmt.Errorf("tipo de formateo inválido: %s (solo se permite full)", fsType)
+	}
+
+	return fsType, nil
+}
+
+func ParsePathFileLs(input string) (string, error) {
+	re := regexp.MustCompile(`-path_file_ls=(?:"([^"]+)"|([^ ]+))`)
+	match := re.FindStringSubmatch(input)
+
+	if match == nil {
+		return "", nil
+	}
+
+	var pathFileLs string
+	if match[1] != "" {
+		pathFileLs = match[1]
+	} else {
+		pathFileLs = match[2]
+	}
+
+	if !strings.HasPrefix(pathFileLs, "/") {
+		return "", fmt.Errorf("la ruta '%s' debe ser absoluta (empezar con /)", pathFileLs)
+	}
+
+	return pathFileLs, nil
 }

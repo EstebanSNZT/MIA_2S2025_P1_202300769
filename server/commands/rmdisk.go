@@ -2,6 +2,7 @@ package commands
 
 import (
 	"server/arguments"
+	"server/stores"
 	"server/utilities"
 )
 
@@ -10,17 +11,25 @@ type Rmdisk struct {
 }
 
 func NewRmDisk(input string) (*Rmdisk, error) {
-	cmdPath, err := arguments.ParsePath(input)
+	path, err := arguments.ParsePath(input, true)
 	if err != nil {
 		return nil, err
 	}
 
 	return &Rmdisk{
-		Path: cmdPath,
+		Path: path,
 	}, nil
 }
 
 func (r *Rmdisk) Execute() error {
+	for id, partition := range stores.MountedPartitions {
+		if partition.Path == r.Path {
+			delete(stores.MountedPartitions, id)
+		}
+	}
+
+	delete(stores.MountedDisks, r.Path)
+
 	err := utilities.DeleteFile(r.Path)
 	if err != nil {
 		return err

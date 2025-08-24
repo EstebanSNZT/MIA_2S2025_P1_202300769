@@ -16,31 +16,31 @@ type Mkdisk struct {
 }
 
 func NewMkDisk(input string) (*Mkdisk, error) {
-	cmdPath, err := arguments.ParsePath(input)
+	path, err := arguments.ParsePath(input, true)
 	if err != nil {
 		return nil, err
 	}
 
-	cmdSize, err := arguments.ParseSize(input)
+	size, err := arguments.ParseSize(input)
 	if err != nil {
 		return nil, err
 	}
 
-	cmdUnit, err := arguments.ParseUnit(input, true)
+	unit, err := arguments.ParseUnit(input, true)
 	if err != nil {
 		return nil, err
 	}
 
-	cmdFit, err := arguments.ParseFit(input, true)
+	fit, err := arguments.ParseFit(input, true)
 	if err != nil {
 		return nil, err
 	}
 
 	return &Mkdisk{
-		Path: cmdPath,
-		Size: cmdSize,
-		Unit: cmdUnit,
-		Fit:  cmdFit,
+		Path: path,
+		Size: size,
+		Unit: unit,
+		Fit:  fit,
 	}, nil
 }
 

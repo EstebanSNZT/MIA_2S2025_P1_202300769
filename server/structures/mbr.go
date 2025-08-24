@@ -4,27 +4,23 @@ import (
 	"encoding/binary"
 	"fmt"
 	"math/rand"
+	"os"
 	"strings"
 	"time"
 )
 
 type MBR struct {
 	Size          int32        // Tamaño del MBR en bytes
-	CreationDate  [19]byte     // Fecha y hora de creación del MBR
+	CreationDate  int64        // Fecha y hora de creación del MBR
 	DiskSignature int32        // Firma del disco
 	DiskFit       [1]byte      // Tipo de ajuste
 	Partitions    [4]Partition // Particiones del MBR
 }
 
 func NewMBR(size int, fit string) *MBR {
-	formattedTime := time.Now().Format("15:04:05 02/01/2006")
-
-	var dateArray [19]byte
-	copy(dateArray[:], formattedTime)
-
 	return &MBR{
 		Size:          int32(size),
-		CreationDate:  dateArray,
+		CreationDate:  int64(time.Now().Unix()),
 		DiskSignature: rand.Int31(),
 		DiskFit:       [1]byte{fit[0]},
 		Partitions:    [4]Partition{},
@@ -50,8 +46,10 @@ func (m *MBR) AddPartition(typePart string, fit string, size int, name string) e
 }
 
 func (m *MBR) String() string {
+	creationDate := time.Unix(m.CreationDate, 0).Format("2006-01-02 15:04:05")
+
 	stringBuilder := fmt.Sprintf("--------- MBR ---------\n- Size: %d bytes\n- Creation Date: %s\n- Disk Signature: %d\n- Disk Fit: %s\n",
-		m.Size, string(m.CreationDate[:]), m.DiskSignature, string(m.DiskFit[:]))
+		m.Size, creationDate, m.DiskSignature, string(m.DiskFit[:]))
 
 	for i, partition := range m.Partitions {
 		if partition.Size > 0 {
@@ -100,4 +98,34 @@ func (m *MBR) HasPartition(name string) bool {
 		}
 	}
 	return false
+}
+
+func (m *MBR) GenerateTable(file *os.File) (string, error) {
+	var sb strings.Builder
+
+	sb.WriteString("digraph G {\n")
+	sb.WriteString("	node [shape=record]\n")
+	sb.WriteString(fmt.Sprintf(`	tabla [label=<
+	<table border="0" cellborder="1" cellspacing="0">
+	<tr><td colspan="2" bgcolor="gray"><b> REPORTE MBR </b></td></tr>
+	<tr><td bgcolor="lightgray"><b>mbr_size</b></td><td>%d</td></tr>
+	<tr><td bgcolor="lightgray"><b>mbr_creation_date</b></td><td>%s</td></tr>
+	<tr><td bgcolor="lightgray"><b>mbr_disk_signature</b></td><td>%d</td></tr>`,
+		m.Size, time.Unix(m.CreationDate, 0).Format("2006-01-02 15:04:05"), m.DiskSignature))
+
+	for i := range m.Partitions {
+		if m.Partitions[i].Size == 0 {
+			continue
+		}
+
+		partitionTable, err := m.Partitions[i].GenerateTable(file, i)
+		if err != nil {
+			return "", err
+		}
+		sb.WriteString(partitionTable)
+	}
+
+	sb.WriteString("</table>>]\n}")
+
+	return sb.String(), nil
 }

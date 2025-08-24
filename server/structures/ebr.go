@@ -1,5 +1,10 @@
 package structures
 
+import (
+	"fmt"
+	"strings"
+)
+
 type EBR struct {
 	PartStatus [1]byte  // Estado de la partición
 	PartFit    [1]byte  // Tipo de ajuste
@@ -20,4 +25,20 @@ func NewEBR(fit string, start int32, size int32, name string) *EBR {
 		PartSize:   size,
 		PartName:   nameArray,
 	}
+}
+
+func (e *EBR) GenerateTable() string {
+	status := rune(e.PartStatus[0])
+	fit := rune(e.PartFit[0])
+	name := strings.Trim(string(e.PartName[:]), "\x00 ")
+
+	return fmt.Sprintf(`
+	<tr><td bgcolor="lightgreen"><b>EBR</b></td><td bgcolor="lightgreen"><b>Partición Lógica</b></td></tr>
+	<tr><td bgcolor="lightgray"><b>part_status</b></td><td>%c</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_fit</b></td><td>%c</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_start</b></td><td>%d</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_next</b></td><td>%d</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_size</b></td><td>%d</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_name</b></td><td>%s</td></tr>`,
+		status, fit, e.PartStart, e.PartNext, e.PartSize, name)
 }

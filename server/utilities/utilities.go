@@ -32,23 +32,41 @@ func OpenFile(name string) (*os.File, error) {
 }
 
 func WriteObject(file *os.File, data interface{}, position int64) error {
-	file.Seek(position, 0)
-	err := binary.Write(file, binary.LittleEndian, data)
-	if err != nil {
+	if _, err := file.Seek(position, 0); err != nil {
+		return fmt.Errorf("error al buscar la posición en el archivo: %v", err)
+	}
+	if err := binary.Write(file, binary.LittleEndian, data); err != nil {
 		return fmt.Errorf("error al escribir en el archivo: %v", err)
 	}
 	return nil
 }
 
 func ReadObject(file *os.File, data interface{}, position int64) error {
-	file.Seek(position, 0)
-	err := binary.Read(file, binary.LittleEndian, data)
-	if err != nil {
+	if _, err := file.Seek(position, 0); err != nil {
+		return fmt.Errorf("error al buscar la posición en el archivo: %v", err)
+	}
+	if err := binary.Read(file, binary.LittleEndian, data); err != nil {
 		return fmt.Errorf("error al leer del archivo: %v", err)
 	}
 	return nil
 }
 
+func WriteBytes(file *os.File, data []byte, position int64) error {
+	if _, err := file.Seek(position, 0); err != nil {
+		return fmt.Errorf("error al mover puntero en archivo (offset %d): %w", position, err)
+	}
+
+	bytesWritten, err := file.Write(data)
+	if err != nil {
+		return fmt.Errorf("error al escribir en archivo: %w", err)
+	}
+
+	if bytesWritten != len(data) {
+		return fmt.Errorf("escritura incompleta: escritos %d bytes, esperados %d", bytesWritten, len(data))
+	}
+
+	return nil
+}
 func ConvertToBytes(size int, unit string) int {
 	switch unit {
 	case "K":

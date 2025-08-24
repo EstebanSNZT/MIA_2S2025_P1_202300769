@@ -6,6 +6,7 @@ import (
 	"server/stores"
 	"server/structures"
 	"server/utilities"
+	"strings"
 )
 
 type Mount struct {
@@ -14,44 +15,50 @@ type Mount struct {
 }
 
 func NewMount(input string) (*Mount, error) {
-	cmdPath, err := arguments.ParsePath(input)
+	path, err := arguments.ParsePath(input, true)
 	if err != nil {
 		return nil, err
 	}
 
-	cmdName, err := arguments.ParseName(input)
+	name, err := arguments.ParseName(input)
 	if err != nil {
 		return nil, err
 	}
 
 	return &Mount{
-		Path: cmdPath,
-		Name: cmdName,
+		Path: path,
+		Name: name,
 	}, nil
 }
 
-func (m *Mount) Execute() error {
+func (m *Mount) Execute() (string, error) {
+	for _, mounted := range stores.MountedPartitions {
+		if strings.Trim(string(mounted.Partition.Name[:]), "\x00 ") == m.Name {
+			return "", fmt.Errorf("la partición '%s' ya está montada", m.Name)
+		}
+	}
+
 	file, err := utilities.OpenFile(m.Path)
 	if err != nil {
-		return err
+		return "", err
 	}
 	defer file.Close()
 
 	var mbr structures.MBR
 
 	if err = utilities.ReadObject(file, &mbr, 0); err != nil {
-		return fmt.Errorf("error al leer el MBR: %w", err)
+		return "", fmt.Errorf("error al leer el MBR: %w", err)
 	}
 
 	partition := mbr.GetPartitionByName(m.Name)
 
 	if partition == nil {
-		return fmt.Errorf("no se encontró una partición con el nombre '%s'", m.Name)
+		return "", fmt.Errorf("no se encontró una partición con el nombre '%s'", m.Name)
 	}
 
 	diskLetter, partitionCorrelative, err := stores.AllocateMountID(m.Path)
 	if err != nil {
-		return fmt.Errorf("error al asignar ID de montaje: %w", err)
+		return "", fmt.Errorf("error al asignar ID de montaje: %w", err)
 	}
 
 	partitionId := fmt.Sprintf("69%s%d", diskLetter, partitionCorrelative)
@@ -65,5 +72,5 @@ func (m *Mount) Execute() error {
 
 	stores.MountedPartitions[partitionId] = mountedPartition
 
-	return nil
+	return fmt.Sprintf("¡Partición montada exitosamente!\n - ID: %s\n - Ruta: %s\n - Nombre: %s", partitionId, m.Path, m.Name), nil
 }

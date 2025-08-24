@@ -1,15 +1,28 @@
 package main
 
 import (
-	"fmt"
-	"server/analyzer"
+	"server/handler"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
-	result, err := analyzer.Analyzer("mount -name=MiloPart -path=/home/esteban/Documentos/Projects/MIA_2S2025_P1_202300769/server/disks/Disk1.mia")
-	if err != nil {
-		fmt.Println("Error", err)
-	}
+	app := fiber.New()
 
-	fmt.Println(result)
+	app.Use(func(c *fiber.Ctx) error {
+		c.Set("Content-Type", "application/json")
+		return c.Next()
+	})
+
+	app.Use(cors.New(cors.Config{
+		AllowOrigins:     "http://localhost:5173",
+		AllowMethods:     "GET,POST,PUT,DELETE",
+		AllowHeaders:     "Origin, Content-Type, Accept",
+		AllowCredentials: true,
+	}))
+
+	app.Post("/execute", handler.Execute)
+
+	app.Listen(":8000")
 }

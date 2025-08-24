@@ -19,22 +19,22 @@ type Fdisk struct {
 }
 
 func NewFdisk(input string) (*Fdisk, error) {
-	cmdPath, err := arguments.ParsePath(input)
+	path, err := arguments.ParsePath(input, true)
 	if err != nil {
 		return nil, err
 	}
 
-	cmdName, err := arguments.ParseName(input)
+	name, err := arguments.ParseName(input)
 	if err != nil {
 		return nil, err
 	}
 
-	cmdSize, err := arguments.ParseSize(input)
+	size, err := arguments.ParseSize(input)
 	if err != nil {
 		return nil, err
 	}
 
-	cmdUnit, err := arguments.ParseUnit(input, false)
+	unit, err := arguments.ParseUnit(input, false)
 	if err != nil {
 		return nil, err
 	}
@@ -44,18 +44,18 @@ func NewFdisk(input string) (*Fdisk, error) {
 		return nil, err
 	}
 
-	cmdFit, err := arguments.ParseFit(input, false)
+	fit, err := arguments.ParseFit(input, false)
 	if err != nil {
 		return nil, err
 	}
 
 	return &Fdisk{
-		Path: cmdPath,
-		Name: cmdName,
-		Size: cmdSize,
-		Unit: cmdUnit,
+		Path: path,
+		Name: name,
+		Size: size,
+		Unit: unit,
 		Type: cmdType,
-		Fit:  cmdFit,
+		Fit:  fit,
 	}, nil
 }
 
