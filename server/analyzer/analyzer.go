@@ -3,10 +3,11 @@ package analyzer
 import (
 	"fmt"
 	"server/commands"
+	"server/session"
 	"strings"
 )
 
-func Analyzer(input string) (string, error) {
+func Analyzer(input string, session *session.Session) (string, error) {
 	spaceIndex := strings.Index(input, " ")
 
 	var command, arguments string
@@ -82,6 +83,34 @@ func Analyzer(input string) (string, error) {
 			return "Sistema de archivos no formateado.", fmt.Errorf(" mkfs: %w", err)
 		}
 		return "¡Sistema de archivos formateado exitosamente!", nil
+
+	case "mkdir":
+		mkdir, err := commands.NewMkdir(arguments)
+		if err != nil {
+			return "Directorio no creado.", fmt.Errorf(" mkdir: %w", err)
+		}
+
+		if err = mkdir.Execute(); err != nil {
+			return "Directorio no creado.", fmt.Errorf(" mkdir: %w", err)
+		}
+		return "¡Directorio creado exitosamente!", nil
+
+	case "login":
+		login, err := commands.NewLogin(arguments)
+		if err != nil {
+			return "Login fallido.", fmt.Errorf(" login: %w", err)
+		}
+
+		if err = login.Execute(session); err != nil {
+			return "Login fallido.", fmt.Errorf(" login: %w", err)
+		}
+		return "¡Login exitoso!", nil
+
+	case "logout":
+		if err := commands.Logout(arguments, session); err != nil {
+			return "Logout fallido.", fmt.Errorf(" logout: %w", err)
+		}
+		return "¡Sesión terminada correctamente!", nil
 
 	case "rep":
 		rep, err := commands.NewRep(arguments)

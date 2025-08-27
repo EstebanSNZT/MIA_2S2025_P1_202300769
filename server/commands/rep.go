@@ -17,7 +17,6 @@ type Rep struct {
 	Path       string
 	Name       string
 	PathFileLs string
-	format     string
 }
 
 func NewRep(input string) (*Rep, error) {
@@ -27,11 +26,6 @@ func NewRep(input string) (*Rep, error) {
 	}
 
 	path, err := arguments.ParsePath(input, false)
-	if err != nil {
-		return nil, err
-	}
-
-	format, err := verifyExtension(path)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +45,6 @@ func NewRep(input string) (*Rep, error) {
 		Path:       path,
 		Name:       name,
 		PathFileLs: pathFileLs,
-		format:     format,
 	}, nil
 }
 
@@ -101,17 +94,21 @@ func (r *Rep) generateMBRReport() (string, error) {
 }
 
 func (r *Rep) generateImage(dotCode string) error {
+	format, dotPath, err := r.verifyExtension()
+	if err != nil {
+		return err
+	}
+
 	dir := filepath.Dir(r.Path)
 	if err := os.MkdirAll(dir, os.ModePerm); err != nil {
 		return fmt.Errorf("error al crear directorios: %v", err)
 	}
 
-	dotPath := dir + ".dot"
 	if err := os.WriteFile(dotPath, []byte(dotCode), 0644); err != nil {
 		return fmt.Errorf("error al escribir archivo DOT: %v", err)
 	}
 
-	cmd := exec.Command("dot", r.format, dotPath, "-o", r.Path)
+	cmd := exec.Command("dot", format, dotPath, "-o", r.Path)
 	if err := cmd.Run(); err != nil {
 		return fmt.Errorf("error al ejecutar Graphviz: %v", err)
 	}
@@ -119,8 +116,8 @@ func (r *Rep) generateImage(dotCode string) error {
 	return nil
 }
 
-func verifyExtension(path string) (string, error) {
-	ext := strings.ToLower(filepath.Ext(path))
+func (r *Rep) verifyExtension() (string, string, error) {
+	ext := strings.ToLower(filepath.Ext(r.Path))
 	validExtensions := map[string]string{
 		".png":  "-Tpng",
 		".svg":  "-Tsvg",
@@ -130,7 +127,9 @@ func verifyExtension(path string) (string, error) {
 	}
 
 	if format, ok := validExtensions[ext]; ok {
-		return format, nil
+		dotPath := strings.TrimSuffix(r.Path, ext) + ".dot"
+		return format, dotPath, nil
 	}
-	return "", fmt.Errorf("el archivo debe tener una extensión válida para Graphviz")
+
+	return "", "", fmt.Errorf("el archivo debe tener una extensión válida para Graphviz")
 }

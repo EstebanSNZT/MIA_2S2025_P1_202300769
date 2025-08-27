@@ -178,3 +178,39 @@ func ParsePathFileLs(input string) (string, error) {
 
 	return pathFileLs, nil
 }
+
+func ParseUser(input string) (string, error) {
+	re := regexp.MustCompile(`-user=([^ ]+)`)
+	match := re.FindStringSubmatch(input)
+
+	if match == nil {
+		return "", fmt.Errorf("no se encontró un user válido")
+	}
+
+	return match[1], nil
+}
+
+func ParsePass(input string) (string, error) {
+	re := regexp.MustCompile(`-pass=([^ ]+)`)
+	match := re.FindStringSubmatch(input)
+
+	if match == nil {
+		return "", fmt.Errorf("no se encontró un pass válido")
+	}
+
+	return match[1], nil
+}
+
+func ParseP(input string) (bool, error) {
+	reWithValue := regexp.MustCompile(`-p=`)
+	if reWithValue.MatchString(input) {
+		return false, fmt.Errorf("la bandera -p no debe llevar valor")
+	}
+
+	reFlag := regexp.MustCompile(`(^|\s)-p(\s|$)`)
+	if reFlag.MatchString(input) {
+		return true, nil
+	}
+
+	return false, nil
+}

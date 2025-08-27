@@ -2,7 +2,9 @@ package stores
 
 import (
 	"fmt"
+	"os"
 	"server/structures"
+	"server/utilities"
 )
 
 type MountedPartition struct {
@@ -41,4 +43,23 @@ func AllocateMountID(path string) (string, int, error) {
 
 	disk.PartitionCount++
 	return disk.Letter, disk.PartitionCount, nil
+}
+
+func GetSuperBlock(id string) (*structures.SuperBlock, *os.File, error) {
+	mountedPartition := MountedPartitions[id]
+	if mountedPartition == nil {
+		return nil, nil, fmt.Errorf("no existe partición montada con ID: %s", id)
+	}
+
+	file, err := utilities.OpenFile(mountedPartition.Path)
+	if err != nil {
+		return nil, nil, fmt.Errorf("error al abrir el archivo de la partición: %v", err)
+	}
+
+	var superBlock structures.SuperBlock
+	if err := utilities.ReadObject(file, &superBlock, int64(mountedPartition.Partition.Start)); err != nil {
+		return nil, nil, fmt.Errorf("error al leer el superblock: %v", err)
+	}
+
+	return &superBlock, file, nil
 }

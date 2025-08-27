@@ -19,7 +19,7 @@ type Partition struct {
 }
 
 func (p *Partition) SetData(typePart string, fit string, start int, size int, name string) {
-	p.Status = [1]byte{0}
+	p.Status = [1]byte{'0'}
 	p.Type = [1]byte{typePart[0]}
 	p.Fit = [1]byte{fit[0]}
 	p.Start = int32(start)
@@ -58,8 +58,8 @@ func (p *Partition) GenerateTable(file *os.File, i int) (string, error) {
 	<tr><td bgcolor="lightgray"><b>part_fit</b></td><td>%c</td></tr>
 	<tr><td bgcolor="lightgray"><b>part_start</b></td><td>%d</td></tr>
 	<tr><td bgcolor="lightgray"><b>part_size</b></td><td>%d</td></tr>
-	<tr><td bgcolor="lightgray"><b>part_name</b></td><td>%s</td></tr>
-	`, color, i+1, status, pType, fit, p.Start, p.Size, name))
+	<tr><td bgcolor="lightgray"><b>part_name</b></td><td>%s</td></tr>`,
+		color, i+1, status, pType, fit, p.Start, p.Size, name))
 
 	if pType == 'E' {
 		var ebr EBR
@@ -67,6 +67,10 @@ func (p *Partition) GenerateTable(file *os.File, i int) (string, error) {
 		for {
 			if err := utilities.ReadObject(file, &ebr, int64(offset)); err != nil {
 				return "", fmt.Errorf("error leyendo EBR: %v", err)
+			}
+
+			if ebr.PartSize == 0 {
+				break
 			}
 
 			sb.WriteString(ebr.GenerateTable())

@@ -38,8 +38,8 @@ func NewSuperBlock(partition *Partition) *SuperBlock {
 
 	return &SuperBlock{
 		FilesystemType:  2,
-		InodesCount:     n,
-		BlocksCount:     3 * n,
+		InodesCount:     0,
+		BlocksCount:     0,
 		FreeInodesCount: n,
 		FreeBlocksCount: 3 * n,
 		Mtime:           int64(time.Now().Unix()),
@@ -91,4 +91,52 @@ func calculateSuperBlockOffsets(partitionStart, n int32, superBlockSize, inodeSi
 	inodeStart = bmBlockStart + (3 * n)
 	blockStart = inodeStart + (int32(inodeSize) * n)
 	return
+}
+
+func (s *SuperBlock) UpdateInodeBitmap(file *os.File, index int32) error {
+	offset := int64(s.BmInodeStart) + int64(index)
+	if err := utilities.WriteBytes(file, []byte{'1'}, offset); err != nil {
+		return fmt.Errorf("error al actualizar bitmap de inodos: %v", err)
+	}
+	s.InodesCount++
+	s.FreeInodesCount--
+	s.FirstIno += s.InodeSize
+	return nil
+}
+
+func (s *SuperBlock) UpdateBlockBitmap(file *os.File, index int32) error {
+	offset := int64(s.BmBlockStart) + int64(index)
+	if err := utilities.WriteBytes(file, []byte{'1'}, offset); err != nil {
+		return fmt.Errorf("error al actualizar bitmap de bloques: %v", err)
+	}
+	s.BlocksCount++
+	s.FreeBlocksCount--
+	s.FirstBlo += s.BlockSize
+	return nil
+}
+
+func (s *SuperBlock) String() string {
+	mTime := time.Unix(s.Mtime, 0).Format("2006-01-02 15:04:05")
+	uTime := time.Unix(s.Utime, 0).Format("2006-01-02 15:04:05")
+
+	return fmt.Sprintf(
+		"------ SuperBlock ------\n- Filesystem Type: %d\n- Inodes Count: %d\n- Blocks Count: %d\n- Free Inodes Count: %d\n- Free Blocks Count: %d\n- Mtime: %s\n- Utime: %s\n- Mnt Count: %d\n- Magic: 0x%X\n- Inode Size: %d\n- Block Size: %d\n- First Inode: %d\n- First Block: %d\n- Bitmap Inode Start: %d\n- Bitmap Block Start: %d\n- Inode Start: %d\n- Block Start: %d",
+		s.FilesystemType,
+		s.InodesCount,
+		s.BlocksCount,
+		s.FreeInodesCount,
+		s.FreeBlocksCount,
+		mTime,
+		uTime,
+		s.MntCount,
+		s.Magic,
+		s.InodeSize,
+		s.BlockSize,
+		s.FirstIno,
+		s.FirstBlo,
+		s.BmInodeStart,
+		s.BmBlockStart,
+		s.InodeStart,
+		s.BlockStart,
+	)
 }

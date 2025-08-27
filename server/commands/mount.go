@@ -52,6 +52,10 @@ func (m *Mount) Execute() (string, error) {
 
 	partition := mbr.GetPartitionByName(m.Name)
 
+	if partition.Type == [1]byte{'E'} {
+		return "", fmt.Errorf("no se puede montar una partición extendida")
+	}
+
 	if partition == nil {
 		return "", fmt.Errorf("no se encontró una partición con el nombre '%s'", m.Name)
 	}
@@ -63,6 +67,7 @@ func (m *Mount) Execute() (string, error) {
 
 	partitionId := fmt.Sprintf("69%s%d", diskLetter, partitionCorrelative)
 	copy(partition.ID[:], partitionId)
+	partition.Status = [1]byte{'1'}
 	partition.Correlative = int32(partitionCorrelative)
 
 	mountedPartition := &stores.MountedPartition{

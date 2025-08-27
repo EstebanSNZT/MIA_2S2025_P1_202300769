@@ -2,6 +2,7 @@ package main
 
 import (
 	"server/handler"
+	"server/session"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -9,6 +10,7 @@ import (
 
 func main() {
 	app := fiber.New()
+	session := session.NewSession()
 
 	app.Use(func(c *fiber.Ctx) error {
 		c.Set("Content-Type", "application/json")
@@ -22,7 +24,9 @@ func main() {
 		AllowCredentials: true,
 	}))
 
-	app.Post("/execute", handler.Execute)
+	app.Post("/execute", func(c *fiber.Ctx) error {
+		return handler.Execute(c, session)
+	})
 
 	app.Listen(":8000")
 }

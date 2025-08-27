@@ -3,6 +3,7 @@ package handler
 import (
 	"fmt"
 	"server/analyzer"
+	"server/session"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
@@ -16,7 +17,7 @@ type Response struct {
 	Output string `json:"output"`
 }
 
-func Execute(c *fiber.Ctx) error {
+func Execute(c *fiber.Ctx, session *session.Session) error {
 	req := new(Request)
 	if err := c.BodyParser(req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(Response{
@@ -38,7 +39,7 @@ func Execute(c *fiber.Ctx) error {
 			continue
 		}
 
-		result, err := analyzer.Analyzer(trimmedCommand)
+		result, err := analyzer.Analyzer(trimmedCommand, session)
 		if err != nil {
 			output.WriteString(fmt.Sprintf("%s Error%s\n", result, err.Error()))
 		} else {

@@ -31,14 +31,14 @@ func NewMkfs(input string) (*Mkfs, error) {
 }
 
 func (m *Mkfs) Execute() error {
-	partition := stores.MountedPartitions[m.Id]
-	if partition == nil {
+	mountedPartition := stores.MountedPartitions[m.Id]
+	if mountedPartition == nil {
 		return fmt.Errorf("no existe partición montada con ID: %s", m.Id)
 	}
 
-	superBlock := structures.NewSuperBlock(partition.Partition)
+	superBlock := structures.NewSuperBlock(mountedPartition.Partition)
 
-	file, err := utilities.OpenFile(partition.Path)
+	file, err := utilities.OpenFile(mountedPartition.Path)
 	if err != nil {
 		return fmt.Errorf("error al abrir el archivo de la partición: %v", err)
 	}
@@ -46,6 +46,15 @@ func (m *Mkfs) Execute() error {
 
 	if err := superBlock.InitializeBitMaps(file); err != nil {
 		return fmt.Errorf("error al inicializar bitmaps: %v", err)
+	}
+
+	fileSystem := structures.NewFileSystem(file, superBlock)
+	if err := fileSystem.CreateUsersFile(); err != nil {
+		return fmt.Errorf("error al crear archivo de usuarios: %v", err)
+	}
+
+	if err = utilities.WriteObject(file, superBlock, int64(mountedPartition.Partition.Start)); err != nil {
+		return fmt.Errorf("error al escribir superblock: %v", err)
 	}
 
 	return nil

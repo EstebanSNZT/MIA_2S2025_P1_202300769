@@ -87,14 +87,6 @@ func (f *Fdisk) Execute() error {
 		}
 	}
 
-	// var tempMBR2 structures.MBR
-
-	// if err = utilities.ReadObject(file, &tempMBR2, 0); err != nil {
-	// 	return fmt.Errorf("error al leer el MBR después de la escritura: %w", err)
-	// }
-
-	// fmt.Print(tempMBR2.String())
-
 	return nil
 }
 
@@ -189,7 +181,7 @@ func findLastEBR(file *os.File, start int32) (structures.EBR, int32, error) {
 
 		lastPos = currentPos
 
-		if lastEBR.PartNext == -1 {
+		if lastEBR.PartNext < 0 {
 			break
 		}
 		currentPos = lastEBR.PartNext
