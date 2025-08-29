@@ -112,6 +112,73 @@ func Analyzer(input string, session *session.Session) (string, error) {
 		}
 		return "¡Sesión terminada correctamente!", nil
 
+	case "cat":
+		cat, err := commands.NewCat(arguments)
+		if err != nil {
+			return "Cat no ejecutado.", fmt.Errorf(" cat: %w", err)
+		}
+
+		result, err := cat.Execute(session)
+		if err != nil {
+			return "Cat no ejecutado.", fmt.Errorf(" cat: %w", err)
+		}
+		return "¡Cat ejecutado exitosamente!\n" + result, nil
+
+	case "mkgrp":
+		mkgrp, err := commands.NewMkgrp(arguments)
+		if err != nil {
+			return "Grupo no creado.", fmt.Errorf(" mkgrp: %w", err)
+		}
+
+		if err = mkgrp.Execute(session); err != nil {
+			return "Grupo no creado.", fmt.Errorf(" mkgrp: %w", err)
+		}
+		return "¡Grupo creado exitosamente!", nil
+
+	case "rmgrp":
+		rmgrp, err := commands.NewRmgrp(arguments)
+		if err != nil {
+			return "Grupo no eliminado.", fmt.Errorf(" rmgrp: %w", err)
+		}
+
+		if err = rmgrp.Execute(session); err != nil {
+			return "Grupo no eliminado.", fmt.Errorf(" rmgrp: %w", err)
+		}
+		return "¡Grupo eliminado exitosamente!", nil
+
+	case "mkusr":
+		mkusr, err := commands.NewMkusr(arguments)
+		if err != nil {
+			return "Usuario no creado.", fmt.Errorf(" mkusr: %w", err)
+		}
+
+		if err = mkusr.Execute(session); err != nil {
+			return "Usuario no creado.", fmt.Errorf(" mkusr: %w", err)
+		}
+		return "¡Usuario creado exitosamente!", nil
+
+	case "rmusr":
+		rmusr, err := commands.NewRmusr(arguments)
+		if err != nil {
+			return "Usuario no eliminado.", fmt.Errorf(" rmusr: %w", err)
+		}
+
+		if err = rmusr.Execute(session); err != nil {
+			return "Usuario no eliminado.", fmt.Errorf(" rmusr: %w", err)
+		}
+		return "¡Usuario eliminado exitosamente!", nil
+
+	case "chgrp":
+		chgrp, err := commands.NewChgrp(arguments)
+		if err != nil {
+			return "Grupo no cambiado.", fmt.Errorf(" chgrp: %w", err)
+		}
+
+		if err = chgrp.Execute(session); err != nil {
+			return "Grupo no cambiado.", fmt.Errorf(" chgrp: %w", err)
+		}
+		return "¡Grupo cambiado exitosamente!", nil
+
 	case "rep":
 		rep, err := commands.NewRep(arguments)
 		if err != nil {

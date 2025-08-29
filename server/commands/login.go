@@ -6,6 +6,7 @@ import (
 	"server/session"
 	"server/stores"
 	"server/structures"
+	"server/utilities"
 	"strings"
 )
 
@@ -39,7 +40,7 @@ func NewLogin(input string) (*Login, error) {
 }
 
 func (l *Login) Execute(session *session.Session) error {
-	if session.IsAuthenticated {
+	if session.IsLoggedIn {
 		if session.PartitionID == l.Id {
 			return fmt.Errorf("ya hay una sesión activa en esta partición '%s' para el usuario '%s'", l.Id, l.Username)
 		} else {
@@ -47,7 +48,7 @@ func (l *Login) Execute(session *session.Session) error {
 		}
 	}
 
-	superBlock, file, err := stores.GetSuperBlock(l.Id)
+	superBlock, file, _, err := stores.GetSuperBlock(l.Id)
 	if err != nil {
 		return err
 	}
@@ -58,7 +59,7 @@ func (l *Login) Execute(session *session.Session) error {
 	}
 
 	fileSystem := structures.NewFileSystem(file, superBlock)
-	usersInode, err := fileSystem.GetInodeByPath("/user.txt")
+	usersInode, offset, err := fileSystem.GetInodeByPath("/user.txt")
 	if err != nil {
 		return err
 	}
@@ -69,6 +70,12 @@ func (l *Login) Execute(session *session.Session) error {
 
 	content, err := fileSystem.ReadFileContent(usersInode)
 	if err != nil {
+		return err
+	}
+
+	usersInode.UpdateAccessTime()
+
+	if err := utilities.WriteObject(file, *usersInode, offset); err != nil {
 		return err
 	}
 
@@ -84,7 +91,13 @@ func (l *Login) Execute(session *session.Session) error {
 func (l *Login) AuthenticateUser(content string) bool {
 	lines := strings.Split(content, "\n")
 	for _, line := range lines {
-		fields := strings.Split(strings.TrimSpace(line), ",")
+		trimmedLine := strings.TrimSpace(line)
+
+		if trimmedLine == "" {
+			continue
+		}
+
+		fields := strings.Split(trimmedLine, ",")
 
 		if len(fields) != 5 || strings.TrimSpace(fields[1]) != "U" {
 			continue

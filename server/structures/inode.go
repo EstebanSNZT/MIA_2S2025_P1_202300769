@@ -58,3 +58,11 @@ func (i *Inode) String() string {
 		string(i.Perm[:]),
 	)
 }
+
+func (i *Inode) UpdateAccessTime() {
+	i.Atime = float32(time.Now().Unix())
+}
+
+func (i *Inode) UpdateModificationTime() {
+	i.Mtime = float32(time.Now().Unix())
+}

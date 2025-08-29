@@ -10,7 +10,7 @@ func Logout(input string, session *session.Session) error {
 		return fmt.Errorf("comando 'logout' no requiere argumentos")
 	}
 
-	if session.IsAuthenticated {
+	if session.IsLoggedIn {
 		session.Logout()
 	} else {
 		return fmt.Errorf("no hay sesión activa")

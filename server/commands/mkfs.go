@@ -53,7 +53,7 @@ func (m *Mkfs) Execute() error {
 		return fmt.Errorf("error al crear archivo de usuarios: %v", err)
 	}
 
-	if err = utilities.WriteObject(file, superBlock, int64(mountedPartition.Partition.Start)); err != nil {
+	if err = utilities.WriteObject(file, *superBlock, int64(mountedPartition.Partition.Start)); err != nil {
 		return fmt.Errorf("error al escribir superblock: %v", err)
 	}
 

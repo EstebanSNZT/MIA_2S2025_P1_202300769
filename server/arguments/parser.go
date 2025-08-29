@@ -214,3 +214,41 @@ func ParseP(input string) (bool, error) {
 
 	return false, nil
 }
+
+func ParseFilePaths(input string) ([]string, error) {
+	re := regexp.MustCompile(`-file\d+=(?:"([^"]+)"|([^ ]+))`)
+	matches := re.FindAllStringSubmatch(input, -1)
+
+	if len(matches) == 0 {
+		return nil, fmt.Errorf("no se encontró ningún parámetro -file<N> válido")
+	}
+
+	var paths []string
+	for _, match := range matches {
+		var path string
+		if match[1] != "" {
+			path = match[1]
+		} else {
+			path = match[2]
+		}
+
+		if !strings.HasPrefix(path, "/") {
+			return nil, fmt.Errorf("la ruta '%s' debe ser absoluta", path)
+		}
+
+		paths = append(paths, path)
+	}
+
+	return paths, nil
+}
+
+func ParseGrp(input string) (string, error) {
+	re := regexp.MustCompile(`-grp=([^ ]+)`)
+	match := re.FindStringSubmatch(input)
+
+	if match == nil {
+		return "", fmt.Errorf("no se encontró un grp válido")
+	}
+
+	return match[1], nil
+}

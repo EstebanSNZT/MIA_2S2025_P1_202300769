@@ -38,8 +38,8 @@ func NewSuperBlock(partition *Partition) *SuperBlock {
 
 	return &SuperBlock{
 		FilesystemType:  2,
-		InodesCount:     0,
-		BlocksCount:     0,
+		InodesCount:     n,
+		BlocksCount:     3 * n,
 		FreeInodesCount: n,
 		FreeBlocksCount: 3 * n,
 		Mtime:           int64(time.Now().Unix()),
@@ -48,8 +48,8 @@ func NewSuperBlock(partition *Partition) *SuperBlock {
 		Magic:           0xEF53,
 		InodeSize:       int32(inodeSize),
 		BlockSize:       int32(blockSize),
-		FirstIno:        inodeStart,
-		FirstBlo:        blockStart,
+		FirstIno:        0,
+		FirstBlo:        0,
 		BmInodeStart:    bmInodeStart,
 		BmBlockStart:    bmBlockStart,
 		InodeStart:      inodeStart,
@@ -93,26 +93,80 @@ func calculateSuperBlockOffsets(partitionStart, n int32, superBlockSize, inodeSi
 	return
 }
 
-func (s *SuperBlock) UpdateInodeBitmap(file *os.File, index int32) error {
-	offset := int64(s.BmInodeStart) + int64(index)
-	if err := utilities.WriteBytes(file, []byte{'1'}, offset); err != nil {
+func (s *SuperBlock) UpdateInodeBitmap(index int32, state [1]byte, file *os.File) error {
+	offset := int64(s.BmInodeStart + index)
+	if err := utilities.WriteBytes(file, state[:], offset); err != nil {
 		return fmt.Errorf("error al actualizar bitmap de inodos: %v", err)
 	}
-	s.InodesCount++
-	s.FreeInodesCount--
-	s.FirstIno += s.InodeSize
+
+	switch state[0] {
+	case '1':
+		s.FreeInodesCount--
+	case '0':
+		s.FreeInodesCount++
+	}
 	return nil
 }
 
-func (s *SuperBlock) UpdateBlockBitmap(file *os.File, index int32) error {
-	offset := int64(s.BmBlockStart) + int64(index)
-	if err := utilities.WriteBytes(file, []byte{'1'}, offset); err != nil {
+func (s *SuperBlock) UpdateBlockBitmap(index int32, state [1]byte, file *os.File) error {
+	offset := int64(s.BmBlockStart + index)
+	if err := utilities.WriteBytes(file, state[:], offset); err != nil {
 		return fmt.Errorf("error al actualizar bitmap de bloques: %v", err)
 	}
-	s.BlocksCount++
-	s.FreeBlocksCount--
-	s.FirstBlo += s.BlockSize
+
+	switch state[0] {
+	case '1':
+		s.FreeBlocksCount--
+	case '0':
+		s.FreeBlocksCount++
+	}
 	return nil
+}
+
+func (s *SuperBlock) GetFreeInodeIndex(file *os.File) (int32, error) {
+	bitmap, err := utilities.ReadBytes(file, int(s.InodesCount), int64(s.BmInodeStart))
+	if err != nil {
+		return -1, fmt.Errorf("error al leer bitmap de inodos: %v", err)
+	}
+
+	startIndex := s.FirstIno
+	if startIndex < 0 || startIndex >= s.InodesCount {
+		startIndex = 0
+	}
+
+	for i := 0; i < len(bitmap); i++ {
+		checkIndex := (int(startIndex) + i) % len(bitmap)
+
+		if bitmap[checkIndex] == '0' {
+			s.FirstIno = int32(checkIndex) + 1
+			return int32(checkIndex), nil
+		}
+	}
+
+	return -1, fmt.Errorf("no se encontró un inodo libre")
+}
+
+func (s *SuperBlock) GetFreeBlockIndex(file *os.File) (int32, error) {
+	bitmap, err := utilities.ReadBytes(file, int(s.BlocksCount), int64(s.BmBlockStart))
+	if err != nil {
+		return -1, fmt.Errorf("error al leer bitmap de bloques: %v", err)
+	}
+
+	startIndex := s.FirstBlo
+	if startIndex < 0 || startIndex >= s.BlocksCount {
+		startIndex = 0
+	}
+
+	for i := 0; i < len(bitmap); i++ {
+		checkIndex := (int(startIndex) + i) % len(bitmap)
+
+		if bitmap[checkIndex] == '0' {
+			s.FirstBlo = int32(checkIndex) + 1
+			return int32(checkIndex), nil
+		}
+	}
+
+	return -1, fmt.Errorf("no se encontró un bloque libre")
 }
 
 func (s *SuperBlock) String() string {

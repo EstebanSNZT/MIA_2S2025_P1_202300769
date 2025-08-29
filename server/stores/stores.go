@@ -45,21 +45,23 @@ func AllocateMountID(path string) (string, int, error) {
 	return disk.Letter, disk.PartitionCount, nil
 }
 
-func GetSuperBlock(id string) (*structures.SuperBlock, *os.File, error) {
+func GetSuperBlock(id string) (*structures.SuperBlock, *os.File, int64, error) {
 	mountedPartition := MountedPartitions[id]
 	if mountedPartition == nil {
-		return nil, nil, fmt.Errorf("no existe partición montada con ID: %s", id)
+		return nil, nil, 0, fmt.Errorf("no existe partición montada con ID: %s", id)
 	}
 
 	file, err := utilities.OpenFile(mountedPartition.Path)
 	if err != nil {
-		return nil, nil, fmt.Errorf("error al abrir el archivo de la partición: %v", err)
+		return nil, nil, 0, fmt.Errorf("error al abrir el archivo de la partición: %v", err)
 	}
+
+	offset := int64(mountedPartition.Partition.Start)
 
 	var superBlock structures.SuperBlock
-	if err := utilities.ReadObject(file, &superBlock, int64(mountedPartition.Partition.Start)); err != nil {
-		return nil, nil, fmt.Errorf("error al leer el superblock: %v", err)
+	if err := utilities.ReadObject(file, &superBlock, offset); err != nil {
+		return nil, nil, 0, fmt.Errorf("error al leer el superblock: %v", err)
 	}
 
-	return &superBlock, file, nil
+	return &superBlock, file, offset, nil
 }

@@ -22,5 +22,5 @@ func Mounted(input string) (string, error) {
 		sb.WriteString(fmt.Sprintf(" > %s\n", id))
 	}
 
-	return sb.String(), nil
+	return strings.TrimSuffix(sb.String(), "\n"), nil
 }

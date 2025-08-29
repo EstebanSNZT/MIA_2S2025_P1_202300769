@@ -114,7 +114,7 @@ func (f *Fdisk) addPartitionToMBR(file *os.File, mbr *structures.MBR) error {
 		return err
 	}
 
-	if err := utilities.WriteObject(file, mbr, 0); err != nil {
+	if err := utilities.WriteObject(file, *mbr, 0); err != nil {
 		return fmt.Errorf("error al escribir el MBR actualizado: %w", err)
 	}
 
