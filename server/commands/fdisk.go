@@ -29,7 +29,7 @@ func NewFdisk(input string) (*Fdisk, error) {
 		return nil, err
 	}
 
-	size, err := arguments.ParseSize(input)
+	size, err := arguments.ParseSize(input, true)
 	if err != nil {
 		return nil, err
 	}

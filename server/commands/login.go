@@ -7,6 +7,7 @@ import (
 	"server/stores"
 	"server/structures"
 	"server/utilities"
+	"strconv"
 	"strings"
 )
 
@@ -59,7 +60,7 @@ func (l *Login) Execute(session *session.Session) error {
 	}
 
 	fileSystem := structures.NewFileSystem(file, superBlock)
-	usersInode, offset, err := fileSystem.GetInodeByPath("/user.txt")
+	usersInode, usersInodeIndex, err := fileSystem.GetInodeByPath("/user.txt")
 	if err != nil {
 		return err
 	}
@@ -75,40 +76,75 @@ func (l *Login) Execute(session *session.Session) error {
 
 	usersInode.UpdateAccessTime()
 
+	offset := int64(superBlock.InodeStart + usersInodeIndex*superBlock.InodeSize)
 	if err := utilities.WriteObject(file, *usersInode, offset); err != nil {
 		return err
 	}
 
-	if !l.AuthenticateUser(content) {
-		return fmt.Errorf("usuario o contraseña incorrectos")
+	UID, GID, err := l.AuthenticateUser(content)
+	if err != nil {
+		return err
 	}
 
-	session.Login(l.Username, l.Id)
-
+	session.Login(l.Username, UID, GID, l.Id)
+	fmt.Printf("sesión iniciada correctamente en la partición '%s' para el usuario '%s'\n", l.Id, l.Username)
+	fmt.Printf("UID: %d, GID: %d\n", UID, GID)
 	return nil
 }
 
-func (l *Login) AuthenticateUser(content string) bool {
+func (l *Login) AuthenticateUser(content string) (UID int32, GID int32, err error) {
 	lines := strings.Split(content, "\n")
+	groups := make(map[string]int32)
+	var userUID int32 = -1
+	var userGroupName string
+
 	for _, line := range lines {
 		trimmedLine := strings.TrimSpace(line)
-
 		if trimmedLine == "" {
 			continue
 		}
 
 		fields := strings.Split(trimmedLine, ",")
+		idStr := strings.TrimSpace(fields[0])
+		lineType := strings.TrimSpace(fields[1])
 
-		if len(fields) != 5 || strings.TrimSpace(fields[1]) != "U" {
+		if idStr == "0" {
 			continue
 		}
 
-		fileUsername := strings.TrimSpace(fields[3])
-		filePassword := strings.TrimSpace(fields[4])
+		if lineType == "G" && len(fields) == 3 {
+			groupName := strings.ToLower(strings.TrimSpace(fields[2]))
+			gid, _ := strconv.ParseInt(idStr, 10, 32)
+			groups[groupName] = int32(gid)
+		}
 
-		if strings.EqualFold(fileUsername, l.Username) {
-			return strings.EqualFold(filePassword, l.Password)
+		if userUID == -1 && lineType == "U" && len(fields) == 5 {
+			fileUsername := strings.TrimSpace(fields[3])
+			if strings.EqualFold(fileUsername, l.Username) {
+				filePassword := strings.TrimSpace(fields[4])
+				if strings.EqualFold(filePassword, l.Password) {
+					uid, _ := strconv.ParseInt(idStr, 10, 32)
+					userUID = int32(uid)
+					userGroupName = strings.ToLower(strings.TrimSpace(fields[2]))
+				}
+			}
+		}
+
+		if userUID != -1 {
+			if _, ok := groups[userGroupName]; ok {
+				break
+			}
 		}
 	}
-	return false
+
+	if userUID == -1 {
+		return -1, -1, fmt.Errorf("usuario o contraseña incorrectos")
+	}
+
+	userGID, ok := groups[userGroupName]
+	if !ok {
+		return -1, -1, fmt.Errorf("el grupo '%s' asignado al usuario '%s' no fue encontrado", userGroupName, l.Username)
+	}
+
+	return userUID, userGID, nil
 }

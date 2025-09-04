@@ -56,7 +56,7 @@ func (m *Mkusr) Execute(session *session.Session) error {
 	}
 
 	fileSystem := structures.NewFileSystem(file, superBlock)
-	usersInode, uiOffset, err := fileSystem.GetInodeByPath("/user.txt")
+	usersInode, usersInodeIndex, err := fileSystem.GetInodeByPath("/user.txt")
 	if err != nil {
 		return err
 	}
@@ -99,7 +99,8 @@ func (m *Mkusr) Execute(session *session.Session) error {
 	usersInode.UpdateAccessTime()
 	usersInode.UpdateModificationTime()
 
-	if err := utilities.WriteObject(file, *usersInode, uiOffset); err != nil {
+	offset := int64(fileSystem.Sb.InodeStart + usersInodeIndex*superBlock.InodeSize)
+	if err := utilities.WriteObject(file, *usersInode, offset); err != nil {
 		return err
 	}
 

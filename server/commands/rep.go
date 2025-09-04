@@ -56,12 +56,20 @@ func (r *Rep) Execute() (string, error) {
 			return "", fmt.Errorf("error al generar reporte MBR: %w", err)
 		}
 
-		fmt.Println(dotCode) // Para depuración
-
 		if err := r.generateImage(dotCode); err != nil {
 			return "", fmt.Errorf("error al generar imagen: %w", err)
 		}
 		return "¡Reporte MBR generado exitosamente!", nil
+	case "disk":
+		dotCode, err := r.generateDiskReport()
+		if err != nil {
+			return "", fmt.Errorf("error al generar reporte de disco: %w", err)
+		}
+
+		if err := r.generateImage(dotCode); err != nil {
+			return "", fmt.Errorf("error al generar imagen: %w", err)
+		}
+		return "¡Reporte de disco generado exitosamente!", nil
 	default:
 		return "", fmt.Errorf("tipo de reporte no reconocido: %s", r.Name)
 	}
@@ -86,6 +94,32 @@ func (r *Rep) generateMBRReport() (string, error) {
 	}
 
 	dotCode, err := mbr.GenerateTable(file)
+	if err != nil {
+		return "", fmt.Errorf("error al generar el código DOT: %w", err)
+	}
+
+	return dotCode, nil
+}
+
+func (r *Rep) generateDiskReport() (string, error) {
+	mounted := stores.MountedPartitions[r.Id]
+	if mounted == nil {
+		return "", fmt.Errorf("no existe partición montada con ID: %s", r.Id)
+	}
+
+	file, err := utilities.OpenFile(mounted.Path)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	var mbr structures.MBR
+
+	if err = utilities.ReadObject(file, &mbr, 0); err != nil {
+		return "", fmt.Errorf("error al leer el MBR: %w", err)
+	}
+
+	dotCode, err := mbr.GenerateDiskLayoutDOT(file)
 	if err != nil {
 		return "", fmt.Errorf("error al generar el código DOT: %w", err)
 	}

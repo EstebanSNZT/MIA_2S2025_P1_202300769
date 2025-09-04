@@ -44,7 +44,7 @@ func (c *Cat) Execute(session *session.Session) (string, error) {
 
 	var result strings.Builder
 	for _, filePath := range c.Files {
-		fileInode, offset, err := fileSystem.GetInodeByPath(filePath)
+		fileInode, fileInodeIndex, err := fileSystem.GetInodeByPath(filePath)
 		if err != nil {
 			return "", err
 		}
@@ -60,6 +60,7 @@ func (c *Cat) Execute(session *session.Session) (string, error) {
 
 		fileInode.UpdateAccessTime()
 
+		offset := int64(superBlock.InodeStart + fileInodeIndex*superBlock.InodeSize)
 		if err := utilities.WriteObject(file, *fileInode, offset); err != nil {
 			return "", err
 		}

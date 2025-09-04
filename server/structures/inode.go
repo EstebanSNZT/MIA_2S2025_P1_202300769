@@ -17,7 +17,7 @@ type Inode struct {
 	Perm   [3]byte
 }
 
-func NewInode(uid int32, gid int32, size int32, blockType [1]byte) *Inode {
+func NewInode(uid int32, gid int32, size int32, blockType [1]byte, perm [3]byte) *Inode {
 	return &Inode{
 		UID:    uid,
 		GID:    gid,
@@ -27,7 +27,7 @@ func NewInode(uid int32, gid int32, size int32, blockType [1]byte) *Inode {
 		Mtime:  float32(time.Now().Unix()),
 		Blocks: [15]int32{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
 		Type:   blockType,
-		Perm:   [3]byte{'7', '7', '7'},
+		Perm:   perm,
 	}
 }
 

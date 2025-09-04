@@ -84,13 +84,24 @@ func Analyzer(input string, session *session.Session) (string, error) {
 		}
 		return "¡Sistema de archivos formateado exitosamente!", nil
 
+	case "mkfile":
+		mkfile, err := commands.NewMkfile(arguments)
+		if err != nil {
+			return "Archivo no creado.", fmt.Errorf(" mkfile: %w", err)
+		}
+
+		if err = mkfile.Execute(session); err != nil {
+			return "Archivo no creado.", fmt.Errorf(" mkfile: %w", err)
+		}
+		return "¡Archivo creado exitosamente!", nil
+
 	case "mkdir":
 		mkdir, err := commands.NewMkdir(arguments)
 		if err != nil {
 			return "Directorio no creado.", fmt.Errorf(" mkdir: %w", err)
 		}
 
-		if err = mkdir.Execute(); err != nil {
+		if err = mkdir.Execute(session); err != nil {
 			return "Directorio no creado.", fmt.Errorf(" mkdir: %w", err)
 		}
 		return "¡Directorio creado exitosamente!", nil

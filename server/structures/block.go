@@ -36,3 +36,14 @@ func NewPointerBlock() *PointerBlock {
 		Pointers: [16]int32{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
 	}
 }
+
+func NewFolderBlock() *FolderBlock {
+	return &FolderBlock{
+		Content: [4]FolderContent{
+			{Name: [12]byte{'-'}, Inode: -1},
+			{Name: [12]byte{'-'}, Inode: -1},
+			{Name: [12]byte{'-'}, Inode: -1},
+			{Name: [12]byte{'-'}, Inode: -1},
+		},
+	}
+}

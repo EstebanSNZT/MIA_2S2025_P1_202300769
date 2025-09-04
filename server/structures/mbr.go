@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"path"
+	"server/utilities"
+	"sort"
 	"strings"
 	"time"
 )
@@ -127,5 +130,112 @@ func (m *MBR) GenerateTable(file *os.File) (string, error) {
 
 	sb.WriteString("</table>>]\n}")
 
+	return sb.String(), nil
+}
+
+type PartitionInfo struct {
+	Partition Partition
+	Index     int
+}
+
+func (m *MBR) GenerateDiskLayoutDOT(file *os.File) (string, error) {
+	var sb strings.Builder
+	totalSize := m.Size
+	diskName := path.Base(file.Name())
+
+	// --- 1. Encabezado ---
+	sb.WriteString("digraph G {node [shape=none];graph [splines=false];subgraph cluster_disk {")
+	sb.WriteString(fmt.Sprintf("label=\"Disco: %s (Tamaño Total: %d bytes)\";", diskName, totalSize))
+	sb.WriteString("style=filled; fillcolor=white; color=black; penwidth=2;")
+	sb.WriteString("table [label=<")
+	sb.WriteString("<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"10\" WIDTH=\"800\"><TR>")
+
+	mbrStructSize := int32(binary.Size(*m))
+	mbrPercentage := float64(mbrStructSize) / float64(totalSize) * 100
+	sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"gray\" ALIGN=\"CENTER\"><B>MBR</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", mbrStructSize, mbrPercentage))
+	lastOffset := int64(mbrStructSize)
+
+	validPartitions := []PartitionInfo{}
+	for i := 0; i < 4; i++ {
+		part := m.Partitions[i]
+		if part.Size > 0 {
+			validPartitions = append(validPartitions, PartitionInfo{Partition: part, Index: i})
+		}
+	}
+	sort.Slice(validPartitions, func(i, j int) bool {
+		return validPartitions[i].Partition.Start < validPartitions[j].Partition.Start
+	})
+
+	for _, pInfo := range validPartitions {
+		part := pInfo.Partition
+
+		freeSpaceBefore := int64(part.Start) - lastOffset
+		if freeSpaceBefore > 0 {
+			percentage := float64(freeSpaceBefore) / float64(totalSize) * 100
+			cellWidth := max(30, int(float64(freeSpaceBefore)/float64(totalSize)*800))
+			sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"#F5F5F5\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Libre</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", cellWidth, freeSpaceBefore, percentage))
+		}
+
+		percentage := float64(part.Size) / float64(totalSize) * 100
+		cellWidth := max(50, int(float64(part.Size)/float64(totalSize)*800))
+		partName := strings.TrimRight(string(part.Name[:]), "\x00")
+
+		switch part.Type[0] {
+		case 'P':
+			sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"lightblue\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Primaria</B><BR/>%s<BR/>%d bytes<BR/>(%.2f%%)</TD>", cellWidth, partName, part.Size, percentage))
+
+		case 'E':
+			sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"lightcoral\" WIDTH=\"%d\" ALIGN=\"CENTER\" CELLPADDING=\"0\">", cellWidth))
+			sb.WriteString("<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"5\" WIDTH=\"100%\" HEIGHT=\"100%\">")
+			sb.WriteString(fmt.Sprintf("<TR><TD COLSPAN=\"100\" ALIGN=\"CENTER\" BGCOLOR=\"orange\"><B>Extendida: %s</B></TD></TR><TR>", partName))
+
+			currentEbrOffset := int64(part.Start)
+			lastElementEndInE := currentEbrOffset
+			ebrStructSize := int64(binary.Size(EBR{}))
+
+			for {
+				var ebr EBR
+				if err := utilities.ReadObject(file, &ebr, currentEbrOffset); err != nil || ebr.PartNext == -1 {
+					break
+				}
+
+				ebrPercentage := float64(ebrStructSize) / float64(totalSize) * 100
+				sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"gray\" ALIGN=\"CENTER\"><B>EBR</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", ebrStructSize, ebrPercentage))
+				lastElementEndInE = currentEbrOffset + ebrStructSize
+
+				if ebr.PartSize > 0 {
+					logicalPercentage := float64(ebr.PartSize) / float64(totalSize) * 100
+					logicalName := strings.TrimRight(string(ebr.PartName[:]), "\x00")
+					logicalCellWidth := max(50, int(float64(ebr.PartSize)/float64(totalSize)*800))
+					sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"lightgreen\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Lógica</B><BR/>%s<BR/>%d bytes<BR/>(%.2f%%)</TD>", logicalCellWidth, logicalName, ebr.PartSize, logicalPercentage))
+					lastElementEndInE = int64(ebr.PartStart + ebr.PartSize)
+				}
+
+				if ebr.PartNext <= 0 {
+					break
+				}
+				currentEbrOffset = int64(ebr.PartNext)
+			}
+
+			endOfExtended := int64(part.Start + part.Size)
+			freeSpaceAtEnd := endOfExtended - lastElementEndInE
+			if freeSpaceAtEnd > 0 {
+				freeExtPercentage := float64(freeSpaceAtEnd) / float64(totalSize) * 100
+				freeCellWidth := max(30, int(float64(freeSpaceAtEnd)/float64(totalSize)*800))
+				sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"#D3D3D3\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Libre Ext.</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", freeCellWidth, freeSpaceAtEnd, freeExtPercentage))
+			}
+			sb.WriteString("</TR></TABLE></TD>")
+		}
+		lastOffset = int64(part.Start + part.Size)
+	}
+
+	finalFreeSpace := int64(totalSize) - lastOffset
+	if finalFreeSpace > 0 {
+		percentage := float64(finalFreeSpace) / float64(totalSize) * 100
+		cellWidth := max(30, int(float64(finalFreeSpace)/float64(totalSize)*800))
+		sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"#F5F5F5\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Libre</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", cellWidth, finalFreeSpace, percentage))
+	}
+
+	sb.WriteString("</TR></TABLE>>];}}")
 	return sb.String(), nil
 }

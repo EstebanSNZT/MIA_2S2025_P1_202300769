@@ -21,7 +21,7 @@ func NewMkDisk(input string) (*Mkdisk, error) {
 		return nil, err
 	}
 
-	size, err := arguments.ParseSize(input)
+	size, err := arguments.ParseSize(input, true)
 	if err != nil {
 		return nil, err
 	}

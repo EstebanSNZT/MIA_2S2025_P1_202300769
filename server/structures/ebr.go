@@ -19,7 +19,7 @@ func NewEBR(fit string, start int32, size int32, name string) *EBR {
 	copy(nameArray[:], name)
 
 	return &EBR{
-		PartMount: [1]byte{'0'}, // Estado inicial como no asignado
+		PartMount: [1]byte{'0'},
 		PartFit:   [1]byte{fit[0]},
 		PartStart: start,
 		PartSize:  size,

@@ -47,12 +47,15 @@ func ParseName(input string) (string, error) {
 	return match[1], nil
 }
 
-func ParseSize(input string) (int, error) {
+func ParseSize(input string, isMandatory bool) (int, error) {
 	re := regexp.MustCompile(`-size=([^ ]+)`)
 	match := re.FindStringSubmatch(input)
 
 	if match == nil {
-		return 0, fmt.Errorf("no se encontró un tamaño válido")
+		if isMandatory {
+			return 0, fmt.Errorf("no se encontró un size válido")
+		}
+		return 0, nil
 	}
 
 	size, err := strconv.Atoi(match[1])
@@ -201,20 +204,6 @@ func ParsePass(input string) (string, error) {
 	return match[1], nil
 }
 
-func ParseP(input string) (bool, error) {
-	reWithValue := regexp.MustCompile(`-p=`)
-	if reWithValue.MatchString(input) {
-		return false, fmt.Errorf("la bandera -p no debe llevar valor")
-	}
-
-	reFlag := regexp.MustCompile(`(^|\s)-p(\s|$)`)
-	if reFlag.MatchString(input) {
-		return true, nil
-	}
-
-	return false, nil
-}
-
 func ParseFilePaths(input string) ([]string, error) {
 	re := regexp.MustCompile(`-file\d+=(?:"([^"]+)"|([^ ]+))`)
 	matches := re.FindAllStringSubmatch(input, -1)
@@ -251,4 +240,43 @@ func ParseGrp(input string) (string, error) {
 	}
 
 	return match[1], nil
+}
+
+func ParseCont(input string) string {
+	re := regexp.MustCompile(`-cont=([^ ]+)`)
+	match := re.FindStringSubmatch(input)
+
+	if match == nil {
+		return ""
+	}
+
+	return match[1]
+}
+
+func ParseR(input string) (bool, error) {
+	reWithValue := regexp.MustCompile(`-r=`)
+	if reWithValue.MatchString(input) {
+		return false, fmt.Errorf("la bandera -r no debe llevar valor")
+	}
+
+	reFlag := regexp.MustCompile(`(^|\s)-r(\s|$)`)
+	if reFlag.MatchString(input) {
+		return true, nil
+	}
+
+	return false, nil
+}
+
+func ParseP(input string) (bool, error) {
+	reWithValue := regexp.MustCompile(`-p=`)
+	if reWithValue.MatchString(input) {
+		return false, fmt.Errorf("la bandera -p no debe llevar valor")
+	}
+
+	reFlag := regexp.MustCompile(`(^|\s)-p(\s|$)`)
+	if reFlag.MatchString(input) {
+		return true, nil
+	}
+
+	return false, nil
 }

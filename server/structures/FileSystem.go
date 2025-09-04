@@ -41,11 +41,11 @@ func (fs *FileSystem) CreateUsersFile() error {
 		return fmt.Errorf("no se pudo encontrar un bloque libre para users.txt: %w", err)
 	}
 
-	rootInode := NewInode(1, 1, 0, [1]byte{'0'})
+	rootInode := NewInode(1, 1, 0, [1]byte{'0'}, [3]byte{'7', '7', '7'})
 	rootInode.PushBlock(rootBlockIndex)
 
 	usersText := "1,G,root\n1,U,root,root,123\n"
-	userInode := NewInode(1, 1, int32(len(usersText)), [1]byte{'1'})
+	userInode := NewInode(1, 1, int32(len(usersText)), [1]byte{'1'}, [3]byte{'7', '7', '7'})
 	userInode.PushBlock(usersBlockIndex)
 
 	rootBlock := &FolderBlock{
@@ -99,59 +99,34 @@ func (fs *FileSystem) CreateUsersFile() error {
 	return nil
 }
 
-func (fs *FileSystem) GetInodeByPath(input string) (*Inode, int64, error) {
+func (fs *FileSystem) GetInodeByPath(input string) (*Inode, int32, error) {
 	clean := path.Clean(input)
 	if clean == "/" || clean == "." || clean == "" {
 		var root Inode
 		if err := utilities.ReadObject(fs.File, &root, int64(fs.Sb.InodeStart)); err != nil {
 			return nil, -1, err
 		}
-		return &root, -1, nil
+		return &root, 0, nil
 	}
 
 	parts := strings.FieldsFunc(clean, func(r rune) bool { return r == '/' })
 	currentInodeIndex := int32(0)
-	found := false
 
-	for i := range parts {
-		offset := int64(fs.Sb.InodeStart + currentInodeIndex*fs.Sb.InodeSize)
+	for _, part := range parts {
 		var currentInode Inode
-		if err := utilities.ReadObject(fs.File, &currentInode, offset); err != nil {
+		if err := utilities.ReadObject(fs.File, &currentInode, int64(fs.Sb.InodeStart+currentInodeIndex*fs.Sb.InodeSize)); err != nil {
 			return nil, -1, err
 		}
 
-		if i < len(parts)-1 && currentInode.Type != [1]byte{'0'} {
-			return nil, -1, fmt.Errorf("el componente '%s' no es un directorio", parts[i])
+		nextInodeIndex, err := fs.GetInodeIndexByName(&currentInode, part)
+		if err != nil {
+			return nil, -1, err
 		}
 
-		for j := range currentInode.Blocks {
-			if currentInode.Blocks[j] == -1 {
-				continue
-			}
-
-			var folderBlock FolderBlock
-			if err := utilities.ReadObject(fs.File, &folderBlock, int64(fs.Sb.BlockStart+currentInode.Blocks[j]*fs.Sb.BlockSize)); err != nil {
-				return nil, -1, err
-			}
-
-			for k := range folderBlock.Content {
-				if folderBlock.Content[k].Inode == -1 {
-					continue
-				}
-
-				name := strings.TrimRight(string(folderBlock.Content[k].Name[:]), "\x00")
-
-				if name == parts[i] {
-					currentInodeIndex = folderBlock.Content[k].Inode
-					found = true
-					break
-				}
-			}
-
-			if found {
-				break
-			}
+		if nextInodeIndex == -1 {
+			return nil, -1, fmt.Errorf("el componente '%s' no se encontró", part)
 		}
+		currentInodeIndex = nextInodeIndex
 	}
 
 	offset := int64(fs.Sb.InodeStart + currentInodeIndex*fs.Sb.InodeSize)
@@ -160,7 +135,33 @@ func (fs *FileSystem) GetInodeByPath(input string) (*Inode, int64, error) {
 		return nil, -1, err
 	}
 
-	return &targetInode, offset, nil
+	return &targetInode, currentInodeIndex, nil
+}
+
+func (fs *FileSystem) GetInodeIndexByName(inode *Inode, name string) (int32, error) {
+	for _, blockIndex := range inode.Blocks {
+		if blockIndex == -1 {
+			continue
+		}
+
+		var folderBlock FolderBlock
+		if err := utilities.ReadObject(fs.File, &folderBlock, int64(fs.Sb.BlockStart+blockIndex*fs.Sb.BlockSize)); err != nil {
+			return -1, err
+		}
+
+		for j := range folderBlock.Content {
+			if folderBlock.Content[j].Inode == -1 {
+				continue
+			}
+
+			inode_name := strings.TrimRight(string(folderBlock.Content[j].Name[:]), "\x00")
+			if inode_name == name {
+				return folderBlock.Content[j].Inode, nil
+			}
+		}
+	}
+
+	return -1, nil
 }
 
 func (fs *FileSystem) ReadFileContent(inode *Inode) (string, error) {
@@ -523,4 +524,148 @@ func (fs *FileSystem) AllocateFileBlocks(content []byte) ([15]int32, error) {
 	}
 
 	return allocatedBlocks, nil
+}
+
+func (fs *FileSystem) AddEntryToParent(parentInode *Inode, parentInodeIndex int32, entryName string, entryInodeIndex int32) error {
+	firstFreeSlot := -1
+
+	for i, blockIndex := range parentInode.Blocks {
+		if blockIndex == -1 {
+			if firstFreeSlot == -1 {
+				firstFreeSlot = i
+			}
+			continue
+		}
+
+		offset := int64(fs.Sb.BlockStart + blockIndex*fs.Sb.BlockSize)
+		var folderBlock FolderBlock
+		if err := utilities.ReadObject(fs.File, &folderBlock, offset); err != nil {
+			return fmt.Errorf("error al leer bloque de carpeta: %w", err)
+		}
+
+		for j := range folderBlock.Content {
+			if folderBlock.Content[j].Inode == -1 {
+				folderBlock.Content[j].Inode = entryInodeIndex
+				copy(folderBlock.Content[j].Name[:], entryName)
+
+				if err := utilities.WriteObject(fs.File, folderBlock, offset); err != nil {
+					return fmt.Errorf("no se pudo escribir el bloque de directorio modificado %d: %w", blockIndex, err)
+				}
+				return nil
+			}
+		}
+	}
+
+	if firstFreeSlot == -1 {
+		return fmt.Errorf("no hay espacio libre en el directorio")
+
+	}
+
+	newBlockIndex, err := fs.Sb.GetFreeBlockIndex(fs.File)
+	if err != nil {
+		return fmt.Errorf("no se pudo obtener un bloque libre para el nuevo bloque de carpeta: %w", err)
+	}
+
+	parentInode.Blocks[firstFreeSlot] = newBlockIndex
+	newFolderBlock := NewFolderBlock()
+	newFolderBlock.Content[0].Inode = entryInodeIndex
+	copy(newFolderBlock.Content[0].Name[:], entryName)
+
+	newBlockOffset := int64(fs.Sb.BlockStart + newBlockIndex*fs.Sb.BlockSize)
+	if err := utilities.WriteObject(fs.File, newFolderBlock, newBlockOffset); err != nil {
+		return fmt.Errorf("no se pudo escribir el nuevo bloque de carpeta: %w", err)
+	}
+
+	if err := fs.Sb.UpdateBlockBitmap(newBlockIndex, [1]byte{'1'}, fs.File); err != nil {
+		return err
+	}
+
+	parentInode.UpdateModificationTime()
+	parentOffset := int64(fs.Sb.InodeStart + parentInodeIndex*fs.Sb.InodeSize)
+	if err := utilities.WriteObject(fs.File, *parentInode, parentOffset); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (fs *FileSystem) CreateNewFolder(parentIndex int32, UID int32, GID int32) (int32, error) {
+	folderInodeIndex, err := fs.Sb.GetFreeInodeIndex(fs.File)
+	if err != nil {
+		return -1, fmt.Errorf("no se pudo encontrar un inodo libre para la nueva carpeta: %w", err)
+	}
+
+	folderBlockIndex, err := fs.Sb.GetFreeBlockIndex(fs.File)
+	if err != nil {
+		return -1, fmt.Errorf("no se pudo encontrar un bloque libre para la nueva carpeta: %w", err)
+	}
+
+	folderInode := NewInode(UID, GID, 0, [1]byte{'0'}, [3]byte{'6', '6', '4'})
+	folderInode.PushBlock(folderBlockIndex)
+
+	folderBlock := NewFolderBlock()
+	folderBlock.Content[0] = FolderContent{Name: [12]byte{'.'}, Inode: folderInodeIndex}
+	folderBlock.Content[1] = FolderContent{Name: [12]byte{'.', '.'}, Inode: parentIndex}
+
+	folderInodeOffset := int64(fs.Sb.InodeStart) + int64(folderInodeIndex)*int64(fs.Sb.InodeSize)
+	if err := utilities.WriteObject(fs.File, *folderInode, folderInodeOffset); err != nil {
+		return -1, err
+	}
+
+	folderBlockOffset := int64(fs.Sb.BlockStart) + int64(folderBlockIndex)*int64(fs.Sb.BlockSize)
+	if err := utilities.WriteObject(fs.File, folderBlock, folderBlockOffset); err != nil {
+		return -1, err
+	}
+
+	if err := fs.Sb.UpdateInodeBitmap(folderInodeIndex, [1]byte{'1'}, fs.File); err != nil {
+		return -1, err
+	}
+
+	if err := fs.Sb.UpdateBlockBitmap(folderBlockIndex, [1]byte{'1'}, fs.File); err != nil {
+		return -1, err
+	}
+
+	return folderInodeIndex, nil
+}
+
+func (fs *FileSystem) EnsurePathExist(path string, UID int32, GID int32) (*Inode, int32, error) {
+	parts := strings.FieldsFunc(path, func(r rune) bool { return r == '/' })
+	currentInodeIndex := int32(0)
+
+	for _, part := range parts {
+		var currentInode Inode
+		if err := utilities.ReadObject(fs.File, &currentInode, int64(fs.Sb.InodeStart+currentInodeIndex*fs.Sb.InodeSize)); err != nil {
+			return nil, -1, err
+		}
+
+		if currentInode.Type != [1]byte{'0'} {
+			return nil, -1, fmt.Errorf("no se puede crear: '%s' no es un directorio en la ruta '%s'", part, path)
+		}
+
+		nextInodeIndex, err := fs.GetInodeIndexByName(&currentInode, part)
+		if err != nil {
+			return nil, -1, err
+		}
+
+		if nextInodeIndex == -1 {
+			newFolderInodeIndex, err := fs.CreateNewFolder(currentInodeIndex, UID, GID)
+			if err != nil {
+				return nil, -1, err
+			}
+			if err := fs.AddEntryToParent(&currentInode, currentInodeIndex, part, newFolderInodeIndex); err != nil {
+				return nil, -1, err
+			}
+			nextInodeIndex = newFolderInodeIndex
+		}
+
+		currentInodeIndex = nextInodeIndex
+	}
+
+	finalOffset := int64(fs.Sb.InodeStart + currentInodeIndex*fs.Sb.InodeSize)
+	var lastFolderInode Inode
+	if err := utilities.ReadObject(fs.File, &lastFolderInode, finalOffset); err != nil {
+		return nil, -1, err
+	}
+
+	return &lastFolderInode, currentInodeIndex, nil
 }
