@@ -77,5 +77,17 @@ func (m *Mount) Execute() (string, error) {
 
 	stores.MountedPartitions[partitionId] = mountedPartition
 
+	var superBlock structures.SuperBlock
+	if err = utilities.ReadObject(file, &superBlock, int64(partition.Start)); err != nil {
+		return "", fmt.Errorf("error al leer el superbloque: %w", err)
+	}
+
+	if superBlock.Magic == 0xEF53 {
+		superBlock.MntCount++
+		if err = utilities.WriteObject(file, &superBlock, int64(partition.Start)); err != nil {
+			return "", fmt.Errorf("error al actualizar el superbloque: %w", err)
+		}
+	}
+
 	return fmt.Sprintf("¡Partición montada exitosamente!\n - ID: %s\n - Ruta: %s\n - Nombre: %s", partitionId, m.Path, m.Name), nil
 }

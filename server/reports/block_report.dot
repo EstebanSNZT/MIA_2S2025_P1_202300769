@@ -1,0 +1,16 @@
+digraph G { rankdir=LR; node [shape=plaintext];
+		block0 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td colspan="2" bgcolor="#ff6d59ff"><b>Bloque de Carpeta 0</b></td></tr>
+			<tr><td bgcolor="#ff6eecff"><b>Nombre</b></td><td bgcolor="#ffd35cff">Inodo</td></tr>
+			<tr><td bgcolor="#ffe3fbff"><b>.</b></td><td bgcolor="#fff2d0ff">0</td></tr><tr><td bgcolor="#ffe3fbff"><b>..</b></td><td bgcolor="#fff2d0ff">0</td></tr><tr><td bgcolor="#ffe3fbff"><b>user.txt</b></td><td bgcolor="#fff2d0ff">1</td></tr><tr><td bgcolor="#ffe3fbff"><b>-</b></td><td bgcolor="#fff2d0ff">-1</td></tr>
+			</table>
+		>];
+	
+		block1 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td bgcolor="#76ff76ff"><b>Bloque de Archivo 1</b></td></tr>
+			<tr><td align="left">1,G,root1,U,root,root,123</td></tr>
+			</table>
+		>];
+	block0 -> block1;}

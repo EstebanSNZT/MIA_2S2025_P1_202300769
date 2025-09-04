@@ -70,6 +70,60 @@ func (r *Rep) Execute() (string, error) {
 			return "", fmt.Errorf("error al generar imagen: %w", err)
 		}
 		return "¡Reporte de disco generado exitosamente!", nil
+	case "sb":
+		dotCode, err := r.generateSBReport()
+		if err != nil {
+			return "", fmt.Errorf("error al generar reporte de superbloque: %w", err)
+		}
+
+		if err := r.generateImage(dotCode); err != nil {
+			return "", fmt.Errorf("error al generar imagen: %w", err)
+		}
+		return "¡Reporte de superbloque generado exitosamente!", nil
+	case "inode":
+		dotCode, err := r.generateInodesReport()
+		if err != nil {
+			return "", fmt.Errorf("error al generar reporte de inodos: %w", err)
+		}
+
+		if err := r.generateImage(dotCode); err != nil {
+			return "", fmt.Errorf("error al generar imagen: %w", err)
+		}
+		return "¡Reporte de inodos generado exitosamente!", nil
+	case "block":
+		dotCode, err := r.generateBlocksReport()
+		if err != nil {
+			return "", fmt.Errorf("error al generar reporte de bloques: %w", err)
+		}
+
+		if err := r.generateImage(dotCode); err != nil {
+			return "", fmt.Errorf("error al generar imagen: %w", err)
+		}
+		return "¡Reporte de bloques generado exitosamente!", nil
+
+	case "bm_inode", "bm_block":
+		var content string
+		var err error
+
+		if r.Name == "bm_inode" {
+			content, err = r.generateInodeBitmapReport()
+		} else {
+			content, err = r.generateBlockBitmapReport()
+		}
+
+		if err != nil {
+			return "", fmt.Errorf("error al generar reporte de bitmap: %w", err)
+		}
+
+		if err := os.MkdirAll(filepath.Dir(r.Path), os.ModePerm); err != nil {
+			return "", fmt.Errorf("error al crear directorios para el reporte: %w", err)
+		}
+		if err := os.WriteFile(r.Path, []byte(content), 0644); err != nil {
+			return "", fmt.Errorf("error al escribir el archivo de reporte: %w", err)
+		}
+
+		return fmt.Sprintf("¡Reporte %s generado exitosamente!", r.Name), nil
+
 	default:
 		return "", fmt.Errorf("tipo de reporte no reconocido: %s", r.Name)
 	}
@@ -125,6 +179,182 @@ func (r *Rep) generateDiskReport() (string, error) {
 	}
 
 	return dotCode, nil
+}
+
+func (r *Rep) generateSBReport() (string, error) {
+	superBlock, file, _, err := stores.GetSuperBlock(r.Id)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	return superBlock.GenerateTable(), nil
+}
+
+func (r *Rep) generateInodesReport() (string, error) {
+	superBlock, file, _, err := stores.GetSuperBlock(r.Id)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	bitmap, err := utilities.ReadBytes(file, int(superBlock.InodesCount), int64(superBlock.BmInodeStart))
+	if err != nil {
+		return "", fmt.Errorf("error al leer bitmap de inodos: %v", err)
+	}
+
+	var lastInodeIndex int32 = -1
+
+	var sb strings.Builder
+	sb.WriteString("digraph G { rankdir=LR; node [shape=plaintext];")
+
+	for i, bit := range bitmap {
+		if bit != '1' {
+			continue
+		}
+
+		currentInodeIndex := int32(i)
+		var inode structures.Inode
+		offset := int64(superBlock.InodeStart + currentInodeIndex*superBlock.InodeSize)
+		if err := utilities.ReadObject(file, &inode, offset); err != nil {
+			fmt.Printf("Advertencia: no se pudo leer el inodo %d, se omitirá: %v\n", i, err)
+			continue
+		}
+		sb.WriteString(inode.GenerateTable(currentInodeIndex))
+
+		if lastInodeIndex != -1 {
+			sb.WriteString(fmt.Sprintf("inode%d -> inode%d;", lastInodeIndex, currentInodeIndex))
+		}
+		lastInodeIndex = currentInodeIndex
+	}
+
+	sb.WriteString("}")
+	return sb.String(), nil
+}
+
+func (r *Rep) generateBlocksReport() (string, error) {
+	superBlock, file, _, err := stores.GetSuperBlock(r.Id)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	inodeBitmap, err := utilities.ReadBytes(file, int(superBlock.InodesCount), int64(superBlock.BmInodeStart))
+	if err != nil {
+		return "", fmt.Errorf("error al leer bitmap de inodos: %v", err)
+	}
+
+	var sb strings.Builder
+	sb.WriteString("digraph G { rankdir=LR; node [shape=plaintext];")
+
+	processedBlocks := make(map[int32]bool) // Para no dibujar el mismo bloque dos veces
+	var lastBlockIndex int32 = -1           // Para enlazar los nodos en orden de descubrimiento
+
+	// Recorremos los inodos para obtener el contexto
+	for i, bit := range inodeBitmap {
+		if bit != '1' {
+			continue
+		}
+
+		var inode structures.Inode
+		inodeOffset := int64(superBlock.InodeStart + int32(i)*superBlock.InodeSize)
+		if err := utilities.ReadObject(file, &inode, inodeOffset); err != nil {
+			continue // Omitir inodos ilegibles
+		}
+
+		// Recorremos los punteros de cada inodo
+		for k, blockIndex := range inode.Blocks {
+			if blockIndex == -1 || processedBlocks[blockIndex] {
+				continue // Omitir punteros vacíos o bloques ya procesados
+			}
+
+			// Leemos el bloque y determinamos su tipo para llamar al GenerateTable correcto
+			var tableCode string
+			blockOffset := int64(superBlock.BlockStart + blockIndex*superBlock.BlockSize)
+
+			if k >= 12 { // Es un bloque de punteros (indirecto simple en adelante)
+				var pointerBlock structures.PointerBlock
+				if err := utilities.ReadObject(file, &pointerBlock, blockOffset); err == nil {
+					tableCode = pointerBlock.GenerateTable(blockIndex)
+				}
+			} else { // Es un bloque de datos (archivo o carpeta)
+				switch inode.Type[0] {
+				case '0': // Carpeta
+					var folderBlock structures.FolderBlock
+					if err := utilities.ReadObject(file, &folderBlock, blockOffset); err == nil {
+						tableCode = folderBlock.GenerateTable(blockIndex)
+					}
+				case '1': // Archivo
+					var fileBlock structures.FileBlock
+					if err := utilities.ReadObject(file, &fileBlock, blockOffset); err == nil {
+						tableCode = fileBlock.GenerateTable(blockIndex)
+					}
+				}
+			}
+
+			// Si se generó la tabla, la añadimos y enlazamos
+			if tableCode != "" {
+				sb.WriteString(tableCode)
+
+				if lastBlockIndex != -1 {
+					sb.WriteString(fmt.Sprintf("block%d -> block%d;", lastBlockIndex, blockIndex))
+				}
+				lastBlockIndex = blockIndex
+				processedBlocks[blockIndex] = true
+			}
+		}
+	}
+
+	sb.WriteString("}")
+	return sb.String(), nil
+}
+
+func (r *Rep) generateInodeBitmapReport() (string, error) {
+	superBlock, file, _, err := stores.GetSuperBlock(r.Id)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	inodeBitmap, err := utilities.ReadBytes(file, int(superBlock.InodesCount), int64(superBlock.BmInodeStart))
+	if err != nil {
+		return "", fmt.Errorf("error al leer bitmap de inodos: %w", err)
+	}
+
+	var sb strings.Builder
+	for i, bit := range inodeBitmap {
+		sb.WriteByte(bit)
+		if (i+1)%20 == 0 && i < len(inodeBitmap)-1 {
+			sb.WriteString("\n")
+		} else if i < len(inodeBitmap)-1 {
+			sb.WriteString("\t")
+		}
+	}
+	return sb.String(), nil
+}
+
+func (r *Rep) generateBlockBitmapReport() (string, error) {
+	superBlock, file, _, err := stores.GetSuperBlock(r.Id)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	blockBitmap, err := utilities.ReadBytes(file, int(superBlock.BlocksCount), int64(superBlock.BmBlockStart))
+	if err != nil {
+		return "", fmt.Errorf("error al leer bitmap de bloques: %w", err)
+	}
+
+	var sb strings.Builder
+	for i, bit := range blockBitmap {
+		sb.WriteByte(bit)
+		if (i+1)%20 == 0 && i < len(blockBitmap)-1 {
+			sb.WriteString("\n")
+		} else if i < len(blockBitmap)-1 {
+			sb.WriteString("\t")
+		}
+	}
+	return sb.String(), nil
 }
 
 func (r *Rep) generateImage(dotCode string) error {

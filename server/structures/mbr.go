@@ -107,7 +107,7 @@ func (m *MBR) GenerateTable(file *os.File) (string, error) {
 	var sb strings.Builder
 
 	sb.WriteString("digraph G {\n")
-	sb.WriteString("	node [shape=record]\n")
+	sb.WriteString("	node [shape=record];\n")
 	sb.WriteString(fmt.Sprintf(`	tabla [label=<
 	<table border="0" cellborder="1" cellspacing="0">
 	<tr><td colspan="2" bgcolor="gray"><b> REPORTE MBR </b></td></tr>
@@ -128,7 +128,7 @@ func (m *MBR) GenerateTable(file *os.File) (string, error) {
 		sb.WriteString(partitionTable)
 	}
 
-	sb.WriteString("</table>>]\n}")
+	sb.WriteString("</table>>];\n}")
 
 	return sb.String(), nil
 }
@@ -143,12 +143,11 @@ func (m *MBR) GenerateDiskLayoutDOT(file *os.File) (string, error) {
 	totalSize := m.Size
 	diskName := path.Base(file.Name())
 
-	// --- 1. Encabezado ---
-	sb.WriteString("digraph G {node [shape=none];graph [splines=false];subgraph cluster_disk {")
+	sb.WriteString("digraph G {node [shape=none]; graph [splines=false]; subgraph cluster_disk {")
 	sb.WriteString(fmt.Sprintf("label=\"Disco: %s (Tamaño Total: %d bytes)\";", diskName, totalSize))
-	sb.WriteString("style=filled; fillcolor=white; color=black; penwidth=2;")
-	sb.WriteString("table [label=<")
-	sb.WriteString("<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"10\" WIDTH=\"800\"><TR>")
+	sb.WriteString(`style=filled; fillcolor=white; color=black; penwidth=2;
+	table [label=<
+	<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"10\" WIDTH=\"800\"><TR>`)
 
 	mbrStructSize := int32(binary.Size(*m))
 	mbrPercentage := float64(mbrStructSize) / float64(totalSize) * 100
@@ -173,7 +172,7 @@ func (m *MBR) GenerateDiskLayoutDOT(file *os.File) (string, error) {
 		if freeSpaceBefore > 0 {
 			percentage := float64(freeSpaceBefore) / float64(totalSize) * 100
 			cellWidth := max(30, int(float64(freeSpaceBefore)/float64(totalSize)*800))
-			sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"#F5F5F5\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Libre</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", cellWidth, freeSpaceBefore, percentage))
+			sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"#ffffffff\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Libre</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", cellWidth, freeSpaceBefore, percentage))
 		}
 
 		percentage := float64(part.Size) / float64(totalSize) * 100

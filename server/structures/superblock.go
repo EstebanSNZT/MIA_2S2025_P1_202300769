@@ -6,6 +6,7 @@ import (
 	"math"
 	"os"
 	"server/utilities"
+	"strings"
 	"time"
 )
 
@@ -134,7 +135,7 @@ func (s *SuperBlock) GetFreeInodeIndex(file *os.File) (int32, error) {
 		startIndex = 0
 	}
 
-	for i := 0; i < len(bitmap); i++ {
+	for i := range bitmap {
 		checkIndex := (int(startIndex) + i) % len(bitmap)
 
 		if bitmap[checkIndex] == '0' {
@@ -157,7 +158,7 @@ func (s *SuperBlock) GetFreeBlockIndex(file *os.File) (int32, error) {
 		startIndex = 0
 	}
 
-	for i := 0; i < len(bitmap); i++ {
+	for i := range bitmap {
 		checkIndex := (int(startIndex) + i) % len(bitmap)
 
 		if bitmap[checkIndex] == '0' {
@@ -193,4 +194,52 @@ func (s *SuperBlock) String() string {
 		s.InodeStart,
 		s.BlockStart,
 	)
+}
+
+func (s *SuperBlock) GenerateTable() string {
+	var sb strings.Builder
+	sb.WriteString(`digraph G {node [shape=plaintext]; table [label=<
+	<table border="0" cellborder="1" cellspacing="0">
+	<tr><td colspan="2" bgcolor="#ad63caff"><b>Reporte Superbloque</b></td></tr>`)
+
+	tableRows := fmt.Sprintf(`
+		<tr><td><b>s_filesystem_type</b></td><td>%d</td></tr>
+		<tr><td bgcolor="#edceffff"><b>s_inodes_count</b></td><td bgcolor="#edceffff">%d</td></tr>
+		<tr><td><b>s_blocks_count</b></td><td>%d</td></tr>
+		<tr><td bgcolor="#edceffff"><b>s_free_inodes_count</b></td><td bgcolor="#edceffff">%d</td></tr>
+		<tr><td><b>s_free_blocks_count</b></td><td>%d</td></tr>
+		<tr><td bgcolor="#edceffff"><b>s_mtime</b></td><td bgcolor="#edceffff">%s</td></tr>
+		<tr><td><b>s_umtime</b></td><td>%s</td></tr>
+		<tr><td bgcolor="#edceffff"><b>s_mnt_count</b></td><td bgcolor="#edceffff">%d</td></tr>
+		<tr><td><b>s_magic</b></td><td>0x%X</td></tr>
+		<tr><td bgcolor="#edceffff"><b>s_inode_size</b></td><td bgcolor="#edceffff">%d</td></tr>
+		<tr><td><b>s_block_size</b></td><td>%d</td></tr>
+		<tr><td bgcolor="#edceffff"><b>s_first_ino</b></td><td bgcolor="#edceffff">%d</td></tr>
+		<tr><td><b>s_first_blo</b></td><td>%d</td></tr>
+		<tr><td bgcolor="#edceffff"><b>s_bm_inode_start</b></td><td bgcolor="#edceffff">%d</td></tr>
+		<tr><td><b>s_bm_block_start</b></td><td>%d</td></tr>
+		<tr><td bgcolor="#edceffff"><b>s_inode_start</b></td><td bgcolor="#edceffff">%d</td></tr>
+		<tr><td><b>s_block_start</b></td><td>%d</td></tr>
+	`,
+		s.FilesystemType,
+		s.InodesCount,
+		s.BlocksCount,
+		s.FreeInodesCount,
+		s.FreeBlocksCount,
+		time.Unix(s.Mtime, 0).Format("2006-01-02 15:04:05"),
+		time.Unix(s.Utime, 0).Format("2006-01-02 15:04:05"),
+		s.MntCount,
+		s.Magic,
+		s.InodeSize,
+		s.BlockSize,
+		s.FirstIno,
+		s.FirstBlo,
+		s.BmInodeStart,
+		s.BmBlockStart,
+		s.InodeStart,
+		s.BlockStart,
+	)
+	sb.WriteString(tableRows)
+	sb.WriteString("</table>>];}")
+	return sb.String()
 }
