@@ -65,7 +65,11 @@ func (c *Cat) Execute(session *session.Session) (string, error) {
 			return "", err
 		}
 
-		result.WriteString(content + "\n")
+		if strings.HasSuffix(content, "\n") {
+			result.WriteString(content)
+		} else {
+			result.WriteString(content + "\n")
+		}
 	}
 
 	return result.String(), nil

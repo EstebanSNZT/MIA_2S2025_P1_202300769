@@ -15,6 +15,10 @@ type Rmgrp struct {
 }
 
 func NewRmgrp(input string) (*Rmgrp, error) {
+	if err := arguments.ValidateParams(input, []string{"name"}); err != nil {
+		return nil, err
+	}
+
 	name, err := arguments.ParseName(input)
 	if err != nil {
 		return nil, err
@@ -45,7 +49,7 @@ func (m *Rmgrp) Execute(session *session.Session) error {
 	}
 
 	fileSystem := structures.NewFileSystem(file, superBlock)
-	usersInode, usersInodeIndex, err := fileSystem.GetInodeByPath("/user.txt")
+	usersInode, usersInodeIndex, err := fileSystem.GetInodeByPath("/users.txt")
 	if err != nil {
 		return err
 	}
@@ -74,7 +78,7 @@ func (m *Rmgrp) Execute(session *session.Session) error {
 
 	AllocatedBlocks, err := fileSystem.AllocateFileBlocks([]byte(newContent))
 	if err != nil {
-		return fmt.Errorf("error al asignar bloques para el nuevo contenido de /user.txt: %v", err)
+		return fmt.Errorf("error al asignar bloques para el nuevo contenido de /users.txt: %v", err)
 	}
 
 	usersInode.Blocks = AllocatedBlocks

@@ -20,6 +20,11 @@ type Rep struct {
 }
 
 func NewRep(input string) (*Rep, error) {
+	allowed := []string{"name", "path", "id", "path_file_ls"}
+	if err := arguments.ValidateParams(input, allowed); err != nil {
+		return nil, err
+	}
+
 	id, err := arguments.ParseId(input)
 	if err != nil {
 		return nil, fmt.Errorf("error al analizar id: %w", err)
@@ -123,6 +128,35 @@ func (r *Rep) Execute() (string, error) {
 		}
 
 		return fmt.Sprintf("¡Reporte %s generado exitosamente!", r.Name), nil
+
+	case "file":
+		if err := r.generateFileReport(); err != nil {
+			return "", fmt.Errorf("error al generar reporte de archivo: %w", err)
+		}
+
+		return fmt.Sprintf("¡Archivo extraído exitosamente a %s!", r.Path), nil
+
+	case "ls":
+		dotCode, err := r.generateLsReport()
+		if err != nil {
+			return "", fmt.Errorf("error al generar reporte ls: %w", err)
+		}
+
+		if err := r.generateImage(dotCode); err != nil {
+			return "", fmt.Errorf("error al generar imagen: %w", err)
+		}
+		return "¡Reporte ls generado exitosamente!", nil
+
+	case "tree":
+		dotCode, err := r.generateTreeReport()
+		if err != nil {
+			return "", fmt.Errorf("error al generar reporte tree: %w", err)
+		}
+
+		if err := r.generateImage(dotCode); err != nil {
+			return "", fmt.Errorf("error al generar imagen: %w", err)
+		}
+		return "¡Reporte tree generado exitosamente!", nil
 
 	default:
 		return "", fmt.Errorf("tipo de reporte no reconocido: %s", r.Name)
@@ -355,6 +389,83 @@ func (r *Rep) generateBlockBitmapReport() (string, error) {
 		}
 	}
 	return sb.String(), nil
+}
+
+func (r *Rep) generateFileReport() error {
+	if r.PathFileLs == "" {
+		return fmt.Errorf("la ruta del archivo a extraer (-ruta) no está especificada")
+	}
+
+	superBlock, file, _, err := stores.GetSuperBlock(r.Id)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	fileSystem := structures.NewFileSystem(file, superBlock)
+
+	fileInode, fileInodeIndex, err := fileSystem.GetInodeByPath(r.PathFileLs)
+	if err != nil {
+		return err
+	}
+	if fileInode.Type[0] != '1' {
+		return fmt.Errorf("la ruta especificada no es un archivo: %s", r.PathFileLs)
+	}
+	content, err := fileSystem.ReadFileContent(fileInode)
+	if err != nil {
+		return fmt.Errorf("error al leer el contenido del archivo: %w", err)
+	}
+
+	outputDir := filepath.Dir(r.Path)
+	if err := os.MkdirAll(outputDir, os.ModePerm); err != nil {
+		return fmt.Errorf("error al crear directorio de salida '%s': %w", outputDir, err)
+	}
+
+	if err := os.WriteFile(r.Path, []byte(content), 0644); err != nil {
+		return fmt.Errorf("error al escribir el archivo de reporte '%s': %w", r.Path, err)
+	}
+
+	fileInode.UpdateAccessTime()
+	offset := int64(superBlock.InodeStart + fileInodeIndex*superBlock.InodeSize)
+	return utilities.WriteObject(file, *fileInode, offset)
+}
+
+func (r *Rep) generateLsReport() (string, error) {
+	if r.PathFileLs == "" {
+		return "", fmt.Errorf("la ruta del archivo para realizar el reporte ls no está especificada")
+	}
+
+	superBlock, file, _, err := stores.GetSuperBlock(r.Id)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	fileSystem := structures.NewFileSystem(file, superBlock)
+
+	dotCode, err := fileSystem.GenerateLsDOT(r.PathFileLs)
+	if err != nil {
+		return "", fmt.Errorf("error al generar el código DOT: %w", err)
+	}
+
+	return dotCode, nil
+}
+
+func (r *Rep) generateTreeReport() (string, error) {
+	superBlock, file, _, err := stores.GetSuperBlock(r.Id)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	fileSystem := structures.NewFileSystem(file, superBlock)
+
+	dotCode, err := fileSystem.GenerateTreeDOT()
+	if err != nil {
+		return "", fmt.Errorf("error al generar el código DOT: %w", err)
+	}
+
+	return dotCode, nil
 }
 
 func (r *Rep) generateImage(dotCode string) error {

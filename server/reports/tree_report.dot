@@ -1,0 +1,2832 @@
+digraph G { rankdir=LR; node [shape=none, margin=0];
+		inode0 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#f0e050ff"><b>Inodo 0</b></td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_uid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_gid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_size</b></td><td>0</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_atime</b></td><td>2025-09-12 18:14:04</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_ctime</b></td><td>2025-09-12 18:14:04</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_mtime</b></td><td>2025-09-12 18:14:04</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_type</b></td><td>0</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_perm</b></td><td>777</td></tr>
+			<tr><td colspan="2" bgcolor="#27b0ffff"><b>Bloques</b></td></tr>
+			<tr><td bgcolor="#bee7ffff"><b>Directo [0]</b></td><td PORT="p0">0</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [1]</b></td><td PORT="p1">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [2]</b></td><td PORT="p2">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [3]</b></td><td PORT="p3">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [4]</b></td><td PORT="p4">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [5]</b></td><td PORT="p5">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [6]</b></td><td PORT="p6">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [7]</b></td><td PORT="p7">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [8]</b></td><td PORT="p8">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [9]</b></td><td PORT="p9">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [10]</b></td><td PORT="p10">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [11]</b></td><td PORT="p11">-1</td></tr><tr><td bgcolor="#4bdffdff"><b>Indirecto Simple [12]</b></td><td PORT="p12">-1</td></tr><tr><td bgcolor="#52ffc5ff"><b>Indirecto Doble [13]</b></td><td PORT="p13">-1</td></tr><tr><td bgcolor="#83ff6aff"><b>Indirecto Triple [14]</b></td><td PORT="p14">-1</td></tr>
+			</table>
+		>];
+	inode0:p0 -> block0:top;
+		block0 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ff6d59ff"><b>Bloque de Carpeta 0</b></td></tr>
+			<tr><td bgcolor="#ff6eecff"><b>Nombre</b></td><td bgcolor="#ffd35cff">Inodo</td></tr>
+			<tr><td bgcolor="#ffe3fbff"><b>.</b></td><td PORT="i0" bgcolor="#fff2d0ff">0</td></tr><tr><td bgcolor="#ffe3fbff"><b>..</b></td><td PORT="i1" bgcolor="#fff2d0ff">0</td></tr><tr><td bgcolor="#ffe3fbff"><b>user.txt</b></td><td PORT="i2" bgcolor="#fff2d0ff">1</td></tr><tr><td bgcolor="#ffe3fbff"><b>home</b></td><td PORT="i3" bgcolor="#fff2d0ff">2</td></tr>
+			</table>
+		>];
+	block0:i2 -> inode1:top;
+		inode1 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#f0e050ff"><b>Inodo 1</b></td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_uid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_gid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_size</b></td><td>27</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_atime</b></td><td>2025-09-13 12:55:14</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_ctime</b></td><td>2025-09-12 18:14:04</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_mtime</b></td><td>2025-09-12 18:14:04</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_type</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_perm</b></td><td>777</td></tr>
+			<tr><td colspan="2" bgcolor="#27b0ffff"><b>Bloques</b></td></tr>
+			<tr><td bgcolor="#bee7ffff"><b>Directo [0]</b></td><td PORT="p0">1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [1]</b></td><td PORT="p1">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [2]</b></td><td PORT="p2">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [3]</b></td><td PORT="p3">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [4]</b></td><td PORT="p4">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [5]</b></td><td PORT="p5">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [6]</b></td><td PORT="p6">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [7]</b></td><td PORT="p7">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [8]</b></td><td PORT="p8">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [9]</b></td><td PORT="p9">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [10]</b></td><td PORT="p10">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [11]</b></td><td PORT="p11">-1</td></tr><tr><td bgcolor="#4bdffdff"><b>Indirecto Simple [12]</b></td><td PORT="p12">-1</td></tr><tr><td bgcolor="#52ffc5ff"><b>Indirecto Doble [13]</b></td><td PORT="p13">-1</td></tr><tr><td bgcolor="#83ff6aff"><b>Indirecto Triple [14]</b></td><td PORT="p14">-1</td></tr>
+			</table>
+		>];
+	inode1:p0 -> block1:top;
+		block1 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 1</b></td></tr>
+			<tr><td align="left">1,G,root1,U,root,root,123</td></tr>
+			</table>
+		>];
+	block0:i3 -> inode2:top;
+		inode2 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#f0e050ff"><b>Inodo 2</b></td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_uid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_gid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_size</b></td><td>0</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_atime</b></td><td>2025-09-13 12:57:03</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_ctime</b></td><td>2025-09-13 12:57:03</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_mtime</b></td><td>2025-09-13 13:04:01</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_type</b></td><td>0</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_perm</b></td><td>664</td></tr>
+			<tr><td colspan="2" bgcolor="#27b0ffff"><b>Bloques</b></td></tr>
+			<tr><td bgcolor="#bee7ffff"><b>Directo [0]</b></td><td PORT="p0">2</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [1]</b></td><td PORT="p1">52</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [2]</b></td><td PORT="p2">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [3]</b></td><td PORT="p3">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [4]</b></td><td PORT="p4">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [5]</b></td><td PORT="p5">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [6]</b></td><td PORT="p6">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [7]</b></td><td PORT="p7">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [8]</b></td><td PORT="p8">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [9]</b></td><td PORT="p9">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [10]</b></td><td PORT="p10">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [11]</b></td><td PORT="p11">-1</td></tr><tr><td bgcolor="#4bdffdff"><b>Indirecto Simple [12]</b></td><td PORT="p12">-1</td></tr><tr><td bgcolor="#52ffc5ff"><b>Indirecto Doble [13]</b></td><td PORT="p13">-1</td></tr><tr><td bgcolor="#83ff6aff"><b>Indirecto Triple [14]</b></td><td PORT="p14">-1</td></tr>
+			</table>
+		>];
+	inode2:p0 -> block2:top;
+		block2 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ff6d59ff"><b>Bloque de Carpeta 2</b></td></tr>
+			<tr><td bgcolor="#ff6eecff"><b>Nombre</b></td><td bgcolor="#ffd35cff">Inodo</td></tr>
+			<tr><td bgcolor="#ffe3fbff"><b>.</b></td><td PORT="i0" bgcolor="#fff2d0ff">2</td></tr><tr><td bgcolor="#ffe3fbff"><b>..</b></td><td PORT="i1" bgcolor="#fff2d0ff">0</td></tr><tr><td bgcolor="#ffe3fbff"><b>test.txt</b></td><td PORT="i2" bgcolor="#fff2d0ff">3</td></tr><tr><td bgcolor="#ffe3fbff"><b>test1.txt</b></td><td PORT="i3" bgcolor="#fff2d0ff">4</td></tr>
+			</table>
+		>];
+	block2:i2 -> inode3:top;
+		inode3 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#f0e050ff"><b>Inodo 3</b></td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_uid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_gid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_size</b></td><td>0</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_atime</b></td><td>2025-09-13 12:57:03</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_ctime</b></td><td>2025-09-13 12:57:03</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_mtime</b></td><td>2025-09-13 12:57:03</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_type</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_perm</b></td><td>644</td></tr>
+			<tr><td colspan="2" bgcolor="#27b0ffff"><b>Bloques</b></td></tr>
+			<tr><td bgcolor="#bee7ffff"><b>Directo [0]</b></td><td PORT="p0">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [1]</b></td><td PORT="p1">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [2]</b></td><td PORT="p2">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [3]</b></td><td PORT="p3">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [4]</b></td><td PORT="p4">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [5]</b></td><td PORT="p5">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [6]</b></td><td PORT="p6">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [7]</b></td><td PORT="p7">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [8]</b></td><td PORT="p8">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [9]</b></td><td PORT="p9">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [10]</b></td><td PORT="p10">-1</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [11]</b></td><td PORT="p11">-1</td></tr><tr><td bgcolor="#4bdffdff"><b>Indirecto Simple [12]</b></td><td PORT="p12">-1</td></tr><tr><td bgcolor="#52ffc5ff"><b>Indirecto Doble [13]</b></td><td PORT="p13">-1</td></tr><tr><td bgcolor="#83ff6aff"><b>Indirecto Triple [14]</b></td><td PORT="p14">-1</td></tr>
+			</table>
+		>];
+	block2:i3 -> inode4:top;
+		inode4 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#f0e050ff"><b>Inodo 4</b></td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_uid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_gid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_size</b></td><td>800</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_atime</b></td><td>2025-09-13 13:01:32</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_ctime</b></td><td>2025-09-13 12:59:39</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_mtime</b></td><td>2025-09-13 12:59:39</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_type</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_perm</b></td><td>644</td></tr>
+			<tr><td colspan="2" bgcolor="#27b0ffff"><b>Bloques</b></td></tr>
+			<tr><td bgcolor="#bee7ffff"><b>Directo [0]</b></td><td PORT="p0">3</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [1]</b></td><td PORT="p1">4</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [2]</b></td><td PORT="p2">5</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [3]</b></td><td PORT="p3">6</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [4]</b></td><td PORT="p4">7</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [5]</b></td><td PORT="p5">8</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [6]</b></td><td PORT="p6">9</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [7]</b></td><td PORT="p7">10</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [8]</b></td><td PORT="p8">11</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [9]</b></td><td PORT="p9">12</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [10]</b></td><td PORT="p10">13</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [11]</b></td><td PORT="p11">14</td></tr><tr><td bgcolor="#4bdffdff"><b>Indirecto Simple [12]</b></td><td PORT="p12">16</td></tr><tr><td bgcolor="#52ffc5ff"><b>Indirecto Doble [13]</b></td><td PORT="p13">-1</td></tr><tr><td bgcolor="#83ff6aff"><b>Indirecto Triple [14]</b></td><td PORT="p14">-1</td></tr>
+			</table>
+		>];
+	inode4:p0 -> block3:top;
+		block3 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 3</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	inode4:p1 -> block4:top;
+		block4 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 4</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	inode4:p2 -> block5:top;
+		block5 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 5</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	inode4:p3 -> block6:top;
+		block6 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 6</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	inode4:p4 -> block7:top;
+		block7 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 7</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	inode4:p5 -> block8:top;
+		block8 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 8</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	inode4:p6 -> block9:top;
+		block9 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 9</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	inode4:p7 -> block10:top;
+		block10 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 10</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	inode4:p8 -> block11:top;
+		block11 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 11</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	inode4:p9 -> block12:top;
+		block12 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 12</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	inode4:p10 -> block13:top;
+		block13 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 13</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	inode4:p11 -> block14:top;
+		block14 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 14</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	inode4:p12 -> block16:top;
+		block16 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 16</b></td></tr>
+			<tr><td PORT="ptr0">15</td></tr><tr><td PORT="ptr1">-1</td></tr><tr><td PORT="ptr2">-1</td></tr><tr><td PORT="ptr3">-1</td></tr><tr><td PORT="ptr4">-1</td></tr><tr><td PORT="ptr5">-1</td></tr><tr><td PORT="ptr6">-1</td></tr><tr><td PORT="ptr7">-1</td></tr><tr><td PORT="ptr8">-1</td></tr><tr><td PORT="ptr9">-1</td></tr><tr><td PORT="ptr10">-1</td></tr><tr><td PORT="ptr11">-1</td></tr><tr><td PORT="ptr12">-1</td></tr><tr><td PORT="ptr13">-1</td></tr><tr><td PORT="ptr14">-1</td></tr><tr><td PORT="ptr15">-1</td></tr>
+			</table>
+		>];
+	block16:ptr0 -> block15:top;
+		block15 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 15</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	inode2:p1 -> block52:top;
+		block52 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ff6d59ff"><b>Bloque de Carpeta 52</b></td></tr>
+			<tr><td bgcolor="#ff6eecff"><b>Nombre</b></td><td bgcolor="#ffd35cff">Inodo</td></tr>
+			<tr><td bgcolor="#ffe3fbff"><b>test2.txt</b></td><td PORT="i0" bgcolor="#fff2d0ff">5</td></tr><tr><td bgcolor="#ffe3fbff"><b>test3.txt</b></td><td PORT="i1" bgcolor="#fff2d0ff">6</td></tr><tr><td bgcolor="#ffe3fbff"><b>-</b></td><td PORT="i2" bgcolor="#fff2d0ff">-1</td></tr><tr><td bgcolor="#ffe3fbff"><b>-</b></td><td PORT="i3" bgcolor="#fff2d0ff">-1</td></tr>
+			</table>
+		>];
+	block52:i0 -> inode5:top;
+		inode5 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#f0e050ff"><b>Inodo 5</b></td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_uid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_gid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_size</b></td><td>2000</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_atime</b></td><td>2025-09-13 13:06:55</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_ctime</b></td><td>2025-09-13 13:04:01</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_mtime</b></td><td>2025-09-13 13:04:01</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_type</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_perm</b></td><td>644</td></tr>
+			<tr><td colspan="2" bgcolor="#27b0ffff"><b>Bloques</b></td></tr>
+			<tr><td bgcolor="#bee7ffff"><b>Directo [0]</b></td><td PORT="p0">17</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [1]</b></td><td PORT="p1">18</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [2]</b></td><td PORT="p2">19</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [3]</b></td><td PORT="p3">20</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [4]</b></td><td PORT="p4">21</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [5]</b></td><td PORT="p5">22</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [6]</b></td><td PORT="p6">23</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [7]</b></td><td PORT="p7">24</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [8]</b></td><td PORT="p8">25</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [9]</b></td><td PORT="p9">26</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [10]</b></td><td PORT="p10">27</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [11]</b></td><td PORT="p11">28</td></tr><tr><td bgcolor="#4bdffdff"><b>Indirecto Simple [12]</b></td><td PORT="p12">30</td></tr><tr><td bgcolor="#52ffc5ff"><b>Indirecto Doble [13]</b></td><td PORT="p13">47</td></tr><tr><td bgcolor="#83ff6aff"><b>Indirecto Triple [14]</b></td><td PORT="p14">-1</td></tr>
+			</table>
+		>];
+	inode5:p0 -> block17:top;
+		block17 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 17</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	inode5:p1 -> block18:top;
+		block18 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 18</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	inode5:p2 -> block19:top;
+		block19 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 19</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	inode5:p3 -> block20:top;
+		block20 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 20</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	inode5:p4 -> block21:top;
+		block21 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 21</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	inode5:p5 -> block22:top;
+		block22 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 22</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	inode5:p6 -> block23:top;
+		block23 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 23</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	inode5:p7 -> block24:top;
+		block24 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 24</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	inode5:p8 -> block25:top;
+		block25 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 25</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	inode5:p9 -> block26:top;
+		block26 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 26</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	inode5:p10 -> block27:top;
+		block27 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 27</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	inode5:p11 -> block28:top;
+		block28 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 28</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	inode5:p12 -> block30:top;
+		block30 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 30</b></td></tr>
+			<tr><td PORT="ptr0">29</td></tr><tr><td PORT="ptr1">31</td></tr><tr><td PORT="ptr2">32</td></tr><tr><td PORT="ptr3">33</td></tr><tr><td PORT="ptr4">34</td></tr><tr><td PORT="ptr5">35</td></tr><tr><td PORT="ptr6">36</td></tr><tr><td PORT="ptr7">37</td></tr><tr><td PORT="ptr8">38</td></tr><tr><td PORT="ptr9">39</td></tr><tr><td PORT="ptr10">40</td></tr><tr><td PORT="ptr11">41</td></tr><tr><td PORT="ptr12">42</td></tr><tr><td PORT="ptr13">43</td></tr><tr><td PORT="ptr14">44</td></tr><tr><td PORT="ptr15">45</td></tr>
+			</table>
+		>];
+	block30:ptr0 -> block29:top;
+		block29 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 29</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block30:ptr1 -> block31:top;
+		block31 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 31</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block30:ptr2 -> block32:top;
+		block32 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 32</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block30:ptr3 -> block33:top;
+		block33 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 33</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block30:ptr4 -> block34:top;
+		block34 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 34</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block30:ptr5 -> block35:top;
+		block35 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 35</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block30:ptr6 -> block36:top;
+		block36 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 36</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block30:ptr7 -> block37:top;
+		block37 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 37</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block30:ptr8 -> block38:top;
+		block38 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 38</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block30:ptr9 -> block39:top;
+		block39 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 39</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block30:ptr10 -> block40:top;
+		block40 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 40</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block30:ptr11 -> block41:top;
+		block41 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 41</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block30:ptr12 -> block42:top;
+		block42 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 42</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block30:ptr13 -> block43:top;
+		block43 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 43</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block30:ptr14 -> block44:top;
+		block44 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 44</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block30:ptr15 -> block45:top;
+		block45 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 45</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	inode5:p13 -> block47:top;
+		block47 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 47</b></td></tr>
+			<tr><td PORT="ptr0">48</td></tr><tr><td PORT="ptr1">-1</td></tr><tr><td PORT="ptr2">-1</td></tr><tr><td PORT="ptr3">-1</td></tr><tr><td PORT="ptr4">-1</td></tr><tr><td PORT="ptr5">-1</td></tr><tr><td PORT="ptr6">-1</td></tr><tr><td PORT="ptr7">-1</td></tr><tr><td PORT="ptr8">-1</td></tr><tr><td PORT="ptr9">-1</td></tr><tr><td PORT="ptr10">-1</td></tr><tr><td PORT="ptr11">-1</td></tr><tr><td PORT="ptr12">-1</td></tr><tr><td PORT="ptr13">-1</td></tr><tr><td PORT="ptr14">-1</td></tr><tr><td PORT="ptr15">-1</td></tr>
+			</table>
+		>];
+	block47:ptr0 -> block48:top;
+		block48 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 48</b></td></tr>
+			<tr><td PORT="ptr0">46</td></tr><tr><td PORT="ptr1">49</td></tr><tr><td PORT="ptr2">50</td></tr><tr><td PORT="ptr3">51</td></tr><tr><td PORT="ptr4">-1</td></tr><tr><td PORT="ptr5">-1</td></tr><tr><td PORT="ptr6">-1</td></tr><tr><td PORT="ptr7">-1</td></tr><tr><td PORT="ptr8">-1</td></tr><tr><td PORT="ptr9">-1</td></tr><tr><td PORT="ptr10">-1</td></tr><tr><td PORT="ptr11">-1</td></tr><tr><td PORT="ptr12">-1</td></tr><tr><td PORT="ptr13">-1</td></tr><tr><td PORT="ptr14">-1</td></tr><tr><td PORT="ptr15">-1</td></tr>
+			</table>
+		>];
+	block48:ptr0 -> block46:top;
+		block46 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 46</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block48:ptr1 -> block49:top;
+		block49 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 49</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block48:ptr2 -> block50:top;
+		block50 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 50</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block48:ptr3 -> block51:top;
+		block51 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 51</b></td></tr>
+			<tr><td align="left">4567890123456789</td></tr>
+			</table>
+		>];
+	block52:i1 -> inode6:top;
+		inode6 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#f0e050ff"><b>Inodo 6</b></td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_uid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_gid</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_size</b></td><td>20000</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_atime</b></td><td>2025-09-13 13:08:58</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_ctime</b></td><td>2025-09-13 13:08:34</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_mtime</b></td><td>2025-09-13 13:08:34</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_type</b></td><td>1</td></tr>
+			<tr><td bgcolor="#fff8beff"><b>i_perm</b></td><td>644</td></tr>
+			<tr><td colspan="2" bgcolor="#27b0ffff"><b>Bloques</b></td></tr>
+			<tr><td bgcolor="#bee7ffff"><b>Directo [0]</b></td><td PORT="p0">53</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [1]</b></td><td PORT="p1">54</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [2]</b></td><td PORT="p2">55</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [3]</b></td><td PORT="p3">56</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [4]</b></td><td PORT="p4">57</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [5]</b></td><td PORT="p5">58</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [6]</b></td><td PORT="p6">59</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [7]</b></td><td PORT="p7">60</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [8]</b></td><td PORT="p8">61</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [9]</b></td><td PORT="p9">62</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [10]</b></td><td PORT="p10">63</td></tr><tr><td bgcolor="#bee7ffff"><b>Directo [11]</b></td><td PORT="p11">64</td></tr><tr><td bgcolor="#4bdffdff"><b>Indirecto Simple [12]</b></td><td PORT="p12">66</td></tr><tr><td bgcolor="#52ffc5ff"><b>Indirecto Doble [13]</b></td><td PORT="p13">83</td></tr><tr><td bgcolor="#83ff6aff"><b>Indirecto Triple [14]</b></td><td PORT="p14">356</td></tr>
+			</table>
+		>];
+	inode6:p0 -> block53:top;
+		block53 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 53</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	inode6:p1 -> block54:top;
+		block54 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 54</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	inode6:p2 -> block55:top;
+		block55 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 55</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	inode6:p3 -> block56:top;
+		block56 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 56</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	inode6:p4 -> block57:top;
+		block57 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 57</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	inode6:p5 -> block58:top;
+		block58 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 58</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	inode6:p6 -> block59:top;
+		block59 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 59</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	inode6:p7 -> block60:top;
+		block60 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 60</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	inode6:p8 -> block61:top;
+		block61 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 61</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	inode6:p9 -> block62:top;
+		block62 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 62</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	inode6:p10 -> block63:top;
+		block63 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 63</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	inode6:p11 -> block64:top;
+		block64 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 64</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	inode6:p12 -> block66:top;
+		block66 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 66</b></td></tr>
+			<tr><td PORT="ptr0">65</td></tr><tr><td PORT="ptr1">67</td></tr><tr><td PORT="ptr2">68</td></tr><tr><td PORT="ptr3">69</td></tr><tr><td PORT="ptr4">70</td></tr><tr><td PORT="ptr5">71</td></tr><tr><td PORT="ptr6">72</td></tr><tr><td PORT="ptr7">73</td></tr><tr><td PORT="ptr8">74</td></tr><tr><td PORT="ptr9">75</td></tr><tr><td PORT="ptr10">76</td></tr><tr><td PORT="ptr11">77</td></tr><tr><td PORT="ptr12">78</td></tr><tr><td PORT="ptr13">79</td></tr><tr><td PORT="ptr14">80</td></tr><tr><td PORT="ptr15">81</td></tr>
+			</table>
+		>];
+	block66:ptr0 -> block65:top;
+		block65 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 65</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block66:ptr1 -> block67:top;
+		block67 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 67</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block66:ptr2 -> block68:top;
+		block68 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 68</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block66:ptr3 -> block69:top;
+		block69 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 69</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block66:ptr4 -> block70:top;
+		block70 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 70</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block66:ptr5 -> block71:top;
+		block71 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 71</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block66:ptr6 -> block72:top;
+		block72 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 72</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block66:ptr7 -> block73:top;
+		block73 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 73</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block66:ptr8 -> block74:top;
+		block74 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 74</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block66:ptr9 -> block75:top;
+		block75 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 75</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block66:ptr10 -> block76:top;
+		block76 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 76</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block66:ptr11 -> block77:top;
+		block77 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 77</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block66:ptr12 -> block78:top;
+		block78 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 78</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block66:ptr13 -> block79:top;
+		block79 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 79</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block66:ptr14 -> block80:top;
+		block80 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 80</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block66:ptr15 -> block81:top;
+		block81 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 81</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	inode6:p13 -> block83:top;
+		block83 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 83</b></td></tr>
+			<tr><td PORT="ptr0">84</td></tr><tr><td PORT="ptr1">101</td></tr><tr><td PORT="ptr2">118</td></tr><tr><td PORT="ptr3">135</td></tr><tr><td PORT="ptr4">152</td></tr><tr><td PORT="ptr5">169</td></tr><tr><td PORT="ptr6">186</td></tr><tr><td PORT="ptr7">203</td></tr><tr><td PORT="ptr8">220</td></tr><tr><td PORT="ptr9">237</td></tr><tr><td PORT="ptr10">254</td></tr><tr><td PORT="ptr11">271</td></tr><tr><td PORT="ptr12">288</td></tr><tr><td PORT="ptr13">305</td></tr><tr><td PORT="ptr14">322</td></tr><tr><td PORT="ptr15">339</td></tr>
+			</table>
+		>];
+	block83:ptr0 -> block84:top;
+		block84 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 84</b></td></tr>
+			<tr><td PORT="ptr0">82</td></tr><tr><td PORT="ptr1">85</td></tr><tr><td PORT="ptr2">86</td></tr><tr><td PORT="ptr3">87</td></tr><tr><td PORT="ptr4">88</td></tr><tr><td PORT="ptr5">89</td></tr><tr><td PORT="ptr6">90</td></tr><tr><td PORT="ptr7">91</td></tr><tr><td PORT="ptr8">92</td></tr><tr><td PORT="ptr9">93</td></tr><tr><td PORT="ptr10">94</td></tr><tr><td PORT="ptr11">95</td></tr><tr><td PORT="ptr12">96</td></tr><tr><td PORT="ptr13">97</td></tr><tr><td PORT="ptr14">98</td></tr><tr><td PORT="ptr15">99</td></tr>
+			</table>
+		>];
+	block84:ptr0 -> block82:top;
+		block82 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 82</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block84:ptr1 -> block85:top;
+		block85 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 85</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block84:ptr2 -> block86:top;
+		block86 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 86</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block84:ptr3 -> block87:top;
+		block87 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 87</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block84:ptr4 -> block88:top;
+		block88 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 88</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block84:ptr5 -> block89:top;
+		block89 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 89</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block84:ptr6 -> block90:top;
+		block90 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 90</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block84:ptr7 -> block91:top;
+		block91 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 91</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block84:ptr8 -> block92:top;
+		block92 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 92</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block84:ptr9 -> block93:top;
+		block93 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 93</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block84:ptr10 -> block94:top;
+		block94 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 94</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block84:ptr11 -> block95:top;
+		block95 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 95</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block84:ptr12 -> block96:top;
+		block96 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 96</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block84:ptr13 -> block97:top;
+		block97 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 97</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block84:ptr14 -> block98:top;
+		block98 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 98</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block84:ptr15 -> block99:top;
+		block99 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 99</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block83:ptr1 -> block101:top;
+		block101 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 101</b></td></tr>
+			<tr><td PORT="ptr0">100</td></tr><tr><td PORT="ptr1">102</td></tr><tr><td PORT="ptr2">103</td></tr><tr><td PORT="ptr3">104</td></tr><tr><td PORT="ptr4">105</td></tr><tr><td PORT="ptr5">106</td></tr><tr><td PORT="ptr6">107</td></tr><tr><td PORT="ptr7">108</td></tr><tr><td PORT="ptr8">109</td></tr><tr><td PORT="ptr9">110</td></tr><tr><td PORT="ptr10">111</td></tr><tr><td PORT="ptr11">112</td></tr><tr><td PORT="ptr12">113</td></tr><tr><td PORT="ptr13">114</td></tr><tr><td PORT="ptr14">115</td></tr><tr><td PORT="ptr15">116</td></tr>
+			</table>
+		>];
+	block101:ptr0 -> block100:top;
+		block100 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 100</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block101:ptr1 -> block102:top;
+		block102 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 102</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block101:ptr2 -> block103:top;
+		block103 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 103</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block101:ptr3 -> block104:top;
+		block104 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 104</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block101:ptr4 -> block105:top;
+		block105 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 105</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block101:ptr5 -> block106:top;
+		block106 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 106</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block101:ptr6 -> block107:top;
+		block107 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 107</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block101:ptr7 -> block108:top;
+		block108 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 108</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block101:ptr8 -> block109:top;
+		block109 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 109</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block101:ptr9 -> block110:top;
+		block110 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 110</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block101:ptr10 -> block111:top;
+		block111 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 111</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block101:ptr11 -> block112:top;
+		block112 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 112</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block101:ptr12 -> block113:top;
+		block113 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 113</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block101:ptr13 -> block114:top;
+		block114 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 114</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block101:ptr14 -> block115:top;
+		block115 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 115</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block101:ptr15 -> block116:top;
+		block116 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 116</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block83:ptr2 -> block118:top;
+		block118 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 118</b></td></tr>
+			<tr><td PORT="ptr0">117</td></tr><tr><td PORT="ptr1">119</td></tr><tr><td PORT="ptr2">120</td></tr><tr><td PORT="ptr3">121</td></tr><tr><td PORT="ptr4">122</td></tr><tr><td PORT="ptr5">123</td></tr><tr><td PORT="ptr6">124</td></tr><tr><td PORT="ptr7">125</td></tr><tr><td PORT="ptr8">126</td></tr><tr><td PORT="ptr9">127</td></tr><tr><td PORT="ptr10">128</td></tr><tr><td PORT="ptr11">129</td></tr><tr><td PORT="ptr12">130</td></tr><tr><td PORT="ptr13">131</td></tr><tr><td PORT="ptr14">132</td></tr><tr><td PORT="ptr15">133</td></tr>
+			</table>
+		>];
+	block118:ptr0 -> block117:top;
+		block117 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 117</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block118:ptr1 -> block119:top;
+		block119 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 119</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block118:ptr2 -> block120:top;
+		block120 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 120</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block118:ptr3 -> block121:top;
+		block121 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 121</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block118:ptr4 -> block122:top;
+		block122 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 122</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block118:ptr5 -> block123:top;
+		block123 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 123</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block118:ptr6 -> block124:top;
+		block124 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 124</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block118:ptr7 -> block125:top;
+		block125 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 125</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block118:ptr8 -> block126:top;
+		block126 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 126</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block118:ptr9 -> block127:top;
+		block127 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 127</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block118:ptr10 -> block128:top;
+		block128 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 128</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block118:ptr11 -> block129:top;
+		block129 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 129</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block118:ptr12 -> block130:top;
+		block130 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 130</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block118:ptr13 -> block131:top;
+		block131 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 131</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block118:ptr14 -> block132:top;
+		block132 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 132</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block118:ptr15 -> block133:top;
+		block133 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 133</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block83:ptr3 -> block135:top;
+		block135 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 135</b></td></tr>
+			<tr><td PORT="ptr0">134</td></tr><tr><td PORT="ptr1">136</td></tr><tr><td PORT="ptr2">137</td></tr><tr><td PORT="ptr3">138</td></tr><tr><td PORT="ptr4">139</td></tr><tr><td PORT="ptr5">140</td></tr><tr><td PORT="ptr6">141</td></tr><tr><td PORT="ptr7">142</td></tr><tr><td PORT="ptr8">143</td></tr><tr><td PORT="ptr9">144</td></tr><tr><td PORT="ptr10">145</td></tr><tr><td PORT="ptr11">146</td></tr><tr><td PORT="ptr12">147</td></tr><tr><td PORT="ptr13">148</td></tr><tr><td PORT="ptr14">149</td></tr><tr><td PORT="ptr15">150</td></tr>
+			</table>
+		>];
+	block135:ptr0 -> block134:top;
+		block134 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 134</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block135:ptr1 -> block136:top;
+		block136 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 136</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block135:ptr2 -> block137:top;
+		block137 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 137</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block135:ptr3 -> block138:top;
+		block138 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 138</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block135:ptr4 -> block139:top;
+		block139 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 139</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block135:ptr5 -> block140:top;
+		block140 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 140</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block135:ptr6 -> block141:top;
+		block141 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 141</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block135:ptr7 -> block142:top;
+		block142 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 142</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block135:ptr8 -> block143:top;
+		block143 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 143</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block135:ptr9 -> block144:top;
+		block144 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 144</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block135:ptr10 -> block145:top;
+		block145 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 145</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block135:ptr11 -> block146:top;
+		block146 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 146</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block135:ptr12 -> block147:top;
+		block147 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 147</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block135:ptr13 -> block148:top;
+		block148 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 148</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block135:ptr14 -> block149:top;
+		block149 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 149</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block135:ptr15 -> block150:top;
+		block150 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 150</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block83:ptr4 -> block152:top;
+		block152 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 152</b></td></tr>
+			<tr><td PORT="ptr0">151</td></tr><tr><td PORT="ptr1">153</td></tr><tr><td PORT="ptr2">154</td></tr><tr><td PORT="ptr3">155</td></tr><tr><td PORT="ptr4">156</td></tr><tr><td PORT="ptr5">157</td></tr><tr><td PORT="ptr6">158</td></tr><tr><td PORT="ptr7">159</td></tr><tr><td PORT="ptr8">160</td></tr><tr><td PORT="ptr9">161</td></tr><tr><td PORT="ptr10">162</td></tr><tr><td PORT="ptr11">163</td></tr><tr><td PORT="ptr12">164</td></tr><tr><td PORT="ptr13">165</td></tr><tr><td PORT="ptr14">166</td></tr><tr><td PORT="ptr15">167</td></tr>
+			</table>
+		>];
+	block152:ptr0 -> block151:top;
+		block151 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 151</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block152:ptr1 -> block153:top;
+		block153 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 153</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block152:ptr2 -> block154:top;
+		block154 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 154</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block152:ptr3 -> block155:top;
+		block155 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 155</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block152:ptr4 -> block156:top;
+		block156 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 156</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block152:ptr5 -> block157:top;
+		block157 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 157</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block152:ptr6 -> block158:top;
+		block158 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 158</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block152:ptr7 -> block159:top;
+		block159 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 159</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block152:ptr8 -> block160:top;
+		block160 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 160</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block152:ptr9 -> block161:top;
+		block161 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 161</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block152:ptr10 -> block162:top;
+		block162 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 162</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block152:ptr11 -> block163:top;
+		block163 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 163</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block152:ptr12 -> block164:top;
+		block164 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 164</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block152:ptr13 -> block165:top;
+		block165 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 165</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block152:ptr14 -> block166:top;
+		block166 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 166</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block152:ptr15 -> block167:top;
+		block167 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 167</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block83:ptr5 -> block169:top;
+		block169 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 169</b></td></tr>
+			<tr><td PORT="ptr0">168</td></tr><tr><td PORT="ptr1">170</td></tr><tr><td PORT="ptr2">171</td></tr><tr><td PORT="ptr3">172</td></tr><tr><td PORT="ptr4">173</td></tr><tr><td PORT="ptr5">174</td></tr><tr><td PORT="ptr6">175</td></tr><tr><td PORT="ptr7">176</td></tr><tr><td PORT="ptr8">177</td></tr><tr><td PORT="ptr9">178</td></tr><tr><td PORT="ptr10">179</td></tr><tr><td PORT="ptr11">180</td></tr><tr><td PORT="ptr12">181</td></tr><tr><td PORT="ptr13">182</td></tr><tr><td PORT="ptr14">183</td></tr><tr><td PORT="ptr15">184</td></tr>
+			</table>
+		>];
+	block169:ptr0 -> block168:top;
+		block168 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 168</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block169:ptr1 -> block170:top;
+		block170 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 170</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block169:ptr2 -> block171:top;
+		block171 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 171</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block169:ptr3 -> block172:top;
+		block172 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 172</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block169:ptr4 -> block173:top;
+		block173 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 173</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block169:ptr5 -> block174:top;
+		block174 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 174</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block169:ptr6 -> block175:top;
+		block175 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 175</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block169:ptr7 -> block176:top;
+		block176 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 176</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block169:ptr8 -> block177:top;
+		block177 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 177</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block169:ptr9 -> block178:top;
+		block178 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 178</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block169:ptr10 -> block179:top;
+		block179 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 179</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block169:ptr11 -> block180:top;
+		block180 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 180</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block169:ptr12 -> block181:top;
+		block181 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 181</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block169:ptr13 -> block182:top;
+		block182 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 182</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block169:ptr14 -> block183:top;
+		block183 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 183</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block169:ptr15 -> block184:top;
+		block184 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 184</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block83:ptr6 -> block186:top;
+		block186 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 186</b></td></tr>
+			<tr><td PORT="ptr0">185</td></tr><tr><td PORT="ptr1">187</td></tr><tr><td PORT="ptr2">188</td></tr><tr><td PORT="ptr3">189</td></tr><tr><td PORT="ptr4">190</td></tr><tr><td PORT="ptr5">191</td></tr><tr><td PORT="ptr6">192</td></tr><tr><td PORT="ptr7">193</td></tr><tr><td PORT="ptr8">194</td></tr><tr><td PORT="ptr9">195</td></tr><tr><td PORT="ptr10">196</td></tr><tr><td PORT="ptr11">197</td></tr><tr><td PORT="ptr12">198</td></tr><tr><td PORT="ptr13">199</td></tr><tr><td PORT="ptr14">200</td></tr><tr><td PORT="ptr15">201</td></tr>
+			</table>
+		>];
+	block186:ptr0 -> block185:top;
+		block185 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 185</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block186:ptr1 -> block187:top;
+		block187 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 187</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block186:ptr2 -> block188:top;
+		block188 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 188</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block186:ptr3 -> block189:top;
+		block189 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 189</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block186:ptr4 -> block190:top;
+		block190 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 190</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block186:ptr5 -> block191:top;
+		block191 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 191</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block186:ptr6 -> block192:top;
+		block192 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 192</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block186:ptr7 -> block193:top;
+		block193 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 193</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block186:ptr8 -> block194:top;
+		block194 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 194</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block186:ptr9 -> block195:top;
+		block195 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 195</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block186:ptr10 -> block196:top;
+		block196 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 196</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block186:ptr11 -> block197:top;
+		block197 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 197</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block186:ptr12 -> block198:top;
+		block198 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 198</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block186:ptr13 -> block199:top;
+		block199 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 199</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block186:ptr14 -> block200:top;
+		block200 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 200</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block186:ptr15 -> block201:top;
+		block201 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 201</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block83:ptr7 -> block203:top;
+		block203 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 203</b></td></tr>
+			<tr><td PORT="ptr0">202</td></tr><tr><td PORT="ptr1">204</td></tr><tr><td PORT="ptr2">205</td></tr><tr><td PORT="ptr3">206</td></tr><tr><td PORT="ptr4">207</td></tr><tr><td PORT="ptr5">208</td></tr><tr><td PORT="ptr6">209</td></tr><tr><td PORT="ptr7">210</td></tr><tr><td PORT="ptr8">211</td></tr><tr><td PORT="ptr9">212</td></tr><tr><td PORT="ptr10">213</td></tr><tr><td PORT="ptr11">214</td></tr><tr><td PORT="ptr12">215</td></tr><tr><td PORT="ptr13">216</td></tr><tr><td PORT="ptr14">217</td></tr><tr><td PORT="ptr15">218</td></tr>
+			</table>
+		>];
+	block203:ptr0 -> block202:top;
+		block202 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 202</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block203:ptr1 -> block204:top;
+		block204 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 204</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block203:ptr2 -> block205:top;
+		block205 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 205</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block203:ptr3 -> block206:top;
+		block206 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 206</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block203:ptr4 -> block207:top;
+		block207 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 207</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block203:ptr5 -> block208:top;
+		block208 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 208</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block203:ptr6 -> block209:top;
+		block209 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 209</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block203:ptr7 -> block210:top;
+		block210 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 210</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block203:ptr8 -> block211:top;
+		block211 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 211</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block203:ptr9 -> block212:top;
+		block212 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 212</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block203:ptr10 -> block213:top;
+		block213 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 213</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block203:ptr11 -> block214:top;
+		block214 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 214</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block203:ptr12 -> block215:top;
+		block215 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 215</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block203:ptr13 -> block216:top;
+		block216 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 216</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block203:ptr14 -> block217:top;
+		block217 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 217</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block203:ptr15 -> block218:top;
+		block218 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 218</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block83:ptr8 -> block220:top;
+		block220 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 220</b></td></tr>
+			<tr><td PORT="ptr0">219</td></tr><tr><td PORT="ptr1">221</td></tr><tr><td PORT="ptr2">222</td></tr><tr><td PORT="ptr3">223</td></tr><tr><td PORT="ptr4">224</td></tr><tr><td PORT="ptr5">225</td></tr><tr><td PORT="ptr6">226</td></tr><tr><td PORT="ptr7">227</td></tr><tr><td PORT="ptr8">228</td></tr><tr><td PORT="ptr9">229</td></tr><tr><td PORT="ptr10">230</td></tr><tr><td PORT="ptr11">231</td></tr><tr><td PORT="ptr12">232</td></tr><tr><td PORT="ptr13">233</td></tr><tr><td PORT="ptr14">234</td></tr><tr><td PORT="ptr15">235</td></tr>
+			</table>
+		>];
+	block220:ptr0 -> block219:top;
+		block219 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 219</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block220:ptr1 -> block221:top;
+		block221 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 221</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block220:ptr2 -> block222:top;
+		block222 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 222</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block220:ptr3 -> block223:top;
+		block223 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 223</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block220:ptr4 -> block224:top;
+		block224 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 224</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block220:ptr5 -> block225:top;
+		block225 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 225</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block220:ptr6 -> block226:top;
+		block226 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 226</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block220:ptr7 -> block227:top;
+		block227 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 227</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block220:ptr8 -> block228:top;
+		block228 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 228</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block220:ptr9 -> block229:top;
+		block229 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 229</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block220:ptr10 -> block230:top;
+		block230 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 230</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block220:ptr11 -> block231:top;
+		block231 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 231</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block220:ptr12 -> block232:top;
+		block232 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 232</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block220:ptr13 -> block233:top;
+		block233 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 233</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block220:ptr14 -> block234:top;
+		block234 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 234</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block220:ptr15 -> block235:top;
+		block235 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 235</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block83:ptr9 -> block237:top;
+		block237 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 237</b></td></tr>
+			<tr><td PORT="ptr0">236</td></tr><tr><td PORT="ptr1">238</td></tr><tr><td PORT="ptr2">239</td></tr><tr><td PORT="ptr3">240</td></tr><tr><td PORT="ptr4">241</td></tr><tr><td PORT="ptr5">242</td></tr><tr><td PORT="ptr6">243</td></tr><tr><td PORT="ptr7">244</td></tr><tr><td PORT="ptr8">245</td></tr><tr><td PORT="ptr9">246</td></tr><tr><td PORT="ptr10">247</td></tr><tr><td PORT="ptr11">248</td></tr><tr><td PORT="ptr12">249</td></tr><tr><td PORT="ptr13">250</td></tr><tr><td PORT="ptr14">251</td></tr><tr><td PORT="ptr15">252</td></tr>
+			</table>
+		>];
+	block237:ptr0 -> block236:top;
+		block236 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 236</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block237:ptr1 -> block238:top;
+		block238 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 238</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block237:ptr2 -> block239:top;
+		block239 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 239</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block237:ptr3 -> block240:top;
+		block240 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 240</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block237:ptr4 -> block241:top;
+		block241 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 241</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block237:ptr5 -> block242:top;
+		block242 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 242</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block237:ptr6 -> block243:top;
+		block243 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 243</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block237:ptr7 -> block244:top;
+		block244 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 244</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block237:ptr8 -> block245:top;
+		block245 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 245</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block237:ptr9 -> block246:top;
+		block246 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 246</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block237:ptr10 -> block247:top;
+		block247 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 247</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block237:ptr11 -> block248:top;
+		block248 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 248</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block237:ptr12 -> block249:top;
+		block249 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 249</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block237:ptr13 -> block250:top;
+		block250 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 250</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block237:ptr14 -> block251:top;
+		block251 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 251</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block237:ptr15 -> block252:top;
+		block252 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 252</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block83:ptr10 -> block254:top;
+		block254 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 254</b></td></tr>
+			<tr><td PORT="ptr0">253</td></tr><tr><td PORT="ptr1">255</td></tr><tr><td PORT="ptr2">256</td></tr><tr><td PORT="ptr3">257</td></tr><tr><td PORT="ptr4">258</td></tr><tr><td PORT="ptr5">259</td></tr><tr><td PORT="ptr6">260</td></tr><tr><td PORT="ptr7">261</td></tr><tr><td PORT="ptr8">262</td></tr><tr><td PORT="ptr9">263</td></tr><tr><td PORT="ptr10">264</td></tr><tr><td PORT="ptr11">265</td></tr><tr><td PORT="ptr12">266</td></tr><tr><td PORT="ptr13">267</td></tr><tr><td PORT="ptr14">268</td></tr><tr><td PORT="ptr15">269</td></tr>
+			</table>
+		>];
+	block254:ptr0 -> block253:top;
+		block253 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 253</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block254:ptr1 -> block255:top;
+		block255 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 255</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block254:ptr2 -> block256:top;
+		block256 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 256</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block254:ptr3 -> block257:top;
+		block257 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 257</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block254:ptr4 -> block258:top;
+		block258 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 258</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block254:ptr5 -> block259:top;
+		block259 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 259</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block254:ptr6 -> block260:top;
+		block260 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 260</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block254:ptr7 -> block261:top;
+		block261 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 261</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block254:ptr8 -> block262:top;
+		block262 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 262</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block254:ptr9 -> block263:top;
+		block263 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 263</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block254:ptr10 -> block264:top;
+		block264 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 264</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block254:ptr11 -> block265:top;
+		block265 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 265</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block254:ptr12 -> block266:top;
+		block266 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 266</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block254:ptr13 -> block267:top;
+		block267 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 267</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block254:ptr14 -> block268:top;
+		block268 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 268</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block254:ptr15 -> block269:top;
+		block269 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 269</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block83:ptr11 -> block271:top;
+		block271 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 271</b></td></tr>
+			<tr><td PORT="ptr0">270</td></tr><tr><td PORT="ptr1">272</td></tr><tr><td PORT="ptr2">273</td></tr><tr><td PORT="ptr3">274</td></tr><tr><td PORT="ptr4">275</td></tr><tr><td PORT="ptr5">276</td></tr><tr><td PORT="ptr6">277</td></tr><tr><td PORT="ptr7">278</td></tr><tr><td PORT="ptr8">279</td></tr><tr><td PORT="ptr9">280</td></tr><tr><td PORT="ptr10">281</td></tr><tr><td PORT="ptr11">282</td></tr><tr><td PORT="ptr12">283</td></tr><tr><td PORT="ptr13">284</td></tr><tr><td PORT="ptr14">285</td></tr><tr><td PORT="ptr15">286</td></tr>
+			</table>
+		>];
+	block271:ptr0 -> block270:top;
+		block270 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 270</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block271:ptr1 -> block272:top;
+		block272 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 272</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block271:ptr2 -> block273:top;
+		block273 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 273</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block271:ptr3 -> block274:top;
+		block274 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 274</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block271:ptr4 -> block275:top;
+		block275 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 275</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block271:ptr5 -> block276:top;
+		block276 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 276</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block271:ptr6 -> block277:top;
+		block277 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 277</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block271:ptr7 -> block278:top;
+		block278 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 278</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block271:ptr8 -> block279:top;
+		block279 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 279</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block271:ptr9 -> block280:top;
+		block280 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 280</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block271:ptr10 -> block281:top;
+		block281 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 281</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block271:ptr11 -> block282:top;
+		block282 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 282</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block271:ptr12 -> block283:top;
+		block283 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 283</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block271:ptr13 -> block284:top;
+		block284 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 284</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block271:ptr14 -> block285:top;
+		block285 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 285</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block271:ptr15 -> block286:top;
+		block286 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 286</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block83:ptr12 -> block288:top;
+		block288 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 288</b></td></tr>
+			<tr><td PORT="ptr0">287</td></tr><tr><td PORT="ptr1">289</td></tr><tr><td PORT="ptr2">290</td></tr><tr><td PORT="ptr3">291</td></tr><tr><td PORT="ptr4">292</td></tr><tr><td PORT="ptr5">293</td></tr><tr><td PORT="ptr6">294</td></tr><tr><td PORT="ptr7">295</td></tr><tr><td PORT="ptr8">296</td></tr><tr><td PORT="ptr9">297</td></tr><tr><td PORT="ptr10">298</td></tr><tr><td PORT="ptr11">299</td></tr><tr><td PORT="ptr12">300</td></tr><tr><td PORT="ptr13">301</td></tr><tr><td PORT="ptr14">302</td></tr><tr><td PORT="ptr15">303</td></tr>
+			</table>
+		>];
+	block288:ptr0 -> block287:top;
+		block287 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 287</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block288:ptr1 -> block289:top;
+		block289 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 289</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block288:ptr2 -> block290:top;
+		block290 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 290</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block288:ptr3 -> block291:top;
+		block291 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 291</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block288:ptr4 -> block292:top;
+		block292 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 292</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block288:ptr5 -> block293:top;
+		block293 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 293</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block288:ptr6 -> block294:top;
+		block294 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 294</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block288:ptr7 -> block295:top;
+		block295 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 295</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block288:ptr8 -> block296:top;
+		block296 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 296</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block288:ptr9 -> block297:top;
+		block297 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 297</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block288:ptr10 -> block298:top;
+		block298 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 298</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block288:ptr11 -> block299:top;
+		block299 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 299</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block288:ptr12 -> block300:top;
+		block300 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 300</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block288:ptr13 -> block301:top;
+		block301 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 301</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block288:ptr14 -> block302:top;
+		block302 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 302</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block288:ptr15 -> block303:top;
+		block303 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 303</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block83:ptr13 -> block305:top;
+		block305 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 305</b></td></tr>
+			<tr><td PORT="ptr0">304</td></tr><tr><td PORT="ptr1">306</td></tr><tr><td PORT="ptr2">307</td></tr><tr><td PORT="ptr3">308</td></tr><tr><td PORT="ptr4">309</td></tr><tr><td PORT="ptr5">310</td></tr><tr><td PORT="ptr6">311</td></tr><tr><td PORT="ptr7">312</td></tr><tr><td PORT="ptr8">313</td></tr><tr><td PORT="ptr9">314</td></tr><tr><td PORT="ptr10">315</td></tr><tr><td PORT="ptr11">316</td></tr><tr><td PORT="ptr12">317</td></tr><tr><td PORT="ptr13">318</td></tr><tr><td PORT="ptr14">319</td></tr><tr><td PORT="ptr15">320</td></tr>
+			</table>
+		>];
+	block305:ptr0 -> block304:top;
+		block304 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 304</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block305:ptr1 -> block306:top;
+		block306 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 306</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block305:ptr2 -> block307:top;
+		block307 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 307</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block305:ptr3 -> block308:top;
+		block308 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 308</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block305:ptr4 -> block309:top;
+		block309 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 309</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block305:ptr5 -> block310:top;
+		block310 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 310</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block305:ptr6 -> block311:top;
+		block311 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 311</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block305:ptr7 -> block312:top;
+		block312 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 312</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block305:ptr8 -> block313:top;
+		block313 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 313</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block305:ptr9 -> block314:top;
+		block314 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 314</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block305:ptr10 -> block315:top;
+		block315 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 315</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block305:ptr11 -> block316:top;
+		block316 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 316</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block305:ptr12 -> block317:top;
+		block317 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 317</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block305:ptr13 -> block318:top;
+		block318 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 318</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block305:ptr14 -> block319:top;
+		block319 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 319</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block305:ptr15 -> block320:top;
+		block320 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 320</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block83:ptr14 -> block322:top;
+		block322 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 322</b></td></tr>
+			<tr><td PORT="ptr0">321</td></tr><tr><td PORT="ptr1">323</td></tr><tr><td PORT="ptr2">324</td></tr><tr><td PORT="ptr3">325</td></tr><tr><td PORT="ptr4">326</td></tr><tr><td PORT="ptr5">327</td></tr><tr><td PORT="ptr6">328</td></tr><tr><td PORT="ptr7">329</td></tr><tr><td PORT="ptr8">330</td></tr><tr><td PORT="ptr9">331</td></tr><tr><td PORT="ptr10">332</td></tr><tr><td PORT="ptr11">333</td></tr><tr><td PORT="ptr12">334</td></tr><tr><td PORT="ptr13">335</td></tr><tr><td PORT="ptr14">336</td></tr><tr><td PORT="ptr15">337</td></tr>
+			</table>
+		>];
+	block322:ptr0 -> block321:top;
+		block321 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 321</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block322:ptr1 -> block323:top;
+		block323 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 323</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block322:ptr2 -> block324:top;
+		block324 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 324</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block322:ptr3 -> block325:top;
+		block325 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 325</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block322:ptr4 -> block326:top;
+		block326 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 326</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block322:ptr5 -> block327:top;
+		block327 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 327</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block322:ptr6 -> block328:top;
+		block328 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 328</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block322:ptr7 -> block329:top;
+		block329 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 329</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block322:ptr8 -> block330:top;
+		block330 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 330</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block322:ptr9 -> block331:top;
+		block331 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 331</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block322:ptr10 -> block332:top;
+		block332 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 332</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block322:ptr11 -> block333:top;
+		block333 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 333</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block322:ptr12 -> block334:top;
+		block334 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 334</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block322:ptr13 -> block335:top;
+		block335 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 335</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block322:ptr14 -> block336:top;
+		block336 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 336</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block322:ptr15 -> block337:top;
+		block337 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 337</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block83:ptr15 -> block339:top;
+		block339 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 339</b></td></tr>
+			<tr><td PORT="ptr0">338</td></tr><tr><td PORT="ptr1">340</td></tr><tr><td PORT="ptr2">341</td></tr><tr><td PORT="ptr3">342</td></tr><tr><td PORT="ptr4">343</td></tr><tr><td PORT="ptr5">344</td></tr><tr><td PORT="ptr6">345</td></tr><tr><td PORT="ptr7">346</td></tr><tr><td PORT="ptr8">347</td></tr><tr><td PORT="ptr9">348</td></tr><tr><td PORT="ptr10">349</td></tr><tr><td PORT="ptr11">350</td></tr><tr><td PORT="ptr12">351</td></tr><tr><td PORT="ptr13">352</td></tr><tr><td PORT="ptr14">353</td></tr><tr><td PORT="ptr15">354</td></tr>
+			</table>
+		>];
+	block339:ptr0 -> block338:top;
+		block338 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 338</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block339:ptr1 -> block340:top;
+		block340 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 340</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block339:ptr2 -> block341:top;
+		block341 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 341</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block339:ptr3 -> block342:top;
+		block342 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 342</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block339:ptr4 -> block343:top;
+		block343 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 343</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block339:ptr5 -> block344:top;
+		block344 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 344</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block339:ptr6 -> block345:top;
+		block345 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 345</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block339:ptr7 -> block346:top;
+		block346 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 346</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block339:ptr8 -> block347:top;
+		block347 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 347</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block339:ptr9 -> block348:top;
+		block348 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 348</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block339:ptr10 -> block349:top;
+		block349 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 349</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block339:ptr11 -> block350:top;
+		block350 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 350</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block339:ptr12 -> block351:top;
+		block351 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 351</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block339:ptr13 -> block352:top;
+		block352 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 352</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block339:ptr14 -> block353:top;
+		block353 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 353</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block339:ptr15 -> block354:top;
+		block354 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 354</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	inode6:p14 -> block356:top;
+		block356 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 356</b></td></tr>
+			<tr><td PORT="ptr0">357</td></tr><tr><td PORT="ptr1">-1</td></tr><tr><td PORT="ptr2">-1</td></tr><tr><td PORT="ptr3">-1</td></tr><tr><td PORT="ptr4">-1</td></tr><tr><td PORT="ptr5">-1</td></tr><tr><td PORT="ptr6">-1</td></tr><tr><td PORT="ptr7">-1</td></tr><tr><td PORT="ptr8">-1</td></tr><tr><td PORT="ptr9">-1</td></tr><tr><td PORT="ptr10">-1</td></tr><tr><td PORT="ptr11">-1</td></tr><tr><td PORT="ptr12">-1</td></tr><tr><td PORT="ptr13">-1</td></tr><tr><td PORT="ptr14">-1</td></tr><tr><td PORT="ptr15">-1</td></tr>
+			</table>
+		>];
+	block356:ptr0 -> block357:top;
+		block357 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 357</b></td></tr>
+			<tr><td PORT="ptr0">358</td></tr><tr><td PORT="ptr1">375</td></tr><tr><td PORT="ptr2">-1</td></tr><tr><td PORT="ptr3">-1</td></tr><tr><td PORT="ptr4">-1</td></tr><tr><td PORT="ptr5">-1</td></tr><tr><td PORT="ptr6">-1</td></tr><tr><td PORT="ptr7">-1</td></tr><tr><td PORT="ptr8">-1</td></tr><tr><td PORT="ptr9">-1</td></tr><tr><td PORT="ptr10">-1</td></tr><tr><td PORT="ptr11">-1</td></tr><tr><td PORT="ptr12">-1</td></tr><tr><td PORT="ptr13">-1</td></tr><tr><td PORT="ptr14">-1</td></tr><tr><td PORT="ptr15">-1</td></tr>
+			</table>
+		>];
+	block357:ptr0 -> block358:top;
+		block358 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 358</b></td></tr>
+			<tr><td PORT="ptr0">355</td></tr><tr><td PORT="ptr1">359</td></tr><tr><td PORT="ptr2">360</td></tr><tr><td PORT="ptr3">361</td></tr><tr><td PORT="ptr4">362</td></tr><tr><td PORT="ptr5">363</td></tr><tr><td PORT="ptr6">364</td></tr><tr><td PORT="ptr7">365</td></tr><tr><td PORT="ptr8">366</td></tr><tr><td PORT="ptr9">367</td></tr><tr><td PORT="ptr10">368</td></tr><tr><td PORT="ptr11">369</td></tr><tr><td PORT="ptr12">370</td></tr><tr><td PORT="ptr13">371</td></tr><tr><td PORT="ptr14">372</td></tr><tr><td PORT="ptr15">373</td></tr>
+			</table>
+		>];
+	block358:ptr0 -> block355:top;
+		block355 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 355</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block358:ptr1 -> block359:top;
+		block359 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 359</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block358:ptr2 -> block360:top;
+		block360 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 360</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block358:ptr3 -> block361:top;
+		block361 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 361</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block358:ptr4 -> block362:top;
+		block362 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 362</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block358:ptr5 -> block363:top;
+		block363 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 363</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block358:ptr6 -> block364:top;
+		block364 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 364</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block358:ptr7 -> block365:top;
+		block365 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 365</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block358:ptr8 -> block366:top;
+		block366 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 366</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block358:ptr9 -> block367:top;
+		block367 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 367</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block358:ptr10 -> block368:top;
+		block368 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 368</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block358:ptr11 -> block369:top;
+		block369 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 369</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block358:ptr12 -> block370:top;
+		block370 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 370</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block358:ptr13 -> block371:top;
+		block371 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 371</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block358:ptr14 -> block372:top;
+		block372 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 372</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block358:ptr15 -> block373:top;
+		block373 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 373</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block357:ptr1 -> block375:top;
+		block375 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros 375</b></td></tr>
+			<tr><td PORT="ptr0">374</td></tr><tr><td PORT="ptr1">376</td></tr><tr><td PORT="ptr2">377</td></tr><tr><td PORT="ptr3">378</td></tr><tr><td PORT="ptr4">379</td></tr><tr><td PORT="ptr5">380</td></tr><tr><td PORT="ptr6">381</td></tr><tr><td PORT="ptr7">382</td></tr><tr><td PORT="ptr8">383</td></tr><tr><td PORT="ptr9">384</td></tr><tr><td PORT="ptr10">385</td></tr><tr><td PORT="ptr11">386</td></tr><tr><td PORT="ptr12">387</td></tr><tr><td PORT="ptr13">-1</td></tr><tr><td PORT="ptr14">-1</td></tr><tr><td PORT="ptr15">-1</td></tr>
+			</table>
+		>];
+	block375:ptr0 -> block374:top;
+		block374 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 374</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block375:ptr1 -> block376:top;
+		block376 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 376</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block375:ptr2 -> block377:top;
+		block377 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 377</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block375:ptr3 -> block378:top;
+		block378 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 378</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block375:ptr4 -> block379:top;
+		block379 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 379</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block375:ptr5 -> block380:top;
+		block380 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 380</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block375:ptr6 -> block381:top;
+		block381 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 381</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block375:ptr7 -> block382:top;
+		block382 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 382</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789<br/>01234567890123456789012345678901</td></tr>
+			</table>
+		>];
+	block375:ptr8 -> block383:top;
+		block383 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 383</b></td></tr>
+			<tr><td align="left">23456789012345678901234567890123<br/>45678901234567890123456789012345</td></tr>
+			</table>
+		>];
+	block375:ptr9 -> block384:top;
+		block384 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 384</b></td></tr>
+			<tr><td align="left">67890123456789012345678901234567<br/>89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	block375:ptr10 -> block385:top;
+		block385 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 385</b></td></tr>
+			<tr><td align="left">01234567890123456789012345678901<br/>23456789012345678901234567890123</td></tr>
+			</table>
+		>];
+	block375:ptr11 -> block386:top;
+		block386 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 386</b></td></tr>
+			<tr><td align="left">45678901234567890123456789012345<br/>67890123456789012345678901234567</td></tr>
+			</table>
+		>];
+	block375:ptr12 -> block387:top;
+		block387 [label=<
+			<table border="0" cellborder="1" cellspacing="0">
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo 387</b></td></tr>
+			<tr><td align="left">89012345678901234567890123456789</td></tr>
+			</table>
+		>];
+	}

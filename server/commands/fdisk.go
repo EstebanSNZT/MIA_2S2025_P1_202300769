@@ -19,6 +19,11 @@ type Fdisk struct {
 }
 
 func NewFdisk(input string) (*Fdisk, error) {
+	allowed := []string{"size", "unit", "path", "type", "fit", "name"}
+	if err := arguments.ValidateParams(input, allowed); err != nil {
+		return nil, err
+	}
+
 	path, err := arguments.ParsePath(input, true)
 	if err != nil {
 		return nil, err

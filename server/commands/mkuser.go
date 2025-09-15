@@ -18,6 +18,11 @@ type Mkusr struct {
 }
 
 func NewMkusr(input string) (*Mkusr, error) {
+	allowed := []string{"user", "pass", "grp"}
+	if err := arguments.ValidateParams(input, allowed); err != nil {
+		return nil, err
+	}
+
 	username, err := arguments.ParseUser(input)
 	if err != nil {
 		return nil, err
@@ -56,7 +61,7 @@ func (m *Mkusr) Execute(session *session.Session) error {
 	}
 
 	fileSystem := structures.NewFileSystem(file, superBlock)
-	usersInode, usersInodeIndex, err := fileSystem.GetInodeByPath("/user.txt")
+	usersInode, usersInodeIndex, err := fileSystem.GetInodeByPath("/users.txt")
 	if err != nil {
 		return err
 	}
@@ -91,7 +96,7 @@ func (m *Mkusr) Execute(session *session.Session) error {
 
 	AllocatedBlocks, err := fileSystem.AllocateFileBlocks([]byte(newContent))
 	if err != nil {
-		return fmt.Errorf("error al asignar bloques para el nuevo contenido de /user.txt: %v", err)
+		return fmt.Errorf("error al asignar bloques para el nuevo contenido de /users.txt: %v", err)
 	}
 
 	usersInode.Blocks = AllocatedBlocks
@@ -154,7 +159,7 @@ func (m *Mkusr) GetNewUID(content string) (int, error) {
 
 		fileUsername := strings.TrimSpace(fields[3])
 		if strings.EqualFold(fileUsername, m.Username) {
-			return 0, fmt.Errorf("el usuario '%s' ya existe", m.Username)
+			return 0, fmt.Errorf("el usuario '%s' ya existe", fileUsername)
 		}
 
 		uid, err := strconv.Atoi(strings.TrimSpace(fields[0]))

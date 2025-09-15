@@ -18,6 +18,11 @@ type Login struct {
 }
 
 func NewLogin(input string) (*Login, error) {
+	allowed := []string{"user", "pass", "id"}
+	if err := arguments.ValidateParams(input, allowed); err != nil {
+		return nil, err
+	}
+
 	username, err := arguments.ParseUser(input)
 	if err != nil {
 		return nil, err
@@ -60,7 +65,7 @@ func (l *Login) Execute(session *session.Session) error {
 	}
 
 	fileSystem := structures.NewFileSystem(file, superBlock)
-	usersInode, usersInodeIndex, err := fileSystem.GetInodeByPath("/user.txt")
+	usersInode, usersInodeIndex, err := fileSystem.GetInodeByPath("/users.txt")
 	if err != nil {
 		return err
 	}

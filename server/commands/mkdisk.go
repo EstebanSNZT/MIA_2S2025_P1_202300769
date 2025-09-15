@@ -16,6 +16,11 @@ type Mkdisk struct {
 }
 
 func NewMkDisk(input string) (*Mkdisk, error) {
+	allowed := []string{"size", "path", "fit", "unit"}
+	if err := arguments.ValidateParams(input, allowed); err != nil {
+		return nil, err
+	}
+
 	path, err := arguments.ParsePath(input, true)
 	if err != nil {
 		return nil, err

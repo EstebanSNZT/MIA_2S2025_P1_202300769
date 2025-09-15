@@ -6,6 +6,7 @@ export default {
     return {
       input: "",
       output: "",
+      fileError: ""
     }
   },
   methods: {
@@ -17,9 +18,16 @@ export default {
     },
     handleFileUpload(event) {
       const file = event.target.files[0];
-
       if (!file) return;
 
+      if (!file.name.toLowerCase().endsWith('.smia')) {
+        this.fileError = "Error: Solo se permiten archivos con extensión .smia.";
+        event.target.value = '';
+        this.output = "Carga de archivo cancelada debido a una extensión no válida.";
+        return;
+      }
+
+      this.fileError = "";
       const reader = new FileReader();
       reader.onload = (e) => {
         this.input = e.target.result;
@@ -126,14 +134,15 @@ export default {
                       <div class="vr mx-3" style="height: 60px;"></div>
 
                       <div class="flex-grow-1">
-                        <input type="file" class="form-control mb-2" @change="handleFileUpload" accept=".mias"
+                        <input type="file" class="form-control mb-2" @change="handleFileUpload" accept=".smia"
                           id="fileInput">
                         <small class="text-muted">
                           <i class="bi bi-info-circle me-1"></i>
-                          Solo archivos con extensión .mias
+                          Solo archivos con extensión .smia
                         </small>
                         <div v-if="fileError" class="alert alert-danger mt-2 py-1 small mb-0">
                           <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                          {{ fileError }}
                         </div>
                       </div>
                     </div>

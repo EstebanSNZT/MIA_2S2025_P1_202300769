@@ -1,0 +1,22 @@
+digraph G { rankdir=LR; node [shape=plaintext];ls_report [label=<<table border="0" cellborder="1" cellspacing="0"><tr>
+		<td bgcolor="#4CAF50"><b>Permisos</b></td>
+		<td bgcolor="#4CAF50"><b>Owner</b></td>
+		<td bgcolor="#4CAF50"><b>Grupo</b></td>
+		<td bgcolor="#4CAF50"><b>Size</b></td>
+		<td bgcolor="#4CAF50"><b>Fecha Mod.</b></td>
+		<td bgcolor="#4CAF50"><b>Hora Mod.</b></td>
+		<td bgcolor="#4CAF50"><b>Tipo</b></td>
+		<td bgcolor="#4CAF50"><b>Name</b></td>
+	</tr><tr>
+			<td>drw-rw-r--</td><td>root</td><td>root</td><td>0</td>
+			<td>2025-09-13</td><td>12:57:03</td><td>Carpeta</td><td>.</td>
+			</tr><tr>
+			<td>drwxrwxrwx</td><td>root</td><td>root</td><td>0</td>
+			<td>2025-09-12</td><td>18:14:04</td><td>Carpeta</td><td>..</td>
+			</tr><tr>
+			<td>-rw-r--r--</td><td>root</td><td>root</td><td>0</td>
+			<td>2025-09-13</td><td>12:57:03</td><td>Archivo</td><td>test.txt</td>
+			</tr><tr>
+			<td>-rw-r--r--</td><td>root</td><td>root</td><td>800</td>
+			<td>2025-09-13</td><td>12:59:39</td><td>Archivo</td><td>test1.txt</td>
+			</tr></table>>];}

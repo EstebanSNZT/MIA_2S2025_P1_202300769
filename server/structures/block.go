@@ -56,18 +56,18 @@ func NewFolderBlock() *FolderBlock {
 
 func (b *FolderBlock) GenerateTable(index int32) string {
 	var rows strings.Builder
-	for _, entry := range b.Content {
+	for i, entry := range b.Content {
 		name := strings.TrimRight(string(entry.Name[:]), "\x00")
 		if name == "" {
 			name = "-"
 		}
-		rows.WriteString(fmt.Sprintf(`<tr><td bgcolor="#ffe3fbff"><b>%s</b></td><td bgcolor="#fff2d0ff">%d</td></tr>`, name, entry.Inode))
+		rows.WriteString(fmt.Sprintf(`<tr><td bgcolor="#ffe3fbff"><b>%s</b></td><td PORT="i%d" bgcolor="#fff2d0ff">%d</td></tr>`, name, i, entry.Inode))
 	}
 
 	return fmt.Sprintf(`
 		block%d [label=<
 			<table border="0" cellborder="1" cellspacing="0">
-			<tr><td colspan="2" bgcolor="#ff6d59ff"><b>Bloque de Carpeta %d</b></td></tr>
+			<tr><td PORT="top" colspan="2" bgcolor="#ff6d59ff"><b>Bloque de Carpeta %d</b></td></tr>
 			<tr><td bgcolor="#ff6eecff"><b>Nombre</b></td><td bgcolor="#ffd35cff">Inodo</td></tr>
 			%s
 			</table>
@@ -93,7 +93,7 @@ func (b *FileBlock) GenerateTable(index int32) string {
 	return fmt.Sprintf(`
 		block%d [label=<
 			<table border="0" cellborder="1" cellspacing="0">
-			<tr><td bgcolor="#76ff76ff"><b>Bloque de Archivo %d</b></td></tr>
+			<tr><td PORT="top" bgcolor="#76ff76ff"><b>Bloque de Archivo %d</b></td></tr>
 			<tr><td align="left">%s</td></tr>
 			</table>
 		>];
@@ -102,14 +102,14 @@ func (b *FileBlock) GenerateTable(index int32) string {
 
 func (b *PointerBlock) GenerateTable(index int32) string {
 	var rows strings.Builder
-	for _, ptr := range b.Pointers {
-		rows.WriteString(fmt.Sprintf(`<tr><td>%d</td></tr>`, ptr))
+	for i, ptr := range b.Pointers {
+		rows.WriteString(fmt.Sprintf(`<tr><td PORT="ptr%d">%d</td></tr>`, i, ptr))
 	}
 
 	return fmt.Sprintf(`
 		block%d [label=<
 			<table border="0" cellborder="1" cellspacing="0">
-			<tr><td colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros %d</b></td></tr>
+			<tr><td PORT="top" colspan="2" bgcolor="#ffe8c3"><b>Bloque de Punteros %d</b></td></tr>
 			%s
 			</table>
 		>];

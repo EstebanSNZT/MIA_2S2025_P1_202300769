@@ -1,0 +1,98 @@
+mkdisk -param=x -size=30 -path=/home/esteban/Calificacion_MIA/Discos/DiscoN.mia
+mkdisk -tamaño=3000 -unit=K -path=/home/esteban/Calificacion_MIA/Discos/DiscoN.mia
+Mkdisk -size=50 -unit=M -fit=FF -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia
+Mkdisk -unit=k -size=51200 -fit=BF -path=/home/esteban/Calificacion_MIA/Discos/Disco2.mia
+mkDisk -size=13 -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia
+mkdisk -size=51200 -unit=K -path=/home/esteban/Calificacion_MIA/Discos/Disco4.mia
+mkDisk -size=20 -unit=M -fit=WF -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia
+Mkdisk -size=50 -unit=M -fit=FF -path=/home/esteban/Calificacion_MIA/Discos/Disco6.mia
+Mkdisk -size=50 -unit=M -fit=FF -path=/home/esteban/Calificacion_MIA/Discos/Disco7.mia
+mkdisk -size=51200 -unit=K -path=/home/esteban/Calificacion_MIA/Discos/Disco8.mia
+mkdisk -size=51200 -unit=K -path=/home/esteban/Calificacion_MIA/Discos/Disco9.mia
+mkdisk -size=51200 -unit=K -path=/home/esteban/Calificacion_MIA/Discos/Disco10.mia
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/DiscoN.mia
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/Disco6.mia
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/Disco7.mia
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/Disco8.mia
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/Disco9.mia
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/Disco10.mia
+fdisk -type=P -unit=b -name=PartErr -size=10485760 -path=/home/esteban/Calificacion_MIA/Discos/DiscoN.mia -fit=BF 
+fdisk -type=P -unit=b -name=Part11 -size=10485760 -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -fit=BF
+fdisk -type=P -unit=k -name=Part12 -size=10240 -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -fit=BF
+fdisk -type=P -unit=M -name=Part13 -size=10 -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -fit=BF
+fdisk -type=P -unit=b -name=Part14 -size=10485760 -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -fit=BF
+fdisk -type=P -unit=b -name=PartErr -size=10485760 -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -fit=BF
+fdisk -type=P -unit=m -name=PartErr -size=20 -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia
+fdisk -type=P -unit=m -name=Part31 -size=4 -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia
+fdisk -type=P -unit=m -name=Part32 -size=4 -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia
+fdisk -type=P -unit=m -name=Part33 -size=1 -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia
+fdisk -type=E -unit=k -name=Part51 -size=5120 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF
+fdisk -type=L -unit=k -name=Part52 -size=1024 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF
+fdisk -type=P -unit=k -name=Part53 -size=5120 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF
+fdisk -type=L -unit=k -name=Part54 -size=1024 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF
+fdisk -type=L -unit=k -name=Part55 -size=1024 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF
+fdisk -type=L -unit=k -name=Part56 -size=1024 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -name=Part11
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -name=Part12
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -name=Part11
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia -name=Part0
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia -name=Part31
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia -name=Part32
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -name=Part53
+mounted
+rep -id=A691 -Path=/home/esteban/Calificacion_MIA/Reportes/p1_rE.png -name=mbr
+rep -id=691A -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r1_disk.png -name=disk
+rep -id=691A -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r2_mbr.png -name=mbr
+rep -id=693B -Path=/home/esteban/Calificacion_MIA/Reportes/p1_rE_mbr.png -name=mbr
+rep -id=691B -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r3_disk.png -name=disk
+rep -id=692B -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r4_disk.png -name=mbr
+rep -id=IDx -Path=/home/esteban/Calificacion_MIA/Reportes/p1_rE_mbr.png -name=mbr
+rep -id=691C -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r5_disk.png -name=disk
+rep -id=691C -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r6_mbr.png -name=mbr
+mkfs -type=full -id=691A
+login -user=root -pass=123 -id=691A
+login -user=root -pass=123 -id=691A
+mkgrp -name=usuarios
+mkgrp -name=adm
+mkgrp -name=mail
+mkgrp -name=news
+mkgrp -name=sys
+mkgrp -name=sys
+cat -file1=/users.txt
+rmgrp -name=mail
+cat -file1=/users.txt
+mkusr -user="usuario1" -pass=password -grp=root
+mkusr -user="user1" -pass=abc -grp=usuarios
+mkusr -user="user2" -pass=abc -grp=usuarios
+mkusr -user="user2" -pass=abc -grp=usuarios
+mkusr -user="user3" -pass=abc -grp=system
+cat -file1=/users.txt
+chgrp -user=user2 -grp=adm
+cat -file1=/users.txt
+rmusr -user=user2
+cat -file1=/users.txt
+mkdir -path=/bin
+mkdir -path="/home/archivos/archivos 24"
+mkdir -p -path=/home/archivos/user/docs/usac
+mkdir -p -path=/home/archivos/carpeta1/carpeta2/carpeta3/carpeta4/carpeta5
+logout
+logout
+login -user=user1 -pass=abc -id=691A
+logout
+login -user=root -pass=123 -id=691A
+mkfile -path=/home/archivos/user/docs/Tarea.txt -size=75
+mkfile -path=/home/archivos/user/docs/Tarea2.txt -size=768
+mkfile -path=/home/archivos/user/docs/Tarea3.txt -size=10 -cont=/home/esteban/Documentos/NAME.txt
+mkfile -path="/home/archivos/noexiste/b1.txt"
+mkfile -path="/home/archivos/b1.txt" -size=-45
+mkfile -r -path=/home/archivos/user/docs/usac/archivos/proyectos/fase1/entrada.txt
+cat -file1=/home/archivos/user/docs/Tarea2.txt
+cat -file1=/home/archivos/user/docs/Tarea3.txt
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r1_inode.png -name=inode
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r2_block.png -name=block
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r3_bm_inode.txt -name=bm_inode
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r4_bm_block.txt -name=bm_block
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r5_sb.png -name=sb
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r6_file.txt -path_file_ls=/home/archivos/user/docs/Tarea2.txt -name=file
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r7_ls.png -path_file_ls=/home/archivos/user/docs -name=ls
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r8_tree.png -name=tree

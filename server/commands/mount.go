@@ -15,6 +15,11 @@ type Mount struct {
 }
 
 func NewMount(input string) (*Mount, error) {
+	allowed := []string{"path", "name"}
+	if err := arguments.ValidateParams(input, allowed); err != nil {
+		return nil, err
+	}
+
 	path, err := arguments.ParsePath(input, true)
 	if err != nil {
 		return nil, err
@@ -52,12 +57,12 @@ func (m *Mount) Execute() (string, error) {
 
 	partition := mbr.GetPartitionByName(m.Name)
 
-	if partition.Type == [1]byte{'E'} {
-		return "", fmt.Errorf("no se puede montar una partición extendida")
-	}
-
 	if partition == nil {
 		return "", fmt.Errorf("no se encontró una partición con el nombre '%s'", m.Name)
+	}
+
+	if partition.Type == [1]byte{'E'} {
+		return "", fmt.Errorf("no se puede montar una partición extendida")
 	}
 
 	diskLetter, partitionCorrelative, err := stores.AllocateMountID(m.Path)
@@ -65,7 +70,7 @@ func (m *Mount) Execute() (string, error) {
 		return "", fmt.Errorf("error al asignar ID de montaje: %w", err)
 	}
 
-	partitionId := fmt.Sprintf("69%s%d", diskLetter, partitionCorrelative)
+	partitionId := fmt.Sprintf("69%d%s", partitionCorrelative, diskLetter)
 	copy(partition.ID[:], partitionId)
 	partition.Status = [1]byte{'1'}
 	partition.Correlative = int32(partitionCorrelative)
@@ -84,7 +89,7 @@ func (m *Mount) Execute() (string, error) {
 
 	if superBlock.Magic == 0xEF53 {
 		superBlock.MntCount++
-		if err = utilities.WriteObject(file, &superBlock, int64(partition.Start)); err != nil {
+		if err = utilities.WriteObject(file, superBlock, int64(partition.Start)); err != nil {
 			return "", fmt.Errorf("error al actualizar el superbloque: %w", err)
 		}
 	}

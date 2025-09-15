@@ -2,6 +2,7 @@ package analyzer
 
 import (
 	"fmt"
+	"regexp"
 	"server/commands"
 	"server/session"
 	"strings"
@@ -17,7 +18,7 @@ func Analyzer(input string, session *session.Session) (string, error) {
 		arguments = ""
 	} else {
 		command = strings.ToLower(input[:spaceIndex])
-		arguments = strings.TrimSpace(input[spaceIndex+1:])
+		arguments = NormalizeParamKeys(strings.TrimSpace(input[spaceIndex+1:]))
 	}
 
 	switch command {
@@ -205,4 +206,12 @@ func Analyzer(input string, session *session.Session) (string, error) {
 	default:
 		return "", fmt.Errorf(": comando no reconocido: %s", command)
 	}
+}
+
+func NormalizeParamKeys(input string) string {
+	re := regexp.MustCompile(`-(\w+)=`)
+
+	return re.ReplaceAllStringFunc(input, func(match string) string {
+		return strings.ToLower(match)
+	})
 }

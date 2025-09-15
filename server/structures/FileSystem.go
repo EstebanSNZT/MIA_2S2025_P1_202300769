@@ -5,7 +5,9 @@ import (
 	"os"
 	"path"
 	"server/utilities"
+	"strconv"
 	"strings"
+	"time"
 )
 
 type FileSystem struct {
@@ -52,7 +54,7 @@ func (fs *FileSystem) CreateUsersFile() error {
 		Content: [4]FolderContent{
 			{Name: [12]byte{'.'}, Inode: rootInodeIndex},
 			{Name: [12]byte{'.', '.'}, Inode: rootInodeIndex},
-			{Name: [12]byte{'u', 's', 'e', 'r', '.', 't', 'x', 't'}, Inode: usersInodeIndex},
+			{Name: [12]byte{'u', 's', 'e', 'r', 's', '.', 't', 'x', 't'}, Inode: usersInodeIndex},
 			{Name: [12]byte{'-'}, Inode: -1},
 		},
 	}
@@ -373,6 +375,11 @@ func (fs *FileSystem) FreeFileInode(inode *Inode) error {
 
 func (fs *FileSystem) AllocateFileBlocks(content []byte) ([15]int32, error) {
 	allocatedBlocks := [15]int32{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}
+
+	if len(content) == 0 {
+		return allocatedBlocks, nil
+	}
+
 	numBlocksNeeded := (int32(len(content)) + fs.Sb.BlockSize - 1) / fs.Sb.BlockSize
 	pointerPerBlock := int32(len(PointerBlock{}.Pointers))
 
@@ -668,4 +675,305 @@ func (fs *FileSystem) EnsurePathExist(path string, UID int32, GID int32) (*Inode
 	}
 
 	return &lastFolderInode, currentInodeIndex, nil
+}
+
+func (fs *FileSystem) GenerateLsDOT(path string) (string, error) {
+	inode, inodeIndex, err := fs.GetInodeByPath(path)
+	if err != nil {
+		return "", err
+	}
+
+	var sb strings.Builder
+
+	userMap, groupMap, err := fs.BuildUserMaps()
+	if err != nil {
+		return "", fmt.Errorf("error al construir mapas de usuarios y grupos: %v", err)
+	}
+
+	sb.WriteString("digraph G { rankdir=LR; node [shape=plaintext];")
+	sb.WriteString(`ls_report [label=<`)
+	sb.WriteString(`<table border="0" cellborder="1" cellspacing="0">`)
+	sb.WriteString(`<tr>
+		<td bgcolor="#4CAF50"><b>Permisos</b></td>
+		<td bgcolor="#4CAF50"><b>Owner</b></td>
+		<td bgcolor="#4CAF50"><b>Grupo</b></td>
+		<td bgcolor="#4CAF50"><b>Size</b></td>
+		<td bgcolor="#4CAF50"><b>Fecha Mod.</b></td>
+		<td bgcolor="#4CAF50"><b>Hora Mod.</b></td>
+		<td bgcolor="#4CAF50"><b>Tipo</b></td>
+		<td bgcolor="#4CAF50"><b>Name</b></td>
+	</tr>`)
+
+	for _, blockIndex := range inode.Blocks {
+		if blockIndex == -1 {
+			continue
+		}
+
+		var folderBlock FolderBlock
+		offset := int64(fs.Sb.BlockStart + blockIndex*fs.Sb.BlockSize)
+		if err := utilities.ReadObject(fs.File, &folderBlock, offset); err != nil {
+			continue
+		}
+
+		for _, entry := range folderBlock.Content {
+			if entry.Inode == -1 {
+				continue
+			}
+
+			var entryInode Inode
+			entryOffset := int64(fs.Sb.InodeStart + entry.Inode*fs.Sb.InodeSize)
+			if err := utilities.ReadObject(fs.File, &entryInode, entryOffset); err != nil {
+				continue
+			}
+
+			ownerName, ok := userMap[entryInode.UID]
+			if !ok {
+				ownerName = fmt.Sprintf("%d", entryInode.UID)
+			}
+			groupName, ok := groupMap[entryInode.GID]
+			if !ok {
+				groupName = fmt.Sprintf("%d", entryInode.GID)
+			}
+
+			permissions := entryInode.GetPermissionsString()
+			modTime := time.Unix(entryInode.Mtime, 0)
+			entryType := "Archivo"
+			if entryInode.Type == [1]byte{'0'} {
+				entryType = "Carpeta"
+			}
+			entryName := strings.TrimRight(string(entry.Name[:]), "\x00")
+
+			sb.WriteString(fmt.Sprintf(`<tr>
+			<td>%s</td><td>%s</td><td>%s</td><td>%d</td>
+			<td>%s</td><td>%s</td><td>%s</td><td>%s</td>
+			</tr>`,
+				permissions, ownerName, groupName, entryInode.Size,
+				modTime.Format("2006-01-02"), modTime.Format("15:04:05"),
+				entryType, entryName))
+		}
+	}
+	sb.WriteString("</table>>];}")
+
+	inode.UpdateAccessTime()
+	inodeOffset := int64(fs.Sb.InodeStart + inodeIndex*fs.Sb.InodeSize)
+	if err := utilities.WriteObject(fs.File, *inode, inodeOffset); err != nil {
+		return "", err
+	}
+
+	return sb.String(), nil
+}
+
+func (fs *FileSystem) BuildUserMaps() (map[int32]string, map[int32]string, error) {
+	usersInode, _, err := fs.GetInodeByPath("/users.txt")
+	if err != nil {
+		return nil, nil, err
+	}
+
+	content, err := fs.ReadFileContent(usersInode)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	userMap := make(map[int32]string)
+	groupMap := make(map[int32]string)
+
+	lines := strings.SplitSeq(content, "\n")
+	for line := range lines {
+		trimmedLine := strings.TrimSpace(line)
+		if trimmedLine == "" {
+			continue
+		}
+		fields := strings.Split(trimmedLine, ",")
+		if len(fields) < 3 {
+			continue
+		}
+
+		id, err := strconv.ParseInt(strings.TrimSpace(fields[0]), 10, 32)
+		if err != nil || id == 0 {
+			continue
+		}
+
+		lineType := strings.TrimSpace(fields[1])
+
+		if lineType == "U" && len(fields) >= 4 {
+			userMap[int32(id)] = strings.TrimSpace(fields[3])
+		} else if lineType == "G" {
+			groupMap[int32(id)] = strings.TrimSpace(fields[2])
+		}
+	}
+
+	return userMap, groupMap, nil
+}
+
+func (fs *FileSystem) GenerateTreeDOT() (string, error) {
+	var sb strings.Builder
+	sb.WriteString("digraph G { rankdir=LR; node [shape=none, margin=0];")
+
+	generatedNodes := make(map[string]bool)
+	generatedEdges := make(map[string]bool)
+
+	err := fs.generateTreeRecursive(0, &sb, generatedNodes, generatedEdges)
+	if err != nil {
+		return "", err
+	}
+
+	sb.WriteString("}")
+	return sb.String(), nil
+}
+
+func (fs *FileSystem) generateTreeRecursive(inodeIndex int32, dot *strings.Builder, generatedNodes map[string]bool, generatedEdges map[string]bool) error {
+	inodeNodeID := fmt.Sprintf("inode%d", inodeIndex)
+	if generatedNodes[inodeNodeID] {
+		return nil
+	}
+
+	// dibujar inodo
+	var inode Inode
+	offset := int64(fs.Sb.InodeStart + inodeIndex*fs.Sb.InodeSize)
+	if err := utilities.ReadObject(fs.File, &inode, offset); err != nil {
+		return err
+	}
+	dot.WriteString(inode.GenerateTable(inodeIndex))
+	generatedNodes[inodeNodeID] = true
+
+	// recorrer punteros de bloques
+	for k, blockIndex := range inode.Blocks {
+		if blockIndex == -1 {
+			continue
+		}
+		blockNodeID := fmt.Sprintf("block%d", blockIndex)
+
+		// Dibujar flecha Inodo -> Bloque
+		edgeID := fmt.Sprintf("%s:p%d -> %s:top", inodeNodeID, k, blockNodeID)
+		if !generatedEdges[edgeID] {
+			dot.WriteString(edgeID + ";")
+			generatedEdges[edgeID] = true
+		}
+
+		if generatedNodes[blockNodeID] {
+			continue
+		}
+
+		// dibujar bloque
+		blockOffset := int64(fs.Sb.BlockStart + blockIndex*fs.Sb.BlockSize)
+		if k < 12 { // Bloques de Directos
+			if inode.Type[0] == '0' { // Carpeta
+				var folderBlock FolderBlock
+				if utilities.ReadObject(fs.File, &folderBlock, blockOffset) == nil {
+					dot.WriteString(folderBlock.GenerateTable(blockIndex))
+					generatedNodes[blockNodeID] = true
+
+					for entryIdx, entry := range folderBlock.Content {
+						if entry.Inode == -1 {
+							continue
+						}
+						entryName := strings.TrimRight(string(entry.Name[:]), "\x00")
+
+						// Ignorar entradas especiales
+						if entryName != "." && entryName != ".." {
+							// Dibujar flecha Bloque -> Inodo
+							childInodeID := fmt.Sprintf("inode%d:top", entry.Inode)
+							folderPort := fmt.Sprintf("i%d", entryIdx)
+
+							childEdgeID := fmt.Sprintf("%s:%s -> %s", blockNodeID, folderPort, childInodeID)
+							if !generatedEdges[childEdgeID] {
+								dot.WriteString(childEdgeID + ";")
+								generatedEdges[childEdgeID] = true
+							}
+
+							// Recursión
+							if err := fs.generateTreeRecursive(entry.Inode, dot, generatedNodes, generatedEdges); err != nil {
+								return fmt.Errorf("error generando árbol recursivo para inodo %d: %v", entry.Inode, err)
+							}
+						}
+					}
+				}
+			} else { // Archivo
+				var fileBlock FileBlock
+				if utilities.ReadObject(fs.File, &fileBlock, blockOffset) == nil {
+					dot.WriteString(fileBlock.GenerateTable(blockIndex))
+					generatedNodes[blockNodeID] = true
+				}
+			}
+		} else {
+			originalInodeType := inode.Type[0]
+			var level int
+			switch k {
+			case 12:
+				level = 1
+			case 13:
+				level = 2
+			case 14:
+				level = 3
+			}
+			fs.processPointerBlock(blockIndex, level, originalInodeType, dot, generatedNodes, generatedEdges)
+		}
+	}
+	return nil
+}
+
+func (fs *FileSystem) processPointerBlock(
+	pointerBlockIndex int32,
+	level int, // Nivel de indirección: 1 (simple), 2 (doble), 3 (triple)
+	originalInodeType byte, // '0' para carpeta, '1' para archivo
+	dot *strings.Builder,
+	generatedNodes map[string]bool,
+	generatedEdges map[string]bool) {
+
+	// Evitar procesar el mismo bloque de punteros múltiples veces
+	blockNodeID := fmt.Sprintf("block%d", pointerBlockIndex)
+	if generatedNodes[blockNodeID] {
+		return
+	}
+
+	// Dibujar el bloque de punteros actual
+	var pBlock PointerBlock
+	blockOffset := int64(fs.Sb.BlockStart + pointerBlockIndex*fs.Sb.BlockSize)
+	if err := utilities.ReadObject(fs.File, &pBlock, blockOffset); err != nil {
+		return
+	}
+	dot.WriteString(pBlock.GenerateTable(pointerBlockIndex))
+	generatedNodes[blockNodeID] = true
+
+	// Recorrer los punteros dentro de este bloque
+	for i, ptrIndex := range pBlock.Pointers {
+		if ptrIndex == -1 {
+			continue
+		}
+
+		childNodeID := fmt.Sprintf("block%d", ptrIndex)
+		pointerPort := fmt.Sprintf("ptr%d", i)
+
+		// Dibujar la flecha desde este bloque de punteros al siguiente
+		edgeID := fmt.Sprintf("%s:%s -> %s:top", blockNodeID, pointerPort, childNodeID)
+		if !generatedEdges[edgeID] {
+			dot.WriteString(edgeID + ";")
+			generatedEdges[edgeID] = true
+		}
+
+		if level > 1 {
+			// Recursión: Este puntero apunta a OTRO bloque de punteros
+			fs.processPointerBlock(ptrIndex, level-1, originalInodeType, dot, generatedNodes, generatedEdges)
+		} else {
+			// Caso base: Este puntero apunta a un bloque de datos (archivo o carpeta)
+			if generatedNodes[childNodeID] {
+				continue
+			}
+
+			dataBlockOffset := int64(fs.Sb.BlockStart + ptrIndex*fs.Sb.BlockSize)
+			if originalInodeType == '0' { // Carpeta
+				var folderBlock FolderBlock
+				if utilities.ReadObject(fs.File, &folderBlock, dataBlockOffset) == nil {
+					dot.WriteString(folderBlock.GenerateTable(ptrIndex))
+					generatedNodes[childNodeID] = true
+				}
+			} else { // Archivo
+				var fileBlock FileBlock
+				if utilities.ReadObject(fs.File, &fileBlock, dataBlockOffset) == nil {
+					dot.WriteString(fileBlock.GenerateTable(ptrIndex))
+					generatedNodes[childNodeID] = true
+				}
+			}
+		}
+	}
 }

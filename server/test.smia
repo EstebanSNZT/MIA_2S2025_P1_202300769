@@ -1,0 +1,373 @@
+#Calificacion Proyecto 1
+#2S 2025
+#Cambiar "su_usuario" -> por el usuario de su distribución de linux  
+#Cambiar “69” -> por los ultimos dos digitos de su carnet  
+
+
+#----------------- 1. MKDISK  -----------------
+
+
+#----------------- MKDISK CON ERROR -----------------
+# ERROR PARAMETROS
+mkdisk -param=x -size=30 -path=/home/esteban/Calificacion_MIA/Discos/DiscoN.mia [C]
+
+
+#----------------- CREACION DE DISCOS -----------------
+# ERROR PARAMETROS
+mkdisk -tamaño=3000 -unit=K -path=/home/esteban/Calificacion_MIA/Discos/DiscoN.mia [C]
+# 50M A
+Mkdisk -size=50 -unit=M -fit=FF -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia [C]
+# 50M B
+Mkdisk -unit=k -size=51200 -fit=BF -path=/home/esteban/Calificacion_MIA/Discos/Disco2.mia [C]
+# 13M C
+mkDisk -size=13 -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia [C]
+# 50M D
+mkdisk -size=51200 -unit=K -path=/home/esteban/Calificacion_MIA/Discos/Disco4.mia [C]
+# 20M E
+mkDisk -size=20 -unit=M -fit=WF -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia [C]
+# 50M F X
+Mkdisk -size=50 -unit=M -fit=FF -path=/home/esteban/Calificacion_MIA/Discos/Disco6.mia [C]
+# 50M G X
+Mkdisk -size=50 -unit=M -fit=FF -path=/home/esteban/Calificacion_MIA/Discos/Disco7.mia [C]
+# 50M H X
+mkdisk -size=51200 -unit=K -path=/home/esteban/Calificacion_MIA/Discos/Disco8.mia [C]
+# 50M I X
+mkdisk -size=51200 -unit=K -path=/home/esteban/Calificacion_MIA/Discos/Disco9.mia [C]
+# 50M J X
+mkdisk -size=51200 -unit=K -path=/home/esteban/Calificacion_MIA/Discos/Disco10.mia [C]
+
+
+#-----------------2. RMDISK-----------------
+#ERROR DISCO NO EXISTE
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/DiscoN.mia [C]
+# BORRANDO DISCO
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/Disco6.mia [C]
+# BORRANDO DISCO
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/Disco7.mia [C]
+# BORRANDO DISCO
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/Disco8.mia [C]
+# BORRANDO DISCO
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/Disco9.mia [C]
+# BORRANDO DISCO
+rmdisk -path=/home/esteban/Calificacion_MIA/Discos/Disco10.mia [C]
+
+
+#-----------------3. FDISK-----------------
+#-----------------CREACION DE PARTICIONES-----------------
+#DISCO 1
+# ERROR RUTA NO ENCONTRADA
+fdisk -type=P -unit=b -name=PartErr -size=10485760 -path=/home/esteban/Calificacion_MIA/Discos/DiscoN.mia -fit=BF [C]
+# PRIMARIA 10M
+fdisk -type=P -unit=b -name=Part11 -size=10485760 -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -fit=BF [C]
+# PRIMARIA 10M
+fdisk -type=P -unit=k -name=Part12 -size=10240 -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -fit=BF [C]
+# PRIMARIA 10M
+fdisk -type=P -unit=M -name=Part13 -size=10 -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -fit=BF [C]
+# PRIMARIA 10M
+fdisk -type=P -unit=b -name=Part14 -size=10485760 -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -fit=BF [C]
+#ERR LMITE PARTICION PRIMARIA
+fdisk -type=P -unit=b -name=PartErr -size=10485760 -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -fit=BF [C]
+
+
+
+
+# LIBRE DISCO 1: 50-4*10 = 10 -> 20%
+
+
+
+
+#DISCO 3
+# ERROR FALTA ESPACIO
+fdisk -type=P -unit=m -name=PartErr -size=20 -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia [C]
+#4M
+fdisk -type=P -unit=m -name=Part31 -size=4 -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia [C]
+#4M
+fdisk -type=P -unit=m -name=Part32 -size=4 -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia [C]
+#1M
+fdisk -type=P -unit=m -name=Part33 -size=1 -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia [C]
+
+
+
+
+#LIBRE DISCO 3: 13-9= 4 -> 30.77%
+
+
+
+
+#DISCO 5
+# 5MB
+fdisk -type=E -unit=k -name=Part51 -size=5120 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF [C]
+# 1MB
+fdisk -type=L -unit=k -name=Part52 -size=1024 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF [C]
+# 5MB
+fdisk -type=P -unit=k -name=Part53 -size=5120 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF [C]
+# 1MB
+fdisk -type=L -unit=k -name=Part54 -size=1024 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF [C]
+# 1MB
+fdisk -type=L -unit=k -name=Part55 -size=1024 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF [C]
+# 1MB
+fdisk -type=L -unit=k -name=Part56 -size=1024 -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -fit=BF [C]
+
+
+
+
+# LIBRE DISCO 5: 20-10 = 5 -> 50%
+# LIBRE EXTENDIDA 2: 5-4 = 1 -> 20% (por los EBR deberia ser menos)
+
+
+
+
+#-----------------MOUNT-----------------
+#-----------------MONTAR PARTICIONES-----------------
+#DISCO 1
+#691A -> 69 sus ultimos dos digitos del carnet
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -name=Part11 [C]
+#692A -> 69 sus ultimos dos digitos del carnet
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -name=Part12 [C]
+#ERROR PARTICION YA MONTADA
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco1.mia -name=Part11 [C]
+
+
+
+
+#DISCO 3
+#ERROR PARTCION NO EXISTE
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia -name=Part0 [C]
+#691B -> 69 sus ultimos dos digitos del carnet
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia -name=Part31 [C]
+#692B -> 69 sus ultimos dos digitos del carnet
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco3.mia -name=Part32 [C]
+
+
+
+
+#DISCO 5
+#691C -> 69 sus ultimos dos digitos del carnet
+mount -path=/home/esteban/Calificacion_MIA/Discos/Disco5.mia -name=Part53 [C]
+
+
+#-----------------MOUNT-----------------
+# ENLISTAR
+mounted [C]
+
+
+
+
+#-----------------REPORTES PARTE 1-----------------
+#DISCO 1
+#ERROR ID NO ENCONTRADO
+rep -id=A691 -Path=/home/esteban/Calificacion_MIA/Reportes/p1_rE.png -name=mbr [C]
+#REPORTE DISK
+rep -id=691A -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r1_disk.png -name=disk [C]
+#REPORTE MBR 
+rep -id=691A -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r2_mbr.png -name=mbr [C]
+
+
+
+
+#DISCO 3
+#ERROR ID NO ENCONTRADO
+rep -id=693B -Path=/home/esteban/Calificacion_MIA/Reportes/p1_rE_mbr.png -name=mbr [C]
+#REPORTE DISK
+rep -id=691B -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r3_disk.png -name=disk [C]
+#REPORTE MBR
+rep -id=692B -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r4_disk.png -name=mbr [C]
+
+
+
+
+#DISCO 5
+#ERROR ID NO ENCONTRADO
+rep -id=IDx -Path=/home/esteban/Calificacion_MIA/Reportes/p1_rE_mbr.png -name=mbr [C]
+#REPORTE DISK
+rep -id=691C -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r5_disk.png -name=disk [C]
+#REPORTE MBR
+rep -id=691C -Path=/home/esteban/Calificacion_MIA/Reportes/p1_r6_mbr.png -name=mbr [C]
+
+
+
+
+#-----------------5. MKFS-----------------
+mkfs -type=full -id=691A [C]
+
+
+
+
+#-----------------PARTE 3-----------------
+
+
+
+
+#-----------------7. LOGIN-----------------
+login -user=root -pass=123 -id=691A [C]
+#ERROR SESION INICIADA
+login -user=root -pass=123 -id=691A [C]
+
+
+
+
+#-----------------9. MKGRP-----------------
+mkgrp -name=usuarios [C]
+mkgrp -name=adm [C]
+mkgrp -name=mail [C]
+mkgrp -name=news [C]
+mkgrp -name=sys [C]
+#ERROR YA EXISTE EL GRUPO
+mkgrp -name=sys [C]
+
+
+
+
+#-----------------6. CAT-----------------
+cat -file1=/users.txt [C]
+
+
+
+
+#-----------------10. RMGR-----------------
+rmgrp -name=mail [C]
+
+
+
+
+#-----------------6. CAT-----------------
+cat -file1=/users.txt [C]
+
+
+
+
+#-----------------11. MKUSR-----------------------------------------------
+mkusr -user="usuario1" -pass=password -grp=root [C]
+mkusr -user="user1" -pass=abc -grp=usuarios [C]
+mkusr -user="user2" -pass=abc -grp=usuarios [C]
+#ERROR EL USUARIO YA EXISTE
+mkusr -user="user2" -pass=abc -grp=usuarios [C]
+#ERROR GRUPO NO EXISTE
+mkusr -user="user3" -pass=abc -grp=system [C]
+
+
+
+
+#-----------------6. CAT-----------------
+cat -file1=/users.txt [C]
+
+
+
+
+#-----------------13. CHGRP-----------------
+chgrp -user=user2 -grp=adm [C]
+
+
+
+
+#-----------------6. CAT-----------------
+cat -file1=/users.txt [C]
+
+
+
+
+#-----------------12. RMUSR-----------------
+rmusr -user=user2 [C]
+
+
+
+
+#-----------------6. CAT-----------------
+cat -file1=/users.txt [C]
+
+
+
+
+#-----------------15. MKDIR-----------------
+mkdir -path=/bin [C]
+# ERROR NO EXISTEN LAS CARPETAS PADRES
+mkdir -path="/home/archivos/archivos 24" [C]
+mkdir -p -path=/home/archivos/user/docs/usac [C]
+mkdir -p -path=/home/archivos/carpeta1/carpeta2/carpeta3/carpeta4/carpeta5 [C]
+
+
+
+
+#-----------------8. LOGOUT-----------------
+logout [C]
+#ERROR NO HAY SESION INICIADA
+logout [C]
+
+
+
+
+#-----------------7. LOGIN-----------------
+#Validar un inicio de sesión para un usuario creado
+login -user=user1 -pass=abc -id=691A [C]
+
+
+logout [C]
+
+
+#Regresamos al root 
+
+
+login -user=root -pass=123 -id=691A [C]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#-----------------14. MKFILE-----------------
+mkfile -path=/home/archivos/user/docs/Tarea.txt -size=75 [C]
+mkfile -path=/home/archivos/user/docs/Tarea2.txt -size=768 [C]
+
+
+
+
+#Para este comando hay que crear un archivo en la computadora y en cont poner su primer nombre
+#Crear un archivo txt en su Escritorio llamado NAME
+
+
+
+
+# Cambiar la ruta del cont por la del archivo NAME.txt que creo
+mkfile -path=/home/archivos/user/docs/Tarea3.txt -size=10 -cont=/home/esteban/Documentos/NAME.txt [C]
+
+
+
+
+#ERROR NO EXISTE RUTA
+mkfile -path="/home/archivos/noexiste/b1.txt" [C]
+
+
+#ERROR NEGATIVO
+mkfile -path="/home/archivos/b1.txt" -size=-45 [C]
+
+
+#RECURSIVO
+mkfile -r -path=/home/archivos/user/docs/usac/archivos/proyectos/fase1/entrada.txt [C]
+
+
+#-----------------6. CAT-----------------
+cat -file1=/home/archivos/user/docs/Tarea2.txt [C]
+cat -file1=/home/archivos/user/docs/Tarea3.txt [C]
+
+
+#------------------------REPORTES PARTE 4----------------
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r1_inode.png -name=inode [C]
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r2_block.png -name=block [C]
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r3_bm_inode.txt -name=bm_inode [C]
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r4_bm_block.txt -name=bm_block [C]
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r5_sb.png -name=sb [C]
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r6_file.txt -path_file_ls=/home/archivos/user/docs/Tarea2.txt -name=file [C]
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r7_ls.png -path_file_ls=/home/archivos/user/docs -name=ls [C]
+rep -id=691A -path=/home/esteban/Calificacion_MIA/Reportes/p4_r8_tree.png -name=tree [C]
+
+
+#------------------------8. LOGOUT------------------------
+logout [C]

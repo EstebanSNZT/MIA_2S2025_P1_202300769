@@ -15,6 +15,10 @@ type Mkdir struct {
 }
 
 func NewMkdir(input string) (*Mkdir, error) {
+	if err := arguments.ValidateParams(input, []string{"path", "p"}); err != nil {
+		return nil, err
+	}
+
 	path, err := arguments.ParsePath(input, false)
 	if err != nil {
 		return nil, err

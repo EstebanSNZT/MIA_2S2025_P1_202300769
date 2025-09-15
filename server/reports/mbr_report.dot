@@ -1,0 +1,44 @@
+digraph G {
+	node [shape=record];
+	tabla [label=<
+	<table border="0" cellborder="1" cellspacing="0">
+	<tr><td colspan="2" bgcolor="gray"><b> REPORTE MBR </b></td></tr>
+	<tr><td bgcolor="lightgray"><b>mbr_size</b></td><td>8388608</td></tr>
+	<tr><td bgcolor="lightgray"><b>mbr_creation_date</b></td><td>2025-09-12 18:14:04</td></tr>
+	<tr><td bgcolor="lightgray"><b>mbr_disk_signature</b></td><td>2030797655</td></tr>
+	<tr><td colspan="2" bgcolor="lightblue"><b> PARTICIÓN 1 </b></td></tr>
+	<tr><td bgcolor="lightgray"><b>part_status</b></td><td>0</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_type</b></td><td>P</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_fit</b></td><td>W</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_start</b></td><td>157</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_size</b></td><td>3145728</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_name</b></td><td>MiloPart</td></tr>
+	<tr><td colspan="2" bgcolor="lightblue"><b> PARTICIÓN 2 </b></td></tr>
+	<tr><td bgcolor="lightgray"><b>part_status</b></td><td>0</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_type</b></td><td>P</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_fit</b></td><td>W</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_start</b></td><td>3145885</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_size</b></td><td>2097152</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_name</b></td><td>BeckyPart</td></tr>
+	<tr><td colspan="2" bgcolor="orange"><b> PARTICIÓN 3 </b></td></tr>
+	<tr><td bgcolor="lightgray"><b>part_status</b></td><td>0</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_type</b></td><td>E</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_fit</b></td><td>B</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_start</b></td><td>5243037</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_size</b></td><td>2097152</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_name</b></td><td>NachoPart</td></tr>
+	<tr><td bgcolor="lightgreen"><b>EBR</b></td><td bgcolor="lightgreen"><b>Partición Lógica</b></td></tr>
+	<tr><td bgcolor="lightgray"><b>part_status</b></td><td>0</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_fit</b></td><td>W</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_start</b></td><td>5243067</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_next</b></td><td>5396667</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_size</b></td><td>153600</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_name</b></td><td>TamalPart</td></tr>
+	<tr><td bgcolor="lightgreen"><b>EBR</b></td><td bgcolor="lightgreen"><b>Partición Lógica</b></td></tr>
+	<tr><td bgcolor="lightgray"><b>part_status</b></td><td>0</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_fit</b></td><td>W</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_start</b></td><td>5396697</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_next</b></td><td>-1</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_size</b></td><td>204800</td></tr>
+	<tr><td bgcolor="lightgray"><b>part_name</b></td><td>PachePart</td></tr></table>>];
+}

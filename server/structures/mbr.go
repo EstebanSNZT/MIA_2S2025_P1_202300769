@@ -145,18 +145,17 @@ func (m *MBR) GenerateDiskLayoutDOT(file *os.File) (string, error) {
 
 	sb.WriteString("digraph G {node [shape=none]; graph [splines=false]; subgraph cluster_disk {")
 	sb.WriteString(fmt.Sprintf("label=\"Disco: %s (Tamaño Total: %d bytes)\";", diskName, totalSize))
-	sb.WriteString(`style=filled; fillcolor=white; color=black; penwidth=2;
-	table [label=<
-	<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"10\" WIDTH=\"800\"><TR>`)
+	// 1. HTML Limpio: Usamos ` (raw string literal) para evitar \"
+	sb.WriteString(`style=filled; fillcolor=white; color=black; penwidth=2; table [label=<
+	<table border="0" cellborder="1" cellspacing="0" cellpadding="10" width="800"><tr>`)
 
 	mbrStructSize := int32(binary.Size(*m))
 	mbrPercentage := float64(mbrStructSize) / float64(totalSize) * 100
-	sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"gray\" ALIGN=\"CENTER\"><B>MBR</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", mbrStructSize, mbrPercentage))
+	sb.WriteString(fmt.Sprintf(`<td bgcolor="gray" align="center"><b>MBR</b><br/>%d bytes<br/>(%.2f%%)</td>`, mbrStructSize, mbrPercentage))
 	lastOffset := int64(mbrStructSize)
 
 	validPartitions := []PartitionInfo{}
-	for i := 0; i < 4; i++ {
-		part := m.Partitions[i]
+	for i, part := range m.Partitions {
 		if part.Size > 0 {
 			validPartitions = append(validPartitions, PartitionInfo{Partition: part, Index: i})
 		}
@@ -167,12 +166,11 @@ func (m *MBR) GenerateDiskLayoutDOT(file *os.File) (string, error) {
 
 	for _, pInfo := range validPartitions {
 		part := pInfo.Partition
-
 		freeSpaceBefore := int64(part.Start) - lastOffset
 		if freeSpaceBefore > 0 {
 			percentage := float64(freeSpaceBefore) / float64(totalSize) * 100
 			cellWidth := max(30, int(float64(freeSpaceBefore)/float64(totalSize)*800))
-			sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"#ffffffff\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Libre</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", cellWidth, freeSpaceBefore, percentage))
+			sb.WriteString(fmt.Sprintf(`<td bgcolor="#ffffffff" width="%d" align="center"><b>Libre</b><br/>%d bytes<br/>(%.2f%%)</td>`, cellWidth, freeSpaceBefore, percentage))
 		}
 
 		percentage := float64(part.Size) / float64(totalSize) * 100
@@ -181,12 +179,13 @@ func (m *MBR) GenerateDiskLayoutDOT(file *os.File) (string, error) {
 
 		switch part.Type[0] {
 		case 'P':
-			sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"lightblue\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Primaria</B><BR/>%s<BR/>%d bytes<BR/>(%.2f%%)</TD>", cellWidth, partName, part.Size, percentage))
-
+			sb.WriteString(fmt.Sprintf(`<td bgcolor="lightblue" width="%d" align="center"><b>Primaria</b><br/>%s<br/>%d bytes<br/>(%.2f%%)</td>`, cellWidth, partName, part.Size, percentage))
 		case 'E':
-			sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"lightcoral\" WIDTH=\"%d\" ALIGN=\"CENTER\" CELLPADDING=\"0\">", cellWidth))
-			sb.WriteString("<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"5\" WIDTH=\"100%\" HEIGHT=\"100%\">")
-			sb.WriteString(fmt.Sprintf("<TR><TD COLSPAN=\"100\" ALIGN=\"CENTER\" BGCOLOR=\"orange\"><B>Extendida: %s</B></TD></TR><TR>", partName))
+			sb.WriteString(fmt.Sprintf(`<td bgcolor="lightcoral" width="%d" align="center" cellpadding="0">`, cellWidth))
+			sb.WriteString(`<table border="0" cellborder="1" cellspacing="0" cellpadding="5" width="100%" height="100%">`)
+
+			extendedPercentage := float64(part.Size) / float64(totalSize) * 100
+			sb.WriteString(fmt.Sprintf(`<tr><td colspan="100" align="center" bgcolor="orange"><b>Extendida</b><br/>%s<br/>%d bytes<br/>(%.2f%%)</td></tr><tr>`, partName, part.Size, extendedPercentage))
 
 			currentEbrOffset := int64(part.Start)
 			lastElementEndInE := currentEbrOffset
@@ -194,19 +193,18 @@ func (m *MBR) GenerateDiskLayoutDOT(file *os.File) (string, error) {
 
 			for {
 				var ebr EBR
-				if err := utilities.ReadObject(file, &ebr, currentEbrOffset); err != nil || ebr.PartNext == -1 {
+				if err := utilities.ReadObject(file, &ebr, currentEbrOffset); err != nil {
 					break
 				}
 
-				ebrPercentage := float64(ebrStructSize) / float64(totalSize) * 100
-				sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"gray\" ALIGN=\"CENTER\"><B>EBR</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", ebrStructSize, ebrPercentage))
+				ebrPercentage := float64(ebrStructSize) / float64(part.Size) * 100
+				sb.WriteString(fmt.Sprintf(`<td bgcolor="gray" align="center"><b>EBR</b><br/>%d bytes<br/>(%.2f%%)</td>`, ebrStructSize, ebrPercentage))
 				lastElementEndInE = currentEbrOffset + ebrStructSize
 
 				if ebr.PartSize > 0 {
-					logicalPercentage := float64(ebr.PartSize) / float64(totalSize) * 100
+					logicalPercentage := float64(ebr.PartSize) / float64(part.Size) * 100
 					logicalName := strings.TrimRight(string(ebr.PartName[:]), "\x00")
-					logicalCellWidth := max(50, int(float64(ebr.PartSize)/float64(totalSize)*800))
-					sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"lightgreen\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Lógica</B><BR/>%s<BR/>%d bytes<BR/>(%.2f%%)</TD>", logicalCellWidth, logicalName, ebr.PartSize, logicalPercentage))
+					sb.WriteString(fmt.Sprintf(`<td bgcolor="lightgreen" align="center"><b>Lógica</b><br/>%s<br/>%d bytes<br/>(%.2f%%)</td>`, logicalName, ebr.PartSize, logicalPercentage))
 					lastElementEndInE = int64(ebr.PartStart + ebr.PartSize)
 				}
 
@@ -219,11 +217,10 @@ func (m *MBR) GenerateDiskLayoutDOT(file *os.File) (string, error) {
 			endOfExtended := int64(part.Start + part.Size)
 			freeSpaceAtEnd := endOfExtended - lastElementEndInE
 			if freeSpaceAtEnd > 0 {
-				freeExtPercentage := float64(freeSpaceAtEnd) / float64(totalSize) * 100
-				freeCellWidth := max(30, int(float64(freeSpaceAtEnd)/float64(totalSize)*800))
-				sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"#D3D3D3\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Libre Ext.</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", freeCellWidth, freeSpaceAtEnd, freeExtPercentage))
+				freeExtPercentage := float64(freeSpaceAtEnd) / float64(part.Size) * 100
+				sb.WriteString(fmt.Sprintf(`<td bgcolor="#D3D3D3" align="center"><b>Libre Ext.</b><br/>%d bytes<br/>(%.2f%%)</td>`, freeSpaceAtEnd, freeExtPercentage))
 			}
-			sb.WriteString("</TR></TABLE></TD>")
+			sb.WriteString("</tr></table></td>")
 		}
 		lastOffset = int64(part.Start + part.Size)
 	}
@@ -232,9 +229,8 @@ func (m *MBR) GenerateDiskLayoutDOT(file *os.File) (string, error) {
 	if finalFreeSpace > 0 {
 		percentage := float64(finalFreeSpace) / float64(totalSize) * 100
 		cellWidth := max(30, int(float64(finalFreeSpace)/float64(totalSize)*800))
-		sb.WriteString(fmt.Sprintf("<TD BGCOLOR=\"#F5F5F5\" WIDTH=\"%d\" ALIGN=\"CENTER\"><B>Libre</B><BR/>%d bytes<BR/>(%.2f%%)</TD>", cellWidth, finalFreeSpace, percentage))
+		sb.WriteString(fmt.Sprintf(`<td bgcolor="#F5F5F5" width="%d" align="center"><b>Libre</b><br/>%d bytes<br/>(%.2f%%)</td>`, cellWidth, finalFreeSpace, percentage))
 	}
-
-	sb.WriteString("</TR></TABLE>>];}}")
+	sb.WriteString("</tr></table>>];}}")
 	return sb.String(), nil
 }

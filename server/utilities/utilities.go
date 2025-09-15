@@ -32,7 +32,7 @@ func OpenFile(name string) (*os.File, error) {
 	return file, nil
 }
 
-func WriteObject(file *os.File, data interface{}, position int64) error {
+func WriteObject(file *os.File, data any, position int64) error {
 	if _, err := file.Seek(position, 0); err != nil {
 		return fmt.Errorf("error al buscar la posición en el archivo: %v", err)
 	}

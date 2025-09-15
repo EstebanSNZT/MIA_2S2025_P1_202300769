@@ -14,6 +14,11 @@ type Mkfs struct {
 }
 
 func NewMkfs(input string) (*Mkfs, error) {
+	allowed := []string{"id", "type"}
+	if err := arguments.ValidateParams(input, allowed); err != nil {
+		return nil, err
+	}
+
 	id, err := arguments.ParseId(input)
 	if err != nil {
 		return nil, fmt.Errorf("error al analizar id: %w", err)

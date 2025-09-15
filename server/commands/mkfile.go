@@ -20,6 +20,11 @@ type Mkfile struct {
 }
 
 func NewMkfile(input string) (*Mkfile, error) {
+	allowed := []string{"path", "r", "size", "cont"}
+	if err := arguments.ValidateParams(input, allowed); err != nil {
+		return nil, err
+	}
+
 	path, err := arguments.ParsePath(input, false)
 	if err != nil {
 		return nil, err

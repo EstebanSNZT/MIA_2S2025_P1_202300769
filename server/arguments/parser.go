@@ -63,8 +63,8 @@ func ParseSize(input string, isMandatory bool) (int, error) {
 		return 0, fmt.Errorf("error al convertir el tamaño: %v", err)
 	}
 
-	if size <= 0 {
-		return 0, fmt.Errorf("el tamaño debe ser mayor que cero")
+	if size < 0 {
+		return 0, fmt.Errorf("el tamaño debe ser mayor o igual que cero")
 	}
 
 	return size, nil
@@ -183,25 +183,31 @@ func ParsePathFileLs(input string) (string, error) {
 }
 
 func ParseUser(input string) (string, error) {
-	re := regexp.MustCompile(`-user=([^ ]+)`)
+	re := regexp.MustCompile(`-user=(?:"([^"]+)"|([^ ]+))`)
 	match := re.FindStringSubmatch(input)
 
 	if match == nil {
 		return "", fmt.Errorf("no se encontró un user válido")
 	}
 
-	return match[1], nil
+	if match[1] != "" {
+		return match[1], nil
+	}
+	return match[2], nil
 }
 
 func ParsePass(input string) (string, error) {
-	re := regexp.MustCompile(`-pass=([^ ]+)`)
+	re := regexp.MustCompile(`-pass=(?:"([^"]+)"|([^ ]+))`)
 	match := re.FindStringSubmatch(input)
 
 	if match == nil {
 		return "", fmt.Errorf("no se encontró un pass válido")
 	}
 
-	return match[1], nil
+	if match[1] != "" {
+		return match[1], nil
+	}
+	return match[2], nil
 }
 
 func ParseFilePaths(input string) ([]string, error) {
@@ -279,4 +285,23 @@ func ParseP(input string) (bool, error) {
 	}
 
 	return false, nil
+}
+
+func ValidateParams(input string, allowedParams []string) error {
+	re := regexp.MustCompile(`-([a-zA-Z]\w*)`)
+	matches := re.FindAllStringSubmatch(input, -1)
+
+	allowedMap := make(map[string]bool)
+	for _, p := range allowedParams {
+		allowedMap[p] = true
+	}
+
+	for _, match := range matches {
+		paramName := match[1]
+		if !allowedMap[paramName] {
+			return fmt.Errorf("parámetro no permitido para este comando: '-%s'", paramName)
+		}
+	}
+
+	return nil
 }
