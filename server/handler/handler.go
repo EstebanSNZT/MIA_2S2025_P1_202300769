@@ -31,13 +31,14 @@ func Execute(c *fiber.Ctx, session *session.Session) error {
 	var output strings.Builder
 
 	for i, command := range script {
-		output.WriteString(fmt.Sprint("Resultado línea ", i+1, " — "))
 
 		trimmedCommand := strings.TrimSpace(command)
+
 		if trimmedCommand == "" || strings.HasPrefix(trimmedCommand, "#") {
-			output.WriteString("ignorada.\n")
 			continue
 		}
+
+		output.WriteString(fmt.Sprint("Resultado línea ", i+1, " — "))
 
 		result, err := analyzer.Analyzer(trimmedCommand, session)
 		if err != nil {

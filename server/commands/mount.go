@@ -50,7 +50,6 @@ func (m *Mount) Execute() (string, error) {
 	defer file.Close()
 
 	var mbr structures.MBR
-
 	if err = utilities.ReadObject(file, &mbr, 0); err != nil {
 		return "", fmt.Errorf("error al leer el MBR: %w", err)
 	}
@@ -81,6 +80,12 @@ func (m *Mount) Execute() (string, error) {
 	}
 
 	stores.MountedPartitions[partitionId] = mountedPartition
+
+	partition.Status = [1]byte{'1'}
+
+	if err := utilities.WriteObject(file, mbr, 0); err != nil {
+		return "", fmt.Errorf("error al actualizar el MBR: %w", err)
+	}
 
 	var superBlock structures.SuperBlock
 	if err = utilities.ReadObject(file, &superBlock, int64(partition.Start)); err != nil {

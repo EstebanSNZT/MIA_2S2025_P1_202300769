@@ -336,7 +336,7 @@ mkfile -path=/home/archivos/user/docs/Tarea2.txt -size=768
 
 
 # Cambiar la ruta del cont por la del archivo NAME.txt que creo
-mkfile -path=/home/archivos/user/docs/Tarea3.txt -size=10 -cont=/home/esteban/Calificacion_MIA/CONT/NAME.txt
+mkfile -path=/home/archivos/user/docs/Tarea3.txt -size=10 -cont=/home/esteban/Documentos/NAME.txt
 
 
 
