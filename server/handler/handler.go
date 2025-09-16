@@ -34,7 +34,12 @@ func Execute(c *fiber.Ctx, session *session.Session) error {
 
 		trimmedCommand := strings.TrimSpace(command)
 
-		if trimmedCommand == "" || strings.HasPrefix(trimmedCommand, "#") {
+		if trimmedCommand == "" {
+			continue
+		}
+
+		if strings.HasPrefix(trimmedCommand, "#") {
+			output.WriteString(trimmedCommand + "\n")
 			continue
 		}
 
