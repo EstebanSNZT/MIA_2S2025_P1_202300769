@@ -11,23 +11,23 @@ import (
 )
 
 type SuperBlock struct {
-	FilesystemType  int32
-	InodesCount     int32
-	BlocksCount     int32
-	FreeInodesCount int32
-	FreeBlocksCount int32
-	Mtime           int64
-	Utime           int64
-	MntCount        int32
-	Magic           int32
-	InodeSize       int32
-	BlockSize       int32
-	FirstIno        int32
-	FirstBlo        int32
-	BmInodeStart    int32
-	BmBlockStart    int32
-	InodeStart      int32
-	BlockStart      int32
+	FilesystemType  int32 // tipo de sistema de archivos
+	InodesCount     int32 // cantidad total de inodos
+	BlocksCount     int32 // cantidad total de bloques
+	FreeInodesCount int32 // cantidad de inodos libres
+	FreeBlocksCount int32 // cantidad de bloques libres
+	Mtime           int64 // fecha de última modificación
+	Utime           int64 // fecha de último montaje
+	MntCount        int32 // cantidad de montajes realizados
+	Magic           int32 // número mágico para identificar el sistema de archivos
+	InodeSize       int32 // tamaño de cada inodo
+	BlockSize       int32 // tamaño de cada bloque
+	FirstIno        int32 // posición del primer inodo libre
+	FirstBlo        int32 // posición del primer bloque libre
+	BmInodeStart    int32 // inicio del bitmap de inodos
+	BmBlockStart    int32 // inicio del bitmap de bloques
+	InodeStart      int32 // inicio de la tabla de inodos
+	BlockStart      int32 // inicio de la tabla de bloques
 }
 
 func NewSuperBlock(partition *Partition) *SuperBlock {

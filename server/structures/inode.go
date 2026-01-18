@@ -7,15 +7,15 @@ import (
 )
 
 type Inode struct {
-	UID    int32
-	GID    int32
-	Size   int32
-	Atime  int64
-	Ctime  int64
-	Mtime  int64
-	Blocks [15]int32
-	Type   [1]byte
-	Perm   [3]byte
+	UID    int32     // Identificador de usuario propietario del archivo.
+	GID    int32     // Identificador de grupo propietario del archivo.
+	Size   int32     // Tamaño del archivo en bytes.
+	Atime  int64     // Fecha y hora del último acceso al archivo.
+	Ctime  int64     // Fecha y hora de creación del archivo.
+	Mtime  int64     // Fecha y hora de la última modificación del archivo.
+	Blocks [15]int32 // Arreglo de 15 punteros a bloques de datos asociados al archivo.
+	Type   [1]byte   // Tipo de archivo (por ejemplo, archivo regular o directorio).
+	Perm   [3]byte   // Permisos de acceso al archivo (lectura, escritura, ejecución).
 }
 
 func NewInode(uid int32, gid int32, size int32, blockType [1]byte, perm [3]byte) *Inode {
